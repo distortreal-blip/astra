@@ -1,0 +1,13 @@
+[Unit]
+Description=ASTRA Relay Node
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/opt/astra/bin/astra-relay -config /etc/astra/astra-relay.json
+Restart=always
+RestartSec=2
+LimitNOFILE=1048576
+
+[Install]
+WantedBy=multi-user.target

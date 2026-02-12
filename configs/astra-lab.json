@@ -1,0 +1,8 @@
+{
+  "LAB_MODE": "proxy",
+  "LAB_LISTEN_ADDR": "127.0.0.1:18080",
+  "LAB_TARGET_ADDR": "127.0.0.1:8443",
+  "LAB_DROP_PCT": 0,
+  "LAB_DELAY_MS": 0,
+  "LAB_RESET_AFTER_BYTES": 0
+}

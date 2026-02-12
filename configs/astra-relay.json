@@ -1,0 +1,6 @@
+{
+  "RELAY_ADDR": "0.0.0.0:9443",
+  "RELAY_TRANSPORT": "rudp",
+  "RELAY_NEXT_ADDR": "127.0.0.1:10443",
+  "RELAY_NEXT_TRANSPORT": "rudp"
+}
