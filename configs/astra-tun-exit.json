@@ -1,0 +1,7 @@
+{
+  "EXIT_ADDR": "0.0.0.0:10443",
+  "EXIT_TRANSPORT": "rudp",
+  "EXIT_TUN_ENABLE": true,
+  "ASTRA_TUN_NAME": "astra0",
+  "ASTRA_TUN_MTU": 1400
+}

@@ -13,6 +13,7 @@ build_target() {
 
   echo "Building $goos/$goarch..."
   GOOS="$goos" GOARCH="$goarch" go build -o "$outdir/bin/astra-client" "$ROOT_DIR/cmd/astra-client"
+  GOOS="$goos" GOARCH="$goarch" go build -o "$outdir/bin/astra-tun-client" "$ROOT_DIR/cmd/astra-tun-client"
   GOOS="$goos" GOARCH="$goarch" go build -o "$outdir/bin/astra-entry" "$ROOT_DIR/cmd/astra-entry"
   GOOS="$goos" GOARCH="$goarch" go build -o "$outdir/bin/astra-relay" "$ROOT_DIR/cmd/astra-relay"
   GOOS="$goos" GOARCH="$goarch" go build -o "$outdir/bin/astra-exit" "$ROOT_DIR/cmd/astra-exit"

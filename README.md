@@ -35,6 +35,7 @@ CLI examples: `docs/CLI.md`.
 
 ## Services
 - `astra-client` — client with adaptive SNI/transport selection
+- `astra-tun-client` — TUN client (routes all traffic)
 - `astra-entry` — auth + routing to relay/exit
 - `astra-relay` — optional hop
 - `astra-exit` — egress + policies
@@ -49,6 +50,7 @@ CLI examples: `docs/CLI.md`.
 ## Building binaries
 ```bash
 go build ./cmd/astra-client
+go build ./cmd/astra-tun-client
 go build ./cmd/astra-entry
 go build ./cmd/astra-relay
 go build ./cmd/astra-exit

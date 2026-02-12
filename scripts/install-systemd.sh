@@ -28,6 +28,9 @@ sudo cp "$ROOT_DIR/bin/astra-entry" "$BIN_DIR/"
 sudo cp "$ROOT_DIR/bin/astra-relay" "$BIN_DIR/"
 sudo cp "$ROOT_DIR/bin/astra-exit" "$BIN_DIR/"
 sudo cp "$ROOT_DIR/bin/astra-client" "$BIN_DIR/"
+if [ -f "$ROOT_DIR/bin/astra-tun-client" ]; then
+  sudo cp "$ROOT_DIR/bin/astra-tun-client" "$BIN_DIR/"
+fi
 
 sudo systemctl daemon-reload
 sudo systemctl enable --now astra-entry astra-relay astra-exit astra-client

@@ -3,6 +3,7 @@ package main
 import (
 	"bufio"
 	"context"
+	"encoding/binary"
 	"flag"
 	"fmt"
 	"io"
@@ -13,6 +14,7 @@ import (
 
 	"astra/internal/config"
 	"astra/internal/transport"
+	"astra/internal/tun"
 )
 
 const defaultAddr = "127.0.0.1:10443"
@@ -54,6 +56,10 @@ func main() {
 
 func handle(conn net.Conn, upstream string) {
 	defer conn.Close()
+	if getenvBool("EXIT_TUN_ENABLE", false) {
+		handleTun(conn)
+		return
+	}
 	if upstream == "" {
 		echo(conn)
 		return
@@ -72,6 +78,46 @@ func handle(conn net.Conn, upstream string) {
 	io.Copy(conn, up)
 }
 
+func handleTun(conn net.Conn) {
+	tunName := getenv("ASTRA_TUN_NAME", "astra0")
+	tunMTU := getenvInt("ASTRA_TUN_MTU", 1400)
+	dev, err := tun.Create(tunName, tunMTU)
+	if err != nil {
+		fmt.Println("tun create failed:", err)
+		return
+	}
+	defer tun.Close(dev)
+	fmt.Printf("EXIT TUN up: %s (mtu=%d)\n", dev.Name, dev.MTU)
+
+	reader := bufio.NewReader(conn)
+	writer := bufio.NewWriter(conn)
+
+	go func() {
+		buf := make([]byte, 65535)
+		for {
+			n, err := tun.ReadPacket(dev, buf)
+			if err != nil {
+				return
+			}
+			if n <= 0 || n > 0xffff {
+				continue
+			}
+			_ = writePacket(writer, buf[:n])
+		}
+	}()
+
+	for {
+		payload, err := readPacket(reader)
+		if err != nil {
+			return
+		}
+		if len(payload) == 0 {
+			continue
+		}
+		_, _ = tun.WritePacket(dev, payload)
+	}
+}
+
 func echo(conn net.Conn) {
 	reader := bufio.NewReader(conn)
 	for {
@@ -86,6 +132,15 @@ func echo(conn net.Conn) {
 func getenv(key, def string) string {
 	if v := os.Getenv(key); v != "" {
 		return v
+	}
+	return def
+}
+
+func getenvInt(key string, def int) int {
+	if v := os.Getenv(key); v != "" {
+		if parsed, err := strconv.Atoi(v); err == nil {
+			return parsed
+		}
 	}
 	return def
 }
@@ -259,4 +314,35 @@ func getenvBool(key string, def bool) bool {
 		return v == "1" || strings.ToLower(v) == "true"
 	}
 	return def
+}
+
+func writePacket(writer *bufio.Writer, payload []byte) error {
+	if len(payload) > 0xffff {
+		return nil
+	}
+	header := make([]byte, 2)
+	binary.BigEndian.PutUint16(header, uint16(len(payload)))
+	if _, err := writer.Write(header); err != nil {
+		return err
+	}
+	if _, err := writer.Write(payload); err != nil {
+		return err
+	}
+	return writer.Flush()
+}
+
+func readPacket(reader *bufio.Reader) ([]byte, error) {
+	header := make([]byte, 2)
+	if _, err := io.ReadFull(reader, header); err != nil {
+		return nil, err
+	}
+	length := int(binary.BigEndian.Uint16(header))
+	if length <= 0 {
+		return nil, nil
+	}
+	payload := make([]byte, length)
+	if _, err := io.ReadFull(reader, payload); err != nil {
+		return nil, err
+	}
+	return payload, nil
 }

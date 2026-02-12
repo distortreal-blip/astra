@@ -50,13 +50,42 @@ Most common settings:
 - `ENTRY_TLS_ALPN` — `h2,http/1.1`
 - `EXIT_ALLOW_PORTS` — allowed ports for exit
 
-## 4) Start/stop
+## 4) Full VPN mode (TUN)
+ASTRA supports TUN mode to route all traffic through the tunnel.
+
+Server (Exit):
+```
+sudo cp configs/astra-tun-exit.json /etc/astra/astra-exit.json
+```
+
+Client (Windows/Linux):
+```
+astra-tun-client -config configs/astra-tun-client.json
+```
+
+Linux routing example:
+```
+sudo ip addr add 10.10.0.2/24 dev astra0
+sudo ip link set astra0 up
+sudo ip route add default dev astra0
+```
+
+Server NAT example (Exit side):
+```
+sudo sysctl -w net.ipv4.ip_forward=1
+sudo iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+```
+
+Windows note:
+- Install WireGuard (Wintun driver) so TUN device can be created.
+
+## 5) Start/stop
 ```
 sudo systemctl status astra-entry
 sudo systemctl restart astra-entry
 ```
 
-## 5) Troubleshooting
+## 6) Troubleshooting
 - Check logs:
 ```
 journalctl -u astra-entry -f
