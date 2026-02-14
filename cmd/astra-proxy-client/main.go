@@ -81,6 +81,9 @@ func handleClient(conn net.Conn) {
 	if !strings.Contains(target, ":") {
 		target = target + ":80"
 	}
+	if err := consumeProxyHeaders(reader); err != nil {
+		return
+	}
 
 	serverConn, err := connectToEntry(target)
 	if err != nil {
@@ -163,6 +166,18 @@ func connectToEntry(target string) (net.Conn, error) {
 
 func writeHTTPError(conn net.Conn, status string) {
 	_, _ = conn.Write([]byte("HTTP/1.1 " + status + "\r\n\r\n"))
+}
+
+func consumeProxyHeaders(reader *bufio.Reader) error {
+	for {
+		line, err := reader.ReadString('\n')
+		if err != nil {
+			return err
+		}
+		if line == "\r\n" || line == "\n" {
+			return nil
+		}
+	}
 }
 
 func loadIdentity(path string) (*identity.Identity, error) {

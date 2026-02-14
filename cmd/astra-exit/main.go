@@ -98,6 +98,9 @@ func handleProxy(conn net.Conn) {
 	if !strings.Contains(target, ":") {
 		target = target + ":80"
 	}
+	if err := consumeProxyHeaders(reader); err != nil {
+		return
+	}
 	allowed, reason, target := checkEgressPolicy(target)
 	if !allowed {
 		_, _ = conn.Write([]byte("HTTP/1.1 403 Forbidden\r\n\r\n"))
@@ -382,4 +385,16 @@ func readPacket(reader *bufio.Reader) ([]byte, error) {
 		return nil, err
 	}
 	return payload, nil
+}
+
+func consumeProxyHeaders(reader *bufio.Reader) error {
+	for {
+		line, err := reader.ReadString('\n')
+		if err != nil {
+			return err
+		}
+		if line == "\r\n" || line == "\n" {
+			return nil
+		}
+	}
 }
