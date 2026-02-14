@@ -6,6 +6,8 @@ import (
 	"golang.zx2c4.com/wireguard/tun"
 )
 
+const packetOffset = 16
+
 type Device struct {
 	Tun  tun.Device
 	Name string
@@ -58,8 +60,13 @@ func WritePacket(dev *Device, buf []byte) (int, error) {
 	if dev == nil || dev.Tun == nil {
 		return 0, fmt.Errorf("tun not initialized")
 	}
-	bufs := [][]byte{buf}
-	n, err := dev.Tun.Write(bufs, 0)
+	// Linux wireguard/tun may require headroom for virtio headers when vnet is enabled.
+	// Always provide a small offset-compatible buffer to keep behavior stable
+	// across platforms and driver versions.
+	frame := make([]byte, packetOffset+len(buf))
+	copy(frame[packetOffset:], buf)
+	bufs := [][]byte{frame}
+	n, err := dev.Tun.Write(bufs, packetOffset)
 	if err != nil {
 		return 0, err
 	}
