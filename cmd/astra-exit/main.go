@@ -110,7 +110,6 @@ func handleProxy(conn net.Conn) {
 		return
 	}
 	defer up.Close()
-	_, _ = conn.Write([]byte("HTTP/1.1 200 Connection Established\r\n\r\n"))
 	go io.Copy(up, reader)
 	io.Copy(conn, up)
 }
