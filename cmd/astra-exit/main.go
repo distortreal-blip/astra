@@ -7,10 +7,12 @@ import (
 	"flag"
 	"fmt"
 	"io"
+	"log"
 	"net"
 	"os"
 	"strconv"
 	"strings"
+	"sync/atomic"
 
 	"astra/internal/config"
 	"astra/internal/transport"
@@ -128,16 +130,19 @@ func handleTun(conn net.Conn) {
 	reader := bufio.NewReader(conn)
 	writer := bufio.NewWriter(conn)
 
+	go logTunStats()
 	go func() {
 		buf := make([]byte, 65535)
 		for {
 			n, err := tun.ReadPacket(dev, buf)
 			if err != nil {
+				log.Printf("tun read error: %v", err)
 				return
 			}
 			if n <= 0 || n > 0xffff {
 				continue
 			}
+			atomic.AddUint64(&tunTxBytes, uint64(n))
 			_ = writePacket(writer, buf[:n])
 		}
 	}()
@@ -145,12 +150,27 @@ func handleTun(conn net.Conn) {
 	for {
 		payload, err := readPacket(reader)
 		if err != nil {
+			log.Printf("conn read error: %v", err)
 			return
 		}
 		if len(payload) == 0 {
 			continue
 		}
+		atomic.AddUint64(&tunRxBytes, uint64(len(payload)))
 		_, _ = tun.WritePacket(dev, payload)
+	}
+}
+
+var tunTxBytes uint64
+var tunRxBytes uint64
+
+func logTunStats() {
+	ticker := time.NewTicker(5 * time.Second)
+	defer ticker.Stop()
+	for range ticker.C {
+		tx := atomic.LoadUint64(&tunTxBytes)
+		rx := atomic.LoadUint64(&tunRxBytes)
+		log.Printf("tun stats: tx=%d rx=%d", tx, rx)
 	}
 }
 
