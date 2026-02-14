@@ -22,6 +22,13 @@ astra-client -config configs/astra-client.json \
   -tls-frag 128
 ```
 
+## astra-proxy-client
+```
+astra-proxy-client -config configs/astra-proxy-client.json \
+  -listen 127.0.0.1:1080 \
+  -entry entry.example.com:8443
+```
+
 ## astra-entry
 ```
 astra-entry -config configs/astra-entry.json \

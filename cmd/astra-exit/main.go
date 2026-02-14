@@ -60,6 +60,10 @@ func handle(conn net.Conn, upstream string) {
 		handleTun(conn)
 		return
 	}
+	if getenvBool("EXIT_PROXY_MODE", false) {
+		handleProxy(conn)
+		return
+	}
 	if upstream == "" {
 		echo(conn)
 		return
@@ -75,6 +79,39 @@ func handle(conn net.Conn, upstream string) {
 	}
 	defer up.Close()
 	go io.Copy(up, conn)
+	io.Copy(conn, up)
+}
+
+func handleProxy(conn net.Conn) {
+	reader := bufio.NewReader(conn)
+	line, err := reader.ReadString('\n')
+	if err != nil {
+		return
+	}
+	line = strings.TrimSpace(line)
+	parts := strings.Split(line, " ")
+	if len(parts) < 2 || strings.ToUpper(parts[0]) != "CONNECT" {
+		_, _ = conn.Write([]byte("HTTP/1.1 400 Bad Request\r\n\r\n"))
+		return
+	}
+	target := parts[1]
+	if !strings.Contains(target, ":") {
+		target = target + ":80"
+	}
+	allowed, reason, target := checkEgressPolicy(target)
+	if !allowed {
+		_, _ = conn.Write([]byte("HTTP/1.1 403 Forbidden\r\n\r\n"))
+		fmt.Println("proxy denied:", reason)
+		return
+	}
+	up, err := dialTransport(getenv("EXIT_UPSTREAM_TRANSPORT", "tcp"), target)
+	if err != nil {
+		_, _ = conn.Write([]byte("HTTP/1.1 502 Bad Gateway\r\n\r\n"))
+		return
+	}
+	defer up.Close()
+	_, _ = conn.Write([]byte("HTTP/1.1 200 Connection Established\r\n\r\n"))
+	go io.Copy(up, reader)
 	io.Copy(conn, up)
 }
 

@@ -79,6 +79,25 @@ sudo iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
 Windows note:
 - Install WireGuard (Wintun driver) so TUN device can be created.
 
+## 5) Proxy mode (no TUN)
+If you cannot use TUN on Windows, use the local HTTP CONNECT proxy.
+
+Server (Exit):
+```
+# in /etc/astra/astra-exit.json
+"EXIT_PROXY_MODE": true
+```
+
+Client (Windows):
+```
+astra-proxy-client -config configs/astra-proxy-client.json
+```
+
+Then set your browser proxy to:
+```
+HTTP proxy: 127.0.0.1:1080
+```
+
 ## 5) Start/stop
 ```
 sudo systemctl status astra-entry

@@ -2,6 +2,7 @@
   "EXIT_ADDR": "0.0.0.0:10443",
   "EXIT_TRANSPORT": "rudp",
   "EXIT_UPSTREAM_TRANSPORT": "tcp",
+  "EXIT_PROXY_MODE": false,
   "EXIT_DNS_ONLY": false,
   "EXIT_ALLOW_PORTS": "80,443,53",
   "EXIT_DENY_PORTS": "",
