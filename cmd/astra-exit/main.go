@@ -127,13 +127,23 @@ func handleTun(conn net.Conn) {
 		return
 	}
 
-	// Current framing does not multiplex separate tunnel sessions.
-	// Keep exactly one active session to prevent concurrent corruption.
-	if !atomic.CompareAndSwapInt32(&tunSessionActive, 0, 1) {
-		log.Printf("tun session already active, rejecting additional connection")
-		return
+	// Only one active tunnel session should drive the shared TUN device.
+	// If a new client reconnects while the old session is still open, take over:
+	// close old conn so its goroutines exit, then continue with the new conn.
+	tunSessionMu.Lock()
+	if activeTunConn != nil {
+		log.Printf("replacing active tun session")
+		_ = activeTunConn.Close()
 	}
-	defer atomic.StoreInt32(&tunSessionActive, 0)
+	activeTunConn = conn
+	tunSessionMu.Unlock()
+	defer func() {
+		tunSessionMu.Lock()
+		if activeTunConn == conn {
+			activeTunConn = nil
+		}
+		tunSessionMu.Unlock()
+	}()
 
 	reader := bufio.NewReader(conn)
 	writer := bufio.NewWriter(conn)
@@ -180,7 +190,8 @@ var tunInitOnce sync.Once
 var tunStatsOnce sync.Once
 var tunInitErr error
 var sharedTunDev *tun.Device
-var tunSessionActive int32
+var tunSessionMu sync.Mutex
+var activeTunConn net.Conn
 
 func getOrCreateTunDevice() (*tun.Device, error) {
 	tunInitOnce.Do(func() {
