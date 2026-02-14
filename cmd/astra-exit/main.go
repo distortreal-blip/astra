@@ -10,6 +10,8 @@ import (
 	"log"
 	"net"
 	"os"
+	"os/exec"
+	"runtime"
 	"strconv"
 	"strings"
 	"sync"
@@ -188,9 +190,29 @@ func getOrCreateTunDevice() (*tun.Device, error) {
 		if tunInitErr != nil {
 			return
 		}
+		if err := ensureTunInterfaceReady(sharedTunDev.Name); err != nil {
+			tunInitErr = err
+			_ = tun.Close(sharedTunDev)
+			sharedTunDev = nil
+			return
+		}
 		fmt.Printf("EXIT TUN up: %s (mtu=%d)\n", sharedTunDev.Name, sharedTunDev.MTU)
 	})
 	return sharedTunDev, tunInitErr
+}
+
+func ensureTunInterfaceReady(name string) error {
+	if runtime.GOOS != "linux" {
+		return nil
+	}
+	addrCIDR := getenv("ASTRA_TUN_ADDR", "10.10.0.1/24")
+	if err := exec.Command("ip", "link", "set", "dev", name, "up").Run(); err != nil {
+		return fmt.Errorf("ip link set up failed for %s: %w", name, err)
+	}
+	if err := exec.Command("ip", "addr", "replace", addrCIDR, "dev", name).Run(); err != nil {
+		return fmt.Errorf("ip addr replace failed for %s: %w", name, err)
+	}
+	return nil
 }
 
 func logTunStats() {
