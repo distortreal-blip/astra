@@ -12,6 +12,7 @@ import (
 	"os"
 	"strconv"
 	"strings"
+	"sync"
 	"sync/atomic"
 	"time"
 
@@ -118,20 +119,26 @@ func handleProxy(conn net.Conn) {
 }
 
 func handleTun(conn net.Conn) {
-	tunName := getenv("ASTRA_TUN_NAME", "astra0")
-	tunMTU := getenvInt("ASTRA_TUN_MTU", 1400)
-	dev, err := tun.Create(tunName, tunMTU)
+	dev, err := getOrCreateTunDevice()
 	if err != nil {
 		fmt.Println("tun create failed:", err)
 		return
 	}
-	defer tun.Close(dev)
-	fmt.Printf("EXIT TUN up: %s (mtu=%d)\n", dev.Name, dev.MTU)
+
+	// Current framing does not multiplex separate tunnel sessions.
+	// Keep exactly one active session to prevent concurrent corruption.
+	if !atomic.CompareAndSwapInt32(&tunSessionActive, 0, 1) {
+		log.Printf("tun session already active, rejecting additional connection")
+		return
+	}
+	defer atomic.StoreInt32(&tunSessionActive, 0)
 
 	reader := bufio.NewReader(conn)
 	writer := bufio.NewWriter(conn)
 
-	go logTunStats()
+	tunStatsOnce.Do(func() {
+		go logTunStats()
+	})
 	go func() {
 		buf := make([]byte, 65535)
 		for {
@@ -167,6 +174,24 @@ func handleTun(conn net.Conn) {
 
 var tunTxBytes uint64
 var tunRxBytes uint64
+var tunInitOnce sync.Once
+var tunStatsOnce sync.Once
+var tunInitErr error
+var sharedTunDev *tun.Device
+var tunSessionActive int32
+
+func getOrCreateTunDevice() (*tun.Device, error) {
+	tunInitOnce.Do(func() {
+		tunName := getenv("ASTRA_TUN_NAME", "astra0")
+		tunMTU := getenvInt("ASTRA_TUN_MTU", 1400)
+		sharedTunDev, tunInitErr = tun.Create(tunName, tunMTU)
+		if tunInitErr != nil {
+			return
+		}
+		fmt.Printf("EXIT TUN up: %s (mtu=%d)\n", sharedTunDev.Name, sharedTunDev.MTU)
+	})
+	return sharedTunDev, tunInitErr
+}
 
 func logTunStats() {
 	ticker := time.NewTicker(5 * time.Second)

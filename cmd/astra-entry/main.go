@@ -8,6 +8,7 @@ import (
 	"flag"
 	"fmt"
 	"io"
+	"log"
 	"net"
 	"os"
 	"strconv"
@@ -264,6 +265,7 @@ func echo(conn net.Conn) {
 func proxy(client net.Conn, addr string) {
 	target, err := dialForwardTransport(getenv("ENTRY_FORWARD_TRANSPORT", "tcp"), addr)
 	if err != nil {
+		log.Printf("proxy dial failed to %s: %v", addr, err)
 		return
 	}
 	defer target.Close()
