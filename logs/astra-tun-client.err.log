@@ -756,3 +756,120 @@
 2026/02/15 17:36:35 shutdown: removing routes, closing TUN...
 2026/02/15 17:36:35 tun read error (disconnect reason): file already closed
 2026/02/15 17:36:35 shutdown done (routes removed, TUN closed)
+2026/02/15 17:43:07 Using existing driver 0.14
+2026/02/15 17:43:07 Creating adapter
+2026/02/15 17:43:07 TUN address 10.10.0.2/24 on astra0
+2026/02/15 17:43:07 route 0.0.0.0/0 via 10.10.0.1 (full tunnel)
+2026/02/15 17:43:07 TUN up: astra0 (mtu=1400)
+2026/02/15 17:43:07 transports: quic,tcp,tls,rudp
+2026/02/15 17:43:07 frame_padding: enabled min=16 max=64
+2026/02/15 17:43:07 trying transport=rudp profile=google-h2 addr=178.208.76.92:8443
+2026/02/15 17:43:07 trying transport=tcp profile=google-h2 addr=178.208.76.92:8443
+2026/02/15 17:43:07 trying transport=quic profile=google-h2 addr=178.208.76.92:8443
+2026/02/15 17:43:07 trying transport=tls profile=google-h2 addr=178.208.76.92:8443
+2026/02/15 17:43:07 transport=tls dial failed: tls: first record does not look like a TLS handshake
+2026/02/15 17:43:07 trying transport=tls profile=google-h1 addr=178.208.76.92:8443
+2026/02/15 17:43:07 transport=tls dial failed: dial tcp 178.208.76.92:8443: operation was canceled
+2026/02/15 17:43:07 transport=quic dial failed: context canceled
+2026/02/15 17:43:07 connected to entry 178.208.76.92:8443 transport=tcp
+2026/02/15 17:43:07 keepalive: interval=3s jitter=±15%
+2026/02/15 17:43:07 conn read error (tunnel/entry closed): unexpected EOF
+2026/02/15 17:43:07 shutdown: removing routes, closing TUN...
+2026/02/15 17:43:07 tun->conn write error: write tcp 192.168.0.136:10194->178.208.76.92:8443: use of closed network connection
+2026/02/15 17:43:07 shutdown done (routes removed, TUN closed)
+2026/02/15 17:45:15 Using existing driver 0.14
+2026/02/15 17:45:15 Creating adapter
+2026/02/15 17:45:15 TUN address 10.10.0.2/24 on astra0
+2026/02/15 17:45:15 route 0.0.0.0/0 via 10.10.0.1 (full tunnel)
+2026/02/15 17:45:15 TUN up: astra0 (mtu=1400)
+2026/02/15 17:45:15 transports: quic,tcp,tls,rudp
+2026/02/15 17:45:15 frame_padding: enabled min=16 max=64
+2026/02/15 17:45:15 trying transport=rudp profile=google-h2 addr=178.208.76.92:8443
+2026/02/15 17:45:15 trying transport=tcp profile=google-h2 addr=178.208.76.92:8443
+2026/02/15 17:45:15 trying transport=quic profile=google-h2 addr=178.208.76.92:8443
+2026/02/15 17:45:15 trying transport=tls profile=google-h2 addr=178.208.76.92:8443
+2026/02/15 17:45:15 transport=quic dial failed: context canceled
+2026/02/15 17:45:15 connected to entry 178.208.76.92:8443 transport=tcp
+2026/02/15 17:45:15 keepalive: interval=3s jitter=±15%
+2026/02/15 17:45:15 transport=tls dial failed: tls: first record does not look like a TLS handshake
+2026/02/15 17:45:15 conn read error (tunnel/entry closed): EOF
+2026/02/15 17:45:15 shutdown: removing routes, closing TUN...
+2026/02/15 17:45:15 tun read error (disconnect reason): file already closed
+2026/02/15 17:45:15 shutdown done (routes removed, TUN closed)
+2026/02/15 17:46:33 Using existing driver 0.14
+2026/02/15 17:46:33 Creating adapter
+2026/02/15 17:46:33 TUN address 10.10.0.2/24 on astra0
+2026/02/15 17:46:33 route 0.0.0.0/0 via 10.10.0.1 (full tunnel)
+2026/02/15 17:46:33 TUN up: astra0 (mtu=1400)
+2026/02/15 17:46:33 transports: quic,tcp,tls,rudp
+2026/02/15 17:46:33 frame_padding: enabled min=16 max=64
+2026/02/15 17:46:33 trying transport=quic profile=google-h2 addr=178.208.76.92:8443
+2026/02/15 17:46:33 trying transport=rudp profile=google-h2 addr=178.208.76.92:8443
+2026/02/15 17:46:33 trying transport=tcp profile=google-h2 addr=178.208.76.92:8443
+2026/02/15 17:46:33 trying transport=tls profile=google-h2 addr=178.208.76.92:8443
+2026/02/15 17:46:33 transport=tls dial failed: tls: first record does not look like a TLS handshake
+2026/02/15 17:46:33 trying transport=tls profile=google-h1 addr=178.208.76.92:8443
+2026/02/15 17:46:34 transport=tls dial failed: tls: first record does not look like a TLS handshake
+2026/02/15 17:46:34 trying transport=tls profile=gstatic-h2 addr=178.208.76.92:8443
+2026/02/15 17:46:34 transport=tls dial failed: dial tcp 178.208.76.92:8443: operation was canceled
+2026/02/15 17:46:34 transport=quic dial failed: context canceled
+2026/02/15 17:46:34 connected to entry 178.208.76.92:8443 transport=tcp
+2026/02/15 17:46:34 keepalive: interval=3s jitter=±15%
+2026/02/15 17:46:34 conn read error (tunnel/entry closed): read tcp 192.168.0.136:8483->178.208.76.92:8443: wsarecv: An existing connection was forcibly closed by the remote host.
+2026/02/15 17:46:34 shutdown: removing routes, closing TUN...
+2026/02/15 17:46:34 tun->conn write error: write tcp 192.168.0.136:8483->178.208.76.92:8443: use of closed network connection
+2026/02/15 17:46:34 shutdown done (routes removed, TUN closed)
+2026/02/15 17:48:31 Using existing driver 0.14
+2026/02/15 17:48:31 Creating adapter
+2026/02/15 17:48:31 TUN address 10.10.0.2/24 on astra0
+2026/02/15 17:48:31 route 0.0.0.0/0 via 10.10.0.1 (full tunnel)
+2026/02/15 17:48:31 TUN up: astra0 (mtu=1400)
+2026/02/15 17:48:31 transports: quic,tcp,tls,rudp
+2026/02/15 17:48:31 frame_padding: enabled min=16 max=64
+2026/02/15 17:48:31 trying transport=quic profile=google-h2 addr=178.208.76.92:8443
+2026/02/15 17:48:31 trying transport=rudp profile=google-h2 addr=178.208.76.92:8443
+2026/02/15 17:48:31 trying transport=tcp profile=google-h2 addr=178.208.76.92:8443
+2026/02/15 17:48:31 trying transport=tls profile=google-h2 addr=178.208.76.92:8443
+2026/02/15 17:48:32 transport=tcp handshake failed: EOF
+2026/02/15 17:48:32 trying transport=tcp profile=google-h1 addr=178.208.76.92:8443
+2026/02/15 17:48:32 transport=quic dial failed: context canceled
+2026/02/15 17:48:32 connected to entry 178.208.76.92:8443 transport=tls
+2026/02/15 17:48:32 keepalive: interval=3s jitter=±15%
+2026/02/15 17:48:32 transport=tcp handshake failed: EOF
+2026/02/15 17:48:37 tun stats: tx=5563 rx=0
+2026/02/15 17:48:42 tun stats: tx=13266 rx=0
+2026/02/15 17:48:47 tun stats: tx=15990 rx=0
+2026/02/15 17:48:52 tun stats: tx=16660 rx=0
+2026/02/15 17:48:57 tun stats: tx=17788 rx=0
+2026/02/15 17:49:02 tun stats: tx=18293 rx=0
+2026/02/15 17:49:07 tun stats: tx=18969 rx=0
+2026/02/15 17:49:12 tun stats: tx=20112 rx=0
+2026/02/15 17:49:17 tun stats: tx=22593 rx=0
+2026/02/15 17:49:22 tun stats: tx=23373 rx=0
+2026/02/15 17:49:27 tun stats: tx=23737 rx=0
+2026/02/15 17:58:26 Using existing driver 0.14
+2026/02/15 17:58:26 Creating adapter
+2026/02/15 17:58:26 Removed orphaned adapter "astra0 1"
+2026/02/15 17:58:26 TUN address 10.10.0.2/24 on astra0
+2026/02/15 17:58:27 route 0.0.0.0/0 via 10.10.0.1 (full tunnel)
+2026/02/15 17:58:27 TUN up: astra0 (mtu=1400)
+2026/02/15 17:58:27 transports: quic,tcp,tls,rudp
+2026/02/15 17:58:27 frame_padding: enabled min=16 max=64
+2026/02/15 17:58:27 trying transport=rudp profile=google-h2 addr=178.208.76.92:8443
+2026/02/15 17:58:27 trying transport=tcp profile=google-h2 addr=178.208.76.92:8443
+2026/02/15 17:58:27 trying transport=quic profile=google-h2 addr=178.208.76.92:8443
+2026/02/15 17:58:27 trying transport=tls profile=google-h2 addr=178.208.76.92:8443
+2026/02/15 17:58:27 transport=tcp handshake failed: EOF
+2026/02/15 17:58:27 trying transport=tcp profile=google-h1 addr=178.208.76.92:8443
+2026/02/15 17:58:27 transport=quic dial failed: context canceled
+2026/02/15 17:58:27 connected to entry 178.208.76.92:8443 transport=tls
+2026/02/15 17:58:27 keepalive: interval=3s jitter=±15%
+2026/02/15 17:58:27 transport=tcp handshake failed: EOF
+2026/02/15 17:58:32 tun stats: tx=6927 rx=0
+2026/02/15 17:58:37 tun stats: tx=36006 rx=0
+2026/02/15 17:58:42 tun stats: tx=42664 rx=0
+2026/02/15 17:58:47 tun stats: tx=48743 rx=0
+2026/02/15 17:58:52 tun stats: tx=63551 rx=0
+2026/02/15 17:58:57 tun stats: tx=77070 rx=0
+2026/02/15 17:59:02 tun stats: tx=79150 rx=0
+2026/02/15 17:59:07 tun stats: tx=80553 rx=0

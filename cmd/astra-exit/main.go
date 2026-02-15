@@ -155,11 +155,9 @@ func handleTun(conn net.Conn) {
 	// otherwise reply packets pile up in kernel and client gets rx=0.
 	tunToConn := make(chan []byte, 256)
 	ctx, cancel := context.WithCancel(context.Background())
-	defer func() {
-		cancel()
-		close(tunToConn)
-	}()
+	defer cancel()
 	go func() {
+		defer close(tunToConn)
 		buf := make([]byte, 65535)
 		for {
 			select {
