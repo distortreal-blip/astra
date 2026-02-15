@@ -206,11 +206,23 @@ func handleTun(conn net.Conn) {
 			continue
 		}
 		atomic.AddUint64(&tunRxBytes, uint64(len(payload)))
+		if !isValidIPPacket(payload) {
+			continue
+		}
 		if _, err := tun.WritePacket(dev, payload); err != nil {
 			log.Printf("tun write error (skip packet len=%d): %v", len(payload), err)
 			continue
 		}
 	}
+}
+
+// isValidIPPacket returns true if payload looks like a raw IP packet (min size + version 4 or 6).
+func isValidIPPacket(p []byte) bool {
+	if len(p) < 20 {
+		return false
+	}
+	ver := p[0] >> 4
+	return ver == 4 || ver == 6
 }
 
 var tunTxBytes uint64
