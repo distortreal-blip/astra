@@ -64,8 +64,8 @@ func main() {
 		"ASTRA_MUX_ENABLED":        *flagMux,
 	})
 	frameCfg := transport.FrameConfig{
-		MinPad: getenvInt("ASTRA_FRAME_MIN_PAD", 0),
-		MaxPad: getenvInt("ASTRA_FRAME_MAX_PAD", 0),
+		MinPad: getenvInt("ASTRA_FRAME_MIN_PAD", 16),
+		MaxPad: getenvInt("ASTRA_FRAME_MAX_PAD", 64),
 	}
 	muxEnabled := getenvBool("ASTRA_MUX_ENABLED", false)
 	muxCfg := muxConfigFromEnv()

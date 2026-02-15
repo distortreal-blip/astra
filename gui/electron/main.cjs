@@ -6,6 +6,7 @@ const fs = require('fs');
 let mainWindow = null;
 let tunProcess = null;
 let pingInterval = null;
+let logStream = null;
 
 const isDev = !app.isPackaged;
 const rootDir = app.isPackaged
@@ -14,11 +15,19 @@ const rootDir = app.isPackaged
 const clientExe = path.join(rootDir, 'astra-tun-client.exe');
 const configPath = path.join(rootDir, 'configs', 'astra-tun-client.json');
 const logDir = path.join(rootDir, 'logs');
+const currentLogPath = path.join(logDir, 'current.log');
 
 function ensureLogDir() {
   try {
     fs.mkdirSync(logDir, { recursive: true });
   } catch (_) {}
+}
+
+function closeLogStream() {
+  if (logStream) {
+    try { logStream.end(); } catch (_) {}
+    logStream = null;
+  }
 }
 
 function createWindow() {
@@ -60,6 +69,7 @@ app.on('window-all-closed', () => {
     tunProcess = null;
   }
   if (pingInterval) clearInterval(pingInterval);
+  closeLogStream();
   app.quit();
 });
 
@@ -69,6 +79,15 @@ ipcMain.handle('connect', async () => {
     return { ok: false, error: 'astra-tun-client.exe not found. Build it and place next to Astra GUI.' };
   }
   ensureLogDir();
+  closeLogStream();
+  try {
+    logStream = fs.createWriteStream(currentLogPath, { flags: 'w' });
+    const ts = new Date().toISOString();
+    logStream.write(`[${ts}] Astra TUN client started\n`);
+  } catch (e) {
+    logStream = null;
+  }
+
   return new Promise((resolve) => {
     tunProcess = spawn(clientExe, ['-config', configPath], {
       cwd: rootDir,
@@ -76,27 +95,63 @@ ipcMain.handle('connect', async () => {
       windowsHide: true,
     });
     let stderr = '';
+    let allOut = '';
     let resolved = false;
-    tunProcess.stderr.on('data', (d) => { stderr += d.toString(); });
+    const MAX_WAIT_MS = 15000;
+    const connectedMarker = 'connected to entry';
+
+    function writeLog(prefix, data) {
+      const s = data.toString();
+      if (prefix === 'stderr') stderr += s;
+      allOut += s;
+      if (logStream) {
+        try {
+          logStream.write(s);
+          if (!s.endsWith('\n')) logStream.write('\n');
+        } catch (_) {}
+      }
+    }
+
+    function checkConnected() {
+      if (allOut.includes(connectedMarker)) done(true);
+    }
+
+    function done(ok, err) {
+      if (resolved) return;
+      resolved = true;
+      if (tunProcess && !ok) {
+        tunProcess.kill();
+        tunProcess = null;
+      }
+      if (pingInterval && !ok) { clearInterval(pingInterval); pingInterval = null; }
+      resolve({ ok: !!ok, error: err || undefined });
+    }
+
+    tunProcess.stderr.on('data', (d) => { writeLog('stderr', d); checkConnected(); });
+    tunProcess.stdout.on('data', (d) => { writeLog('stdout', d); checkConnected(); });
     tunProcess.on('error', (err) => {
       tunProcess = null;
-      if (!resolved) { resolved = true; resolve({ ok: false, error: err.message }); }
+      done(false, err.message);
     });
     tunProcess.on('exit', (code, signal) => {
+      const proc = tunProcess;
       tunProcess = null;
       if (pingInterval) { clearInterval(pingInterval); pingInterval = null; }
-      if (!resolved && (code !== 0 && code !== null && !signal)) {
-        resolved = true;
-        resolve({ ok: false, error: stderr.slice(-500) || `Exit code ${code}` });
-      }
+      closeLogStream();
+      if (resolved) return;
+      const msg = stderr.trim().slice(-800) || (code != null ? `Exit code ${code}` : 'Process exited');
+      done(false, msg);
     });
-    tunProcess.stdout.on('data', () => {});
+
     setTimeout(() => {
       if (!resolved && tunProcess) {
-        resolved = true;
-        resolve({ ok: true });
+        if (allOut.includes(connectedMarker)) {
+          done(true);
+        } else {
+          done(false, 'Timeout: no "connected to entry" in 15s. Check logs.');
+        }
       }
-    }, 2000);
+    }, MAX_WAIT_MS);
   });
 });
 
@@ -108,6 +163,7 @@ ipcMain.handle('disconnect', async () => {
     clearInterval(pingInterval);
     pingInterval = null;
   }
+  closeLogStream();
   return { ok: true };
 });
 

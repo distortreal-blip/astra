@@ -112,10 +112,10 @@ func main() {
 		PreambleTemplate: getenv("OBFS_PREAMBLE_TEMPLATE", "random"),
 	}
 	frameCfg := transport.FrameConfig{
-		MinPad: getenvInt("ASTRA_FRAME_MIN_PAD", 0),
-		MaxPad: getenvInt("ASTRA_FRAME_MAX_PAD", 0),
+		MinPad: getenvInt("ASTRA_FRAME_MIN_PAD", 16),
+		MaxPad: getenvInt("ASTRA_FRAME_MAX_PAD", 64),
 	}
-	transports := parseTransports(getenv("ASTRA_TRANSPORTS", "quic,tls,rudp,tcp"))
+	transports := parseTransports(getenv("ASTRA_TRANSPORTS", "quic,tcp,tls,rudp"))
 
 	if frameCfg.MinPad > 0 || frameCfg.MaxPad > 0 {
 		log.Printf("frame_padding: enabled min=%d max=%d", frameCfg.MinPad, frameCfg.MaxPad)
@@ -146,7 +146,6 @@ func main() {
 					_ = os.WriteFile(tokenFile, []byte(resp.Token), 0600)
 				}
 				if resp.Status != protocol.StatusOK {
-					log.Printf("handshake denied: status=%s code=%s message=%s", resp.Status, resp.Code, resp.Message)
 					c.Close()
 					continue
 				}
@@ -415,7 +414,7 @@ func tryConnectParallel(entryAddr string, transports []string, learn *learning.S
 			}
 		}()
 	}
-	deadline := time.After(5 * time.Second)
+	deadline := time.After(8 * time.Second)
 	for i := 0; i < len(transports); i++ {
 		select {
 		case <-done:
@@ -426,6 +425,12 @@ func tryConnectParallel(entryAddr string, transports []string, learn *learning.S
 				return w.conn, w.resp, w.transport
 			}
 		case <-deadline:
+			winnerMu.Lock()
+			w := winner
+			winnerMu.Unlock()
+			if w != nil {
+				return w.conn, w.resp, w.transport
+			}
 			return nil, nil, ""
 		}
 	}
@@ -440,8 +445,10 @@ func tryConnectParallel(entryAddr string, transports []string, learn *learning.S
 
 func attemptHandshake(addr string, transportName string, profile sni.Profile, id *identity.Identity, token string, obfsCfg obfs.Config, networkID string) (*protocol.HandshakeResponse, net.Conn, time.Duration, error) {
 	start := time.Now()
+	log.Printf("trying transport=%s profile=%s", transportName, profile.ID)
 	conn, err := dialTransport(transportName, addr, profile)
 	if err != nil {
+		log.Printf("transport=%s dial failed: %v", transportName, err)
 		return nil, nil, 0, err
 	}
 	reader := bufio.NewReader(conn)
@@ -475,24 +482,31 @@ func attemptHandshake(addr string, transportName string, profile sni.Profile, id
 	if transportName == "tls" {
 		if err := writeTLSAppPreamble(writer, getenv("TLS_APP_PREAMBLE_TEMPLATE", "http2frames")); err != nil {
 			conn.Close()
+			log.Printf("transport=%s handshake write failed: %v", transportName, err)
 			return nil, nil, time.Since(start), err
 		}
 	}
 	if maxFrag := getenvInt("TLS_FRAGMENT_MAX", 0); transportName == "tls" && maxFrag > 0 {
 		if err := writeHandshakeFragmented(writer, req, preamble, maxFrag); err != nil {
 			conn.Close()
+			log.Printf("transport=%s handshake write failed: %v", transportName, err)
 			return nil, nil, time.Since(start), err
 		}
 	} else {
 		if err := protocol.WriteHandshake(writer, req, preamble); err != nil {
 			conn.Close()
+			log.Printf("transport=%s handshake write failed: %v", transportName, err)
 			return nil, nil, time.Since(start), err
 		}
 	}
 	resp, err := protocol.ReadResponse(reader)
 	if err != nil {
 		conn.Close()
+		log.Printf("transport=%s handshake failed: %v", transportName, err)
 		return nil, nil, time.Since(start), err
+	}
+	if resp.Status != protocol.StatusOK {
+		log.Printf("transport=%s denied: code=%s message=%s", transportName, resp.Code, resp.Message)
 	}
 	return resp, conn, time.Since(start), nil
 }
@@ -517,6 +531,7 @@ func parseTransports(raw string) []string {
 }
 
 func dialTransport(name, addr string, profile sni.Profile) (net.Conn, error) {
+	dialTimeout := 2 * time.Second
 	switch name {
 	case "quic":
 		alpn := profile.ALPN
@@ -526,7 +541,7 @@ func dialTransport(name, addr string, profile sni.Profile) (net.Conn, error) {
 		return transport.QUICTransport{
 			ServerName: profile.ServerName,
 			ALPN:       []string{alpn, "http/1.1", "astra"},
-			Timeout:    10 * time.Second,
+			Timeout:    dialTimeout,
 		}.Dial(context.Background(), addr)
 	case "rudp":
 		return transport.ReliableUDPTransport{}.Dial(context.Background(), addr)
@@ -541,10 +556,10 @@ func dialTransport(name, addr string, profile sni.Profile) (net.Conn, error) {
 			ServerName: profile.ServerName,
 			ALPN:       []string{alpn, "http/1.1"},
 			Profile:    profile.FingerprintID,
-			Timeout:    4 * time.Second,
+			Timeout:    dialTimeout,
 		}.Dial(context.Background(), addr)
 	default:
-		return transport.TCPTransport{Timeout: 4 * time.Second}.Dial(context.Background(), addr)
+		return transport.TCPTransport{Timeout: dialTimeout}.Dial(context.Background(), addr)
 	}
 }
 

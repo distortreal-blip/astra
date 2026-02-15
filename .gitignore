@@ -27,6 +27,9 @@ go.work.sum
 # env file
 .env
 
+# GUI (Vue/Electron) — не пушить в репозиторий
+gui/
+
 # Editor/IDE
 # .idea/
 # .vscode/
