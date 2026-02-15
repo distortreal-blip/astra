@@ -226,6 +226,7 @@ func handle(conn net.Conn, frameCfg transport.FrameConfig, muxEnabled bool, muxC
 	clientConn := wrapBuffered(conn, reader)
 	clientStream := transport.WrapConn(clientConn, frameCfg)
 	if nextAddr == "" {
+		log.Printf("no ENTRY_NEXT_ADDR/RELAY_ADDR/EXIT_ADDR, running echo mode (client will see rx=0)")
 		if muxEnabled {
 			handleMux(clientStream, "", muxCfg)
 			return
@@ -237,6 +238,7 @@ func handle(conn net.Conn, frameCfg transport.FrameConfig, muxEnabled bool, muxC
 		handleMux(clientStream, nextAddr, muxCfg)
 		return
 	}
+	log.Printf("proxy to %s", nextAddr)
 	proxy(clientStream, nextAddr)
 }
 
@@ -269,6 +271,7 @@ func proxy(client net.Conn, addr string) {
 		return
 	}
 	defer target.Close()
+	log.Printf("proxy connected to %s", addr)
 	go io.Copy(target, client)
 	io.Copy(client, target)
 }

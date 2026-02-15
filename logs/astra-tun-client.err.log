@@ -2,3 +2,74 @@
 2026/02/15 18:08:35 Creating adapter
 2026/02/15 18:08:36 Removed orphaned adapter "astra0 2"
 2026/02/15 18:08:36 set TUN address: netsh set address: exit status 1: β®β ®΅κ¥ªβ γ¦¥ αγι¥αβΆγ¥β.
+2026/02/15 18:13:16 Using existing driver 0.14
+2026/02/15 18:13:16 Creating adapter
+2026/02/15 18:13:16 Removed orphaned adapter "astra0 1"
+2026/02/15 18:13:17 TUN address 10.10.0.2/24 on astra0
+2026/02/15 18:13:17 route 0.0.0.0/0 via 10.10.0.1 (full tunnel)
+2026/02/15 18:13:17 TUN up: astra0 (mtu=1400)
+2026/02/15 18:13:17 transports: quic,tcp,tls,rudp
+2026/02/15 18:13:17 frame_padding: enabled min=16 max=64
+2026/02/15 18:13:17 trying transport=tcp profile=google-h2 addr=178.208.76.92:8443
+2026/02/15 18:13:17 trying transport=rudp profile=google-h2 addr=178.208.76.92:8443
+2026/02/15 18:13:17 trying transport=tls profile=google-h2 addr=178.208.76.92:8443
+2026/02/15 18:13:17 trying transport=quic profile=google-h2 addr=178.208.76.92:8443
+2026/02/15 18:13:17 transport=tcp handshake failed: EOF
+2026/02/15 18:13:17 trying transport=tcp profile=google-h1 addr=178.208.76.92:8443
+2026/02/15 18:13:17 transport=quic dial failed: context canceled
+2026/02/15 18:13:17 connected to entry 178.208.76.92:8443 transport=tls
+2026/02/15 18:13:17 keepalive: interval=3s jitter=Β±15%
+2026/02/15 18:13:17 transport=tcp handshake failed: EOF
+2026/02/15 18:13:22 tun stats: tx=6144 rx=0
+2026/02/15 18:13:27 tun stats: tx=17924 rx=0
+2026/02/15 18:13:32 tun stats: tx=31622 rx=0
+2026/02/15 18:13:37 tun stats: tx=43140 rx=0
+2026/02/15 18:13:42 tun stats: tx=53786 rx=0
+2026/02/15 18:13:47 tun stats: tx=61513 rx=0
+2026/02/15 18:13:52 tun stats: tx=63571 rx=0
+2026/02/15 18:13:57 tun stats: tx=71104 rx=0
+2026/02/15 18:21:36 Using existing driver 0.14
+2026/02/15 18:21:36 Creating adapter
+2026/02/15 18:21:36 Removed orphaned adapter "astra0 1"
+2026/02/15 18:21:36 TUN address 10.10.0.2/24 on astra0
+2026/02/15 18:21:36 route 0.0.0.0/0 via 10.10.0.1 (full tunnel)
+2026/02/15 18:21:36 TUN up: astra0 (mtu=1400)
+2026/02/15 18:21:36 transports: quic,tcp,tls,rudp
+2026/02/15 18:21:36 frame_padding: enabled min=16 max=64
+2026/02/15 18:21:36 trying transport=quic profile=google-h2 addr=178.208.76.92:8443
+2026/02/15 18:21:36 trying transport=rudp profile=google-h2 addr=178.208.76.92:8443
+2026/02/15 18:21:36 trying transport=tcp profile=google-h2 addr=178.208.76.92:8443
+2026/02/15 18:21:36 trying transport=tls profile=google-h2 addr=178.208.76.92:8443
+2026/02/15 18:21:36 transport=tcp handshake failed: EOF
+2026/02/15 18:21:36 trying transport=tcp profile=google-h1 addr=178.208.76.92:8443
+2026/02/15 18:21:37 transport=quic dial failed: context canceled
+2026/02/15 18:21:37 connected to entry 178.208.76.92:8443 transport=tls
+2026/02/15 18:21:37 keepalive: interval=3s jitter=Β±15%
+2026/02/15 18:21:37 transport=tcp handshake failed: EOF
+2026/02/15 18:21:42 tun stats: tx=6033 rx=0
+2026/02/15 18:21:47 tun stats: tx=13836 rx=0
+2026/02/15 18:21:52 tun stats: tx=15907 rx=0
+2026/02/15 18:21:57 tun stats: tx=17305 rx=0
+2026/02/15 18:22:02 tun stats: tx=18448 rx=0
+2026/02/15 18:22:07 tun stats: tx=19213 rx=0
+2026/02/15 18:26:09 Using existing driver 0.14
+2026/02/15 18:26:09 Creating adapter
+2026/02/15 18:26:09 Removed orphaned adapter "astra0 1"
+2026/02/15 18:26:10 TUN address 10.10.0.2/24 on astra0
+2026/02/15 18:26:10 route 0.0.0.0/0 via 10.10.0.1 (full tunnel)
+2026/02/15 18:26:10 TUN up: astra0 (mtu=1400)
+2026/02/15 18:26:10 transports: quic,tcp,tls,rudp
+2026/02/15 18:26:10 frame_padding: enabled min=16 max=64
+2026/02/15 18:26:10 trying transport=tcp profile=google-h2 addr=178.208.76.92:8443
+2026/02/15 18:26:10 trying transport=rudp profile=google-h2 addr=178.208.76.92:8443
+2026/02/15 18:26:10 trying transport=tls profile=google-h2 addr=178.208.76.92:8443
+2026/02/15 18:26:10 trying transport=quic profile=google-h2 addr=178.208.76.92:8443
+2026/02/15 18:26:10 transport=tcp handshake failed: EOF
+2026/02/15 18:26:10 trying transport=tcp profile=google-h1 addr=178.208.76.92:8443
+2026/02/15 18:26:10 transport=quic dial failed: context canceled
+2026/02/15 18:26:10 connected to entry 178.208.76.92:8443 transport=tls
+2026/02/15 18:26:10 keepalive: interval=3s jitter=Β±15%
+2026/02/15 18:26:10 transport=tcp handshake failed: EOF
+2026/02/15 18:26:15 tun stats: tx=6652 rx=0
+2026/02/15 18:26:20 tun stats: tx=15110 rx=0
+2026/02/15 18:26:25 tun stats: tx=17255 rx=0
