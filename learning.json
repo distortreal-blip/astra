@@ -1,151 +1,53 @@
 {
   "profiles": {
-    "rudp|android-h2|eth:Ethernet": {
-      "success_count": 0,
-      "fail_count": 2,
-      "last_rtt_ms": 0,
-      "score": 0,
-      "updated_at": 1771061117
-    },
-    "rudp|google-ff|eth:Ethernet": {
-      "success_count": 0,
-      "fail_count": 2,
-      "last_rtt_ms": 0,
-      "score": 0,
-      "updated_at": 1771061117
-    },
-    "rudp|google-h1|eth:Ethernet": {
-      "success_count": 0,
-      "fail_count": 2,
-      "last_rtt_ms": 0,
-      "score": 0,
-      "updated_at": 1771061117
-    },
-    "rudp|google-h2|eth:Ethernet": {
-      "success_count": 0,
-      "fail_count": 2,
-      "last_rtt_ms": 0,
-      "score": 0,
-      "updated_at": 1771061117
-    },
-    "rudp|gstatic-h2|eth:Ethernet": {
-      "success_count": 0,
-      "fail_count": 2,
-      "last_rtt_ms": 0,
-      "score": 0,
-      "updated_at": 1771061117
-    },
-    "rudp|play-h2|eth:Ethernet": {
-      "success_count": 0,
-      "fail_count": 2,
-      "last_rtt_ms": 0,
-      "score": 0,
-      "updated_at": 1771061117
-    },
-    "rudp|youtube-h2|eth:Ethernet": {
-      "success_count": 0,
-      "fail_count": 2,
-      "last_rtt_ms": 0,
-      "score": 0,
-      "updated_at": 1771061117
-    },
     "tcp|android-h2|eth:Ethernet": {
       "success_count": 0,
-      "fail_count": 5,
+      "fail_count": 3,
       "last_rtt_ms": 0,
       "score": 0,
-      "updated_at": 1771063249
+      "updated_at": 1771097740
     },
     "tcp|google-ff|eth:Ethernet": {
       "success_count": 0,
-      "fail_count": 5,
+      "fail_count": 3,
       "last_rtt_ms": 0,
       "score": 0,
-      "updated_at": 1771063249
+      "updated_at": 1771097740
     },
     "tcp|google-h1|eth:Ethernet": {
       "success_count": 0,
-      "fail_count": 5,
+      "fail_count": 3,
       "last_rtt_ms": 0,
       "score": 0,
-      "updated_at": 1771063249
+      "updated_at": 1771097740
     },
     "tcp|google-h2|eth:Ethernet": {
-      "success_count": 2,
-      "fail_count": 5,
+      "success_count": 46,
+      "fail_count": 3,
       "last_rtt_ms": 0,
-      "score": 0.2857142857142857,
-      "updated_at": 1771063320
+      "score": 0.9387755102040817,
+      "updated_at": 1771157143
     },
     "tcp|gstatic-h2|eth:Ethernet": {
       "success_count": 0,
-      "fail_count": 5,
+      "fail_count": 3,
       "last_rtt_ms": 0,
       "score": 0,
-      "updated_at": 1771063249
+      "updated_at": 1771097740
     },
     "tcp|play-h2|eth:Ethernet": {
       "success_count": 0,
-      "fail_count": 5,
+      "fail_count": 3,
       "last_rtt_ms": 0,
       "score": 0,
-      "updated_at": 1771063249
+      "updated_at": 1771097740
     },
     "tcp|youtube-h2|eth:Ethernet": {
       "success_count": 0,
-      "fail_count": 5,
-      "last_rtt_ms": 0,
-      "score": 0,
-      "updated_at": 1771063249
-    },
-    "tls|android-h2|eth:Ethernet": {
-      "success_count": 0,
       "fail_count": 3,
       "last_rtt_ms": 0,
       "score": 0,
-      "updated_at": 1771062522
-    },
-    "tls|google-ff|eth:Ethernet": {
-      "success_count": 0,
-      "fail_count": 3,
-      "last_rtt_ms": 0,
-      "score": 0,
-      "updated_at": 1771062522
-    },
-    "tls|google-h1|eth:Ethernet": {
-      "success_count": 0,
-      "fail_count": 3,
-      "last_rtt_ms": 0,
-      "score": 0,
-      "updated_at": 1771062521
-    },
-    "tls|google-h2|eth:Ethernet": {
-      "success_count": 9,
-      "fail_count": 3,
-      "last_rtt_ms": 0,
-      "score": 0.75,
-      "updated_at": 1771062521
-    },
-    "tls|gstatic-h2|eth:Ethernet": {
-      "success_count": 0,
-      "fail_count": 3,
-      "last_rtt_ms": 0,
-      "score": 0,
-      "updated_at": 1771062522
-    },
-    "tls|play-h2|eth:Ethernet": {
-      "success_count": 0,
-      "fail_count": 3,
-      "last_rtt_ms": 0,
-      "score": 0,
-      "updated_at": 1771062522
-    },
-    "tls|youtube-h2|eth:Ethernet": {
-      "success_count": 0,
-      "fail_count": 3,
-      "last_rtt_ms": 0,
-      "score": 0,
-      "updated_at": 1771062522
+      "updated_at": 1771097740
     }
   }
 }

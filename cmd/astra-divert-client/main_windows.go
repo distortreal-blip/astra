@@ -21,6 +21,7 @@ import (
 	"strings"
 	"sync"
 	"sync/atomic"
+	"syscall"
 	"time"
 
 	"astra/internal/client/identity"
@@ -72,14 +73,27 @@ func main() {
 	writerMu := &sync.Mutex{}
 
 	log.Printf("WinDivert filter: %s", filter)
-	handle, err := openDivert(filter)
+	var flags uint64
+	// If injection is being rejected by the TCP/IP stack, debug mode makes
+	// WinDivertSend block until the packet exits the stack and return an error.
+	if getenv("ASTRA_DIVERT_DEBUG", "") != "" {
+		flags |= 0x4 // WINDIVERT_FLAG_DEBUG
+	}
+	handle, err := openDivert(filter, flags)
 	if err != nil {
 		log.Fatalf("windivert open failed: %v", err)
 	}
 	defer handle.Close()
+	if maj, min := handle.GetVersion(); maj != 0 || min != 0 {
+		log.Printf("WinDivert driver version %d.%d", maj, min)
+	}
 	log.Printf("Divert running. Entry=%s, filter=%q", entryAddr, filter)
 
 	entryIP4 := net.ParseIP(entryIP).To4()
+	virtualIP4 := net.ParseIP(getenv("ASTRA_VIRTUAL_IP", "10.10.0.2")).To4()
+	local := &ipState{}
+	injectIfIdx = uint32(getenvInt("ASTRA_DIVERT_IFIDX", 0))
+	injectSubIfIdx = uint32(getenvInt("ASTRA_DIVERT_SUBIFIDX", 0))
 	closeOnce := &sync.Once{}
 	closeHandle := func() {
 		closeOnce.Do(func() {
@@ -88,15 +102,49 @@ func main() {
 	}
 
 	go keepAlive(writer, writerMu, closeHandle)
-	go pumpTunnelToDivert(reader, handle, closeHandle)
-	pumpDivertToTunnel(writer, writerMu, handle, entryIP4, entryPort, closeHandle)
+	go pumpTunnelToDivert(reader, handle, virtualIP4, local, closeHandle)
+	pumpDivertToTunnel(writer, writerMu, handle, entryIP4, entryPort, virtualIP4, local, closeHandle)
 }
 
 var divertTxBytes uint64
 var divertRxBytes uint64
 var bypassLogged uint32
+var lastOutboundIfMu sync.Mutex
+var lastOutboundIf divertAddress
+var injectIfIdx uint32
+var injectSubIfIdx uint32
+var injectIfLogged uint32
 
-func pumpDivertToTunnel(writer *bufio.Writer, writerMu *sync.Mutex, handle divertHandle, entryIP4 net.IP, entryPort int, closeHandle func()) {
+type ipState struct {
+	mu   sync.Mutex
+	real net.IP // detected local IPv4 (e.g. 192.168.x.x)
+}
+
+func (s *ipState) setIfEmpty(ip net.IP) {
+	if ip == nil {
+		return
+	}
+	ip4 := ip.To4()
+	if ip4 == nil {
+		return
+	}
+	s.mu.Lock()
+	defer s.mu.Unlock()
+	if s.real == nil {
+		s.real = append(net.IP(nil), ip4...)
+	}
+}
+
+func (s *ipState) get() net.IP {
+	s.mu.Lock()
+	defer s.mu.Unlock()
+	if s.real == nil {
+		return nil
+	}
+	return append(net.IP(nil), s.real...)
+}
+
+func pumpDivertToTunnel(writer *bufio.Writer, writerMu *sync.Mutex, handle divertHandle, entryIP4 net.IP, entryPort int, virtualIP4 net.IP, local *ipState, closeHandle func()) {
 	buf := make([]byte, 65535)
 	for {
 		n, addr, err := handle.Recv(buf)
@@ -109,8 +157,8 @@ func pumpDivertToTunnel(writer *bufio.Writer, writerMu *sync.Mutex, handle diver
 			log.Printf("divert recv invalid length: %d", n)
 			continue
 		}
-		if addr.Direction == directionInbound {
-			calcDivertChecksums(buf[:n])
+		if !addr.Outbound() {
+			calcDivertChecksums(buf[:n], nil)
 			if _, err := handle.Send(buf[:n], addr); err != nil {
 				log.Printf("divert inbound reinject error: %v", err)
 				closeHandle()
@@ -118,21 +166,42 @@ func pumpDivertToTunnel(writer *bufio.Writer, writerMu *sync.Mutex, handle diver
 			}
 			continue
 		}
-		if addr.Direction != directionOutbound {
-			continue
-		}
+		// Outbound packet below.
 		packet := append([]byte(nil), buf[:n]...)
 		if shouldBypass(packet, entryIP4, entryPort) {
 			if atomic.CompareAndSwapUint32(&bypassLogged, 0, 1) {
 				log.Printf("bypassing entry traffic on port %d", entryPort)
 			}
-			calcDivertChecksums(packet)
+			calcDivertChecksums(packet, nil)
 			if _, err := handle.Send(packet, addr); err != nil {
 				log.Printf("divert bypass send error: %v", err)
 				return
 			}
 			continue
 		}
+
+		// Remember the full address from Recv so we can reuse it for inbound inject
+		// (driver may validate that Send address came from a prior Recv).
+		lastOutboundIfMu.Lock()
+		lastOutboundIf = addr
+		lastOutboundIfMu.Unlock()
+
+		// Divert sees real LAN source IPs (e.g. 192.168.x.x). If we forward those
+		// unchanged, the exit will not route replies back into the tunnel.
+		// Translate src -> virtual IP (10.10.0.2 by default).
+		if virtualIP4 != nil && local != nil {
+			if src, ok := ipv4Src(packet); ok {
+				local.setIfEmpty(src)
+				real := local.get()
+				if real != nil && src.Equal(real) && len(packet) >= 20 {
+					copy(packet[12:16], virtualIP4)
+				}
+			}
+		}
+
+		// Packets captured before NIC offload may carry incomplete checksums.
+		// Recalculate after any rewrite and before tunneling.
+		calcDivertChecksums(packet, nil)
 		atomic.AddUint64(&divertTxBytes, uint64(n))
 		writerMu.Lock()
 		err = writePacket(writer, packet)
@@ -145,7 +214,7 @@ func pumpDivertToTunnel(writer *bufio.Writer, writerMu *sync.Mutex, handle diver
 	}
 }
 
-func pumpTunnelToDivert(reader *bufio.Reader, handle divertHandle, closeHandle func()) {
+func pumpTunnelToDivert(reader *bufio.Reader, handle divertHandle, virtualIP4 net.IP, local *ipState, closeHandle func()) {
 	for {
 		payload, err := readPacket(reader)
 		if err != nil {
@@ -156,13 +225,117 @@ func pumpTunnelToDivert(reader *bufio.Reader, handle divertHandle, closeHandle f
 		if len(payload) == 0 {
 			continue
 		}
+		// Translate dst virtual IP -> real local LAN IP before reinjecting (unless disabled for debugging).
+		noDstRewrite := getenv("ASTRA_DIVERT_NO_DST_REWRITE", "") != ""
+		if !noDstRewrite && virtualIP4 != nil && local != nil {
+			real := local.get()
+			if real != nil && len(payload) >= 20 {
+				dst := net.IPv4(payload[16], payload[17], payload[18], payload[19])
+				if dst.Equal(virtualIP4) {
+					copy(payload[16:20], real.To4())
+				}
+			}
+		}
 		atomic.AddUint64(&divertRxBytes, uint64(len(payload)))
-		calcDivertChecksums(payload)
-		if _, err := handle.Send(payload, divertAddress{Direction: directionInbound}); err != nil {
-			log.Printf("divert send error: %v", err)
+		calcDivertChecksums(payload, nil)
+
+		// Prefer address from last outbound Recv (driver may only accept Send with Recv-derived address).
+		lastOutboundIfMu.Lock()
+		var inj divertAddress
+		var fromRecv bool
+		if lastOutboundIf.IfIdx != 0 {
+			inj = lastOutboundIf.ToInbound()
+			fromRecv = true
+		} else if injectIfIdx != 0 {
+			inj = NewInboundAddress(injectIfIdx, injectSubIfIdx)
+		} else {
+			inj = NewInboundAddress(0, 0)
+		}
+		lastOutboundIfMu.Unlock()
+		calcDivertChecksums(payload, &inj)
+		if atomic.CompareAndSwapUint32(&injectIfLogged, 0, 1) {
+			log.Printf("inject inbound: IfIdx=%d SubIfIdx=%d (from_recv=%v no_dst_rewrite=%v)", inj.IfIdx, inj.SubIfIdx, fromRecv, noDstRewrite)
+		}
+
+		trySend := func(a *divertAddress) (int, error) {
+			n, errEx := handle.SendEx(payload, a)
+			if errEx == nil {
+				return n, nil
+			}
+			codeEx := errnoCode(errEx)
+			n, err := handle.Send(payload, *a)
+			if err == nil {
+				return n, nil
+			}
+			code := errnoCode(err)
+			log.Printf("divert send: SendEx failed code=%d (%v); Send failed code=%d (%v)",
+				codeEx, errEx, code, err)
+			return n, err
+		}
+		n, err := trySend(&inj)
+		if err != nil && inj.IfIdx != 0 {
+			inj.IfIdx, inj.SubIfIdx = 0, 0
+			calcDivertChecksums(payload, &inj)
+			n, err = trySend(&inj)
+			if err == nil && atomic.CompareAndSwapUint32(&injectIfLogged, 1, 2) {
+				log.Printf("inject succeeded with IfIdx=0")
+			}
+		}
+		if err != nil {
+			log.Printf("divert send error: %v (packet_len=%d dst=%s)",
+				err, len(payload), formatIPDst(payload))
+			if errnoCode(err) == 87 {
+				log.Printf("divert: code 87 = WinDivert 2.2 likely does not allow injecting inbound packets that were not captured by Recv; for full tunnel on Windows consider WFP or TUN (see ASTRA_ROADMAP.md)")
+			}
 			return
 		}
+		if n != len(payload) {
+			log.Printf("divert send short write: %d/%d", n, len(payload))
+		}
 	}
+}
+
+func ipv4Src(packet []byte) (net.IP, bool) {
+	if len(packet) < 20 {
+		return nil, false
+	}
+	if (packet[0]>>4)&0x0f != 4 {
+		return nil, false
+	}
+	ihl := int(packet[0]&0x0f) * 4
+	if ihl < 20 || len(packet) < ihl {
+		return nil, false
+	}
+	return net.IPv4(packet[12], packet[13], packet[14], packet[15]), true
+}
+
+func errnoCode(err error) int {
+	if err == nil {
+		return 0
+	}
+	if e, ok := err.(syscall.Errno); ok {
+		return int(e)
+	}
+	return 0
+}
+
+func formatIPDst(packet []byte) string {
+	if len(packet) < 20 {
+		return "?"
+	}
+	if (packet[0]>>4)&0x0f != 4 {
+		return "?"
+	}
+	ihl := int(packet[0]&0x0f) * 4
+	if ihl < 20 || len(packet) < ihl+4 {
+		return "?"
+	}
+	dst := net.IPv4(packet[16], packet[17], packet[18], packet[19])
+	if packet[9] == 6 && len(packet) >= ihl+4 {
+		port := binary.BigEndian.Uint16(packet[ihl+2 : ihl+4])
+		return fmt.Sprintf("%s:%d", dst, port)
+	}
+	return dst.String()
 }
 
 func keepAlive(writer *bufio.Writer, writerMu *sync.Mutex, closeHandle func()) {

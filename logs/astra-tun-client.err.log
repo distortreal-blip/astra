@@ -1,0 +1,487 @@
+2026/02/14 15:59:30 Failed to create private namespace: Отказано в доступе. (Code 0x00000005)
+2026/02/14 15:59:30 Failed to take device installation mutex: Отказано в доступе. (Code 0x00000005)
+2026/02/14 15:59:30 tun create failed: Error creating interface: Access is denied.
+2026/02/15 12:31:57 Failed to create private namespace: Отказано в доступе. (Code 0x00000005)
+2026/02/15 12:31:57 Failed to take device installation mutex: Отказано в доступе. (Code 0x00000005)
+2026/02/15 12:31:57 tun create failed: Error creating interface: Access is denied.
+2026/02/15 12:44:15 Failed to create private namespace: Отказано в доступе. (Code 0x00000005)
+2026/02/15 12:44:15 Failed to take device installation mutex: Отказано в доступе. (Code 0x00000005)
+2026/02/15 12:44:15 tun create failed: Error creating interface: Access is denied.
+2026/02/15 12:46:38 Using existing driver 0.14
+2026/02/15 12:46:38 Creating adapter
+2026/02/15 12:46:38 Removed orphaned adapter "astra0 1"
+2026/02/15 12:46:39 TUN address 10.10.0.2/24 on astra0
+2026/02/15 12:46:39 route 0.0.0.0/0 via 10.10.0.1 (full tunnel)
+2026/02/15 12:46:39 TUN up: astra0 (mtu=1400)
+2026/02/15 12:46:39 connected to entry 178.208.76.92:8443
+2026/02/15 12:46:44 tun stats: tx=4217 rx=0
+2026/02/15 12:46:49 tun stats: tx=8083 rx=0
+2026/02/15 12:46:54 tun stats: tx=9027 rx=0
+2026/02/15 12:46:59 tun stats: tx=9192 rx=0
+2026/02/15 12:47:32 Using existing driver 0.14
+2026/02/15 12:47:32 Creating adapter
+2026/02/15 12:47:32 Removed orphaned adapter "astra0 1"
+2026/02/15 12:47:32 TUN address 10.10.0.2/24 on astra0
+2026/02/15 12:47:32 route 0.0.0.0/0 via 10.10.0.1 (full tunnel)
+2026/02/15 12:47:32 TUN up: astra0 (mtu=1400)
+2026/02/15 12:47:32 connected to entry 178.208.76.92:8443
+2026/02/15 12:47:37 tun stats: tx=3553 rx=0
+2026/02/15 12:47:42 tun stats: tx=7419 rx=0
+2026/02/15 12:47:47 tun stats: tx=8363 rx=0
+2026/02/15 12:47:52 tun stats: tx=8528 rx=0
+2026/02/15 12:47:57 tun stats: tx=8995 rx=0
+2026/02/15 12:48:02 tun stats: tx=8995 rx=0
+2026/02/15 12:48:07 tun stats: tx=8995 rx=0
+2026/02/15 12:48:12 tun stats: tx=9462 rx=0
+2026/02/15 12:48:17 tun stats: tx=9462 rx=0
+2026/02/15 12:48:22 tun stats: tx=9462 rx=0
+2026/02/15 12:48:27 tun stats: tx=9462 rx=0
+2026/02/15 12:48:32 tun stats: tx=9462 rx=0
+2026/02/15 12:48:37 tun stats: tx=9462 rx=0
+2026/02/15 12:48:42 tun stats: tx=9929 rx=0
+2026/02/15 12:48:47 tun stats: tx=9929 rx=0
+2026/02/15 12:48:52 tun stats: tx=9929 rx=0
+2026/02/15 12:48:57 tun stats: tx=9929 rx=0
+2026/02/15 12:49:02 tun stats: tx=9929 rx=0
+2026/02/15 12:49:07 tun stats: tx=9929 rx=0
+2026/02/15 12:49:12 tun stats: tx=9929 rx=0
+2026/02/15 12:49:17 tun stats: tx=9929 rx=0
+2026/02/15 12:49:22 tun stats: tx=9929 rx=0
+2026/02/15 12:49:27 tun stats: tx=9929 rx=0
+2026/02/15 12:49:32 tun stats: tx=9929 rx=0
+2026/02/15 12:49:37 tun stats: tx=9929 rx=0
+2026/02/15 12:49:42 tun stats: tx=9929 rx=0
+2026/02/15 12:49:47 tun stats: tx=10396 rx=0
+2026/02/15 12:49:52 tun stats: tx=10396 rx=0
+2026/02/15 12:49:57 tun stats: tx=10396 rx=0
+2026/02/15 12:50:02 tun stats: tx=10396 rx=0
+2026/02/15 12:50:07 tun stats: tx=10396 rx=0
+2026/02/15 12:50:12 tun stats: tx=10396 rx=0
+2026/02/15 12:50:17 tun stats: tx=10396 rx=0
+2026/02/15 12:50:22 tun stats: tx=10396 rx=0
+2026/02/15 12:50:27 tun stats: tx=10396 rx=0
+2026/02/15 12:50:32 tun stats: tx=10396 rx=0
+2026/02/15 12:50:37 tun stats: tx=10396 rx=0
+2026/02/15 12:50:42 tun stats: tx=10396 rx=0
+2026/02/15 12:50:47 tun stats: tx=10396 rx=0
+2026/02/15 12:50:52 tun stats: tx=10396 rx=0
+2026/02/15 12:50:57 tun stats: tx=10396 rx=0
+2026/02/15 12:51:02 tun stats: tx=10396 rx=0
+2026/02/15 12:51:07 tun stats: tx=10396 rx=0
+2026/02/15 12:51:12 tun stats: tx=10396 rx=0
+2026/02/15 12:51:17 tun stats: tx=10396 rx=0
+2026/02/15 12:51:22 tun stats: tx=10396 rx=0
+2026/02/15 12:51:27 tun stats: tx=10396 rx=0
+2026/02/15 12:51:32 tun stats: tx=10396 rx=0
+2026/02/15 12:51:37 tun stats: tx=10396 rx=0
+2026/02/15 12:51:42 tun stats: tx=10720 rx=0
+2026/02/15 12:51:47 tun stats: tx=10720 rx=0
+2026/02/15 12:51:52 tun stats: tx=10720 rx=0
+2026/02/15 12:51:57 tun stats: tx=10720 rx=0
+2026/02/15 12:52:02 tun stats: tx=10720 rx=0
+2026/02/15 12:52:07 tun stats: tx=10720 rx=0
+2026/02/15 12:52:12 tun stats: tx=10720 rx=0
+2026/02/15 12:52:17 tun stats: tx=10720 rx=0
+2026/02/15 12:52:22 tun stats: tx=10720 rx=0
+2026/02/15 12:52:27 tun stats: tx=10720 rx=0
+2026/02/15 12:52:32 tun stats: tx=10720 rx=0
+2026/02/15 12:52:37 tun stats: tx=10720 rx=0
+2026/02/15 12:52:42 tun stats: tx=10720 rx=0
+2026/02/15 12:52:47 tun stats: tx=10720 rx=0
+2026/02/15 12:52:52 tun stats: tx=10720 rx=0
+2026/02/15 12:52:57 tun stats: tx=10720 rx=0
+2026/02/15 12:53:02 tun stats: tx=10720 rx=0
+2026/02/15 12:53:07 tun stats: tx=10720 rx=0
+2026/02/15 12:53:12 tun stats: tx=10720 rx=0
+2026/02/15 12:53:17 tun stats: tx=10720 rx=0
+2026/02/15 12:53:22 tun stats: tx=10720 rx=0
+2026/02/15 12:53:27 tun stats: tx=10720 rx=0
+2026/02/15 12:53:32 tun stats: tx=10720 rx=0
+2026/02/15 12:53:37 tun stats: tx=10720 rx=0
+2026/02/15 12:53:42 tun stats: tx=10720 rx=0
+2026/02/15 12:53:47 tun stats: tx=10720 rx=0
+2026/02/15 12:53:52 tun stats: tx=10720 rx=0
+2026/02/15 12:53:57 tun stats: tx=10720 rx=0
+2026/02/15 12:54:02 tun stats: tx=10720 rx=0
+2026/02/15 12:54:07 tun stats: tx=10720 rx=0
+2026/02/15 12:54:12 tun stats: tx=10720 rx=0
+2026/02/15 12:54:17 tun stats: tx=10720 rx=0
+2026/02/15 12:54:22 tun stats: tx=10720 rx=0
+2026/02/15 12:54:27 tun stats: tx=10720 rx=0
+2026/02/15 12:54:32 tun stats: tx=10720 rx=0
+2026/02/15 12:54:37 tun stats: tx=10720 rx=0
+2026/02/15 12:54:42 tun stats: tx=10720 rx=0
+2026/02/15 12:54:47 tun stats: tx=10720 rx=0
+2026/02/15 12:54:52 tun stats: tx=10720 rx=0
+2026/02/15 12:54:57 tun stats: tx=10720 rx=0
+2026/02/15 12:55:02 tun stats: tx=10720 rx=0
+2026/02/15 12:55:07 tun stats: tx=13725 rx=0
+2026/02/15 12:55:12 tun stats: tx=14019 rx=0
+2026/02/15 12:55:17 tun stats: tx=14349 rx=0
+2026/02/15 12:55:22 tun stats: tx=17395 rx=0
+2026/02/15 12:55:27 tun stats: tx=17560 rx=0
+2026/02/15 12:55:32 tun stats: tx=17725 rx=0
+2026/02/15 12:55:37 tun stats: tx=17725 rx=0
+2026/02/15 12:55:42 tun stats: tx=17725 rx=0
+2026/02/15 12:55:47 tun stats: tx=17725 rx=0
+2026/02/15 12:55:52 tun stats: tx=17725 rx=0
+2026/02/15 12:55:57 tun stats: tx=17725 rx=0
+2026/02/15 12:56:02 tun stats: tx=17725 rx=0
+2026/02/15 12:56:07 tun stats: tx=17725 rx=0
+2026/02/15 12:56:12 tun stats: tx=17725 rx=0
+2026/02/15 12:56:17 tun stats: tx=17725 rx=0
+2026/02/15 12:56:22 tun stats: tx=17725 rx=0
+2026/02/15 12:56:42 Using existing driver 0.14
+2026/02/15 12:56:42 Creating adapter
+2026/02/15 12:56:42 Removed orphaned adapter "astra0 1"
+2026/02/15 12:56:42 TUN address 10.10.0.2/24 on astra0
+2026/02/15 12:56:42 route 0.0.0.0/0 via 10.10.0.1 (full tunnel)
+2026/02/15 12:56:42 TUN up: astra0 (mtu=1400)
+2026/02/15 12:56:42 connected to entry 178.208.76.92:8443
+2026/02/15 12:56:47 tun stats: tx=4384 rx=0
+2026/02/15 12:56:52 tun stats: tx=7920 rx=0
+2026/02/15 12:56:57 tun stats: tx=9029 rx=0
+2026/02/15 12:57:02 tun stats: tx=9194 rx=0
+2026/02/15 12:57:07 tun stats: tx=9661 rx=0
+2026/02/15 12:57:12 tun stats: tx=9661 rx=0
+2026/02/15 12:57:17 tun stats: tx=9661 rx=0
+2026/02/15 12:57:22 tun stats: tx=10128 rx=0
+2026/02/15 12:57:27 tun stats: tx=10357 rx=0
+2026/02/15 12:57:32 tun stats: tx=10357 rx=0
+2026/02/15 12:57:37 tun stats: tx=10357 rx=0
+2026/02/15 12:57:42 tun stats: tx=10357 rx=0
+2026/02/15 12:57:47 tun stats: tx=10357 rx=0
+2026/02/15 12:57:52 tun stats: tx=10824 rx=0
+2026/02/15 12:57:57 tun stats: tx=10824 rx=0
+2026/02/15 12:58:02 tun stats: tx=10824 rx=0
+2026/02/15 12:58:07 tun stats: tx=12919 rx=0
+2026/02/15 12:58:12 tun stats: tx=13213 rx=0
+2026/02/15 12:58:17 tun stats: tx=13213 rx=0
+2026/02/15 12:58:22 tun stats: tx=13213 rx=0
+2026/02/15 12:58:27 tun stats: tx=16040 rx=0
+2026/02/15 12:58:32 tun stats: tx=16370 rx=0
+2026/02/15 12:58:37 tun stats: tx=16700 rx=0
+2026/02/15 12:58:42 tun stats: tx=16865 rx=0
+2026/02/15 12:58:42 conn read error (tunnel/entry closed): read tcp 192.168.0.136:1947->178.208.76.92:8443: wsarecv: An existing connection was forcibly closed by the remote host.
+2026/02/15 12:58:42 shutdown: removing routes, closing TUN...
+2026/02/15 12:58:42 tun->conn write error: write tcp 192.168.0.136:1947->178.208.76.92:8443: use of closed network connection
+2026/02/15 12:58:42 shutdown done (routes removed, TUN closed)
+2026/02/15 13:02:34 Using existing driver 0.14
+2026/02/15 13:02:34 Creating adapter
+2026/02/15 13:02:34 TUN address 10.10.0.2/24 on astra0
+2026/02/15 13:02:34 route 0.0.0.0/0 via 10.10.0.1 (full tunnel)
+2026/02/15 13:02:34 TUN up: astra0 (mtu=1400)
+2026/02/15 13:02:34 connected to entry 178.208.76.92:8443
+2026/02/15 13:02:39 tun stats: tx=4275 rx=0
+2026/02/15 13:02:44 tun stats: tx=8141 rx=0
+2026/02/15 13:02:49 tun stats: tx=9085 rx=0
+2026/02/15 13:02:54 tun stats: tx=9250 rx=0
+2026/02/15 13:02:59 tun stats: tx=9717 rx=0
+2026/02/15 13:03:03 Using existing driver 0.14
+2026/02/15 13:03:03 Creating adapter
+2026/02/15 13:03:03 Removed orphaned adapter "astra0 1"
+2026/02/15 13:03:03 TUN address 10.10.0.2/24 on astra0
+2026/02/15 13:05:21 Using existing driver 0.14
+2026/02/15 13:05:21 Creating adapter
+2026/02/15 13:05:22 Removed orphaned adapter "astra0 1"
+2026/02/15 13:05:22 TUN address 10.10.0.2/24 on astra0
+2026/02/15 13:05:22 route 0.0.0.0/0 via 10.10.0.1 (full tunnel)
+2026/02/15 13:05:22 TUN up: astra0 (mtu=1400)
+2026/02/15 13:05:22 connected to entry 178.208.76.92:8443
+2026/02/15 13:05:27 tun stats: tx=4538 rx=0
+2026/02/15 13:05:32 tun stats: tx=10044 rx=0
+2026/02/15 13:05:37 tun stats: tx=11117 rx=0
+2026/02/15 13:05:42 tun stats: tx=11282 rx=0
+2026/02/15 13:05:47 tun stats: tx=11749 rx=0
+2026/02/15 13:05:52 tun stats: tx=14576 rx=0
+2026/02/15 13:05:57 tun stats: tx=15398 rx=0
+2026/02/15 13:06:02 tun stats: tx=16030 rx=0
+2026/02/15 13:06:07 tun stats: tx=16360 rx=0
+2026/02/15 13:06:12 tun stats: tx=16360 rx=0
+2026/02/15 13:06:17 tun stats: tx=16360 rx=0
+2026/02/15 13:06:22 tun stats: tx=16360 rx=0
+2026/02/15 13:06:27 tun stats: tx=16360 rx=0
+2026/02/15 13:06:32 tun stats: tx=16827 rx=0
+2026/02/15 13:06:37 tun stats: tx=16827 rx=0
+2026/02/15 13:06:42 tun stats: tx=16827 rx=0
+2026/02/15 13:06:47 tun stats: tx=16827 rx=0
+2026/02/15 13:06:52 tun stats: tx=16827 rx=0
+2026/02/15 13:06:57 tun stats: tx=16827 rx=0
+2026/02/15 13:07:02 tun stats: tx=16827 rx=0
+2026/02/15 13:07:07 tun stats: tx=16827 rx=0
+2026/02/15 13:07:12 tun stats: tx=16827 rx=0
+2026/02/15 13:07:17 tun stats: tx=16827 rx=0
+2026/02/15 13:07:22 tun stats: tx=16827 rx=0
+2026/02/15 13:07:27 tun stats: tx=16827 rx=0
+2026/02/15 13:07:32 tun stats: tx=16827 rx=0
+2026/02/15 13:07:37 tun stats: tx=17294 rx=0
+2026/02/15 13:07:42 tun stats: tx=17294 rx=0
+2026/02/15 13:07:47 tun stats: tx=17294 rx=0
+2026/02/15 13:07:52 tun stats: tx=17294 rx=0
+2026/02/15 13:07:57 tun stats: tx=17294 rx=0
+2026/02/15 13:08:02 tun stats: tx=17294 rx=0
+2026/02/15 13:08:07 tun stats: tx=17294 rx=0
+2026/02/15 13:08:12 tun stats: tx=17294 rx=0
+2026/02/15 13:08:17 tun stats: tx=17294 rx=0
+2026/02/15 13:08:22 tun stats: tx=17294 rx=0
+2026/02/15 13:08:27 tun stats: tx=17294 rx=0
+2026/02/15 13:08:32 tun stats: tx=17294 rx=0
+2026/02/15 13:08:37 tun stats: tx=17294 rx=0
+2026/02/15 13:08:42 tun stats: tx=18663 rx=0
+2026/02/15 13:08:47 tun stats: tx=20073 rx=0
+2026/02/15 13:08:52 tun stats: tx=20403 rx=0
+2026/02/15 13:08:57 tun stats: tx=20733 rx=0
+2026/02/15 13:09:02 tun stats: tx=23702 rx=0
+2026/02/15 13:09:07 tun stats: tx=24032 rx=0
+2026/02/15 13:09:12 tun stats: tx=24032 rx=0
+2026/02/15 13:09:17 tun stats: tx=24032 rx=0
+2026/02/15 13:09:22 tun stats: tx=24261 rx=0
+2026/02/15 13:09:27 tun stats: tx=24261 rx=0
+2026/02/15 13:09:32 tun stats: tx=24261 rx=0
+2026/02/15 13:09:37 tun stats: tx=24261 rx=0
+2026/02/15 13:09:42 tun stats: tx=24261 rx=0
+2026/02/15 13:09:47 tun stats: tx=24261 rx=0
+2026/02/15 13:09:52 tun stats: tx=24261 rx=0
+2026/02/15 13:09:57 tun stats: tx=24261 rx=0
+2026/02/15 13:10:02 tun stats: tx=24261 rx=0
+2026/02/15 13:10:07 tun stats: tx=24261 rx=0
+2026/02/15 13:10:12 tun stats: tx=24261 rx=0
+2026/02/15 13:10:17 tun stats: tx=24261 rx=0
+2026/02/15 13:10:22 tun stats: tx=24261 rx=0
+2026/02/15 13:10:27 tun stats: tx=24585 rx=0
+2026/02/15 13:10:32 tun stats: tx=24585 rx=0
+2026/02/15 13:10:37 tun stats: tx=24585 rx=0
+2026/02/15 13:10:42 tun stats: tx=24819 rx=0
+2026/02/15 13:10:47 tun stats: tx=24819 rx=0
+2026/02/15 13:10:52 tun stats: tx=24819 rx=0
+2026/02/15 13:10:57 tun stats: tx=24819 rx=0
+2026/02/15 13:11:02 tun stats: tx=24819 rx=0
+2026/02/15 13:11:07 tun stats: tx=27389 rx=0
+2026/02/15 13:11:12 tun stats: tx=27799 rx=0
+2026/02/15 13:11:17 tun stats: tx=28129 rx=0
+2026/02/15 13:11:22 tun stats: tx=28459 rx=0
+2026/02/15 13:11:27 tun stats: tx=31570 rx=0
+2026/02/15 13:11:32 tun stats: tx=31900 rx=0
+2026/02/15 13:11:37 tun stats: tx=31900 rx=0
+2026/02/15 13:11:42 tun stats: tx=31900 rx=0
+2026/02/15 13:11:47 tun stats: tx=31900 rx=0
+2026/02/15 13:11:52 tun stats: tx=31900 rx=0
+2026/02/15 13:11:57 tun stats: tx=31900 rx=0
+2026/02/15 13:12:02 tun stats: tx=31900 rx=0
+2026/02/15 13:12:07 tun stats: tx=31900 rx=0
+2026/02/15 13:12:12 tun stats: tx=31900 rx=0
+2026/02/15 13:12:17 tun stats: tx=31900 rx=0
+2026/02/15 13:12:22 tun stats: tx=31900 rx=0
+2026/02/15 13:12:27 tun stats: tx=31900 rx=0
+2026/02/15 13:12:32 tun stats: tx=31900 rx=0
+2026/02/15 13:12:37 tun stats: tx=31900 rx=0
+2026/02/15 13:12:42 tun stats: tx=31900 rx=0
+2026/02/15 13:12:47 tun stats: tx=31900 rx=0
+2026/02/15 13:12:52 tun stats: tx=31900 rx=0
+2026/02/15 13:12:57 tun stats: tx=31900 rx=0
+2026/02/15 13:13:02 tun stats: tx=31900 rx=0
+2026/02/15 13:13:07 tun stats: tx=31900 rx=0
+2026/02/15 13:13:12 tun stats: tx=31900 rx=0
+2026/02/15 13:13:17 tun stats: tx=31900 rx=0
+2026/02/15 13:13:22 tun stats: tx=31900 rx=0
+2026/02/15 13:13:27 tun stats: tx=31900 rx=0
+2026/02/15 13:13:32 tun stats: tx=31900 rx=0
+2026/02/15 13:13:37 tun stats: tx=31900 rx=0
+2026/02/15 13:21:52 Using existing driver 0.14
+2026/02/15 13:21:52 Creating adapter
+2026/02/15 13:21:52 Removed orphaned adapter "astra0 1"
+2026/02/15 13:21:52 TUN address 10.10.0.2/24 on astra0
+2026/02/15 13:21:52 route 0.0.0.0/0 via 10.10.0.1 (full tunnel)
+2026/02/15 13:21:52 TUN up: astra0 (mtu=1400)
+2026/02/15 13:21:53 connected to entry 178.208.76.92:8443
+2026/02/15 13:21:58 tun stats: tx=4482 rx=96
+2026/02/15 13:22:03 tun stats: tx=8348 rx=96
+2026/02/15 13:22:08 tun stats: tx=9292 rx=144
+2026/02/15 13:22:13 tun stats: tx=9457 rx=144
+2026/02/15 13:22:18 tun stats: tx=9924 rx=144
+2026/02/15 13:22:23 tun stats: tx=9924 rx=192
+2026/02/15 13:22:28 tun stats: tx=9924 rx=192
+2026/02/15 13:22:33 tun stats: tx=10391 rx=192
+2026/02/15 13:22:38 tun stats: tx=10391 rx=192
+2026/02/15 13:22:43 tun stats: tx=10391 rx=192
+2026/02/15 13:22:48 tun stats: tx=10391 rx=192
+2026/02/15 13:22:53 tun stats: tx=10391 rx=192
+2026/02/15 13:22:58 tun stats: tx=10391 rx=240
+2026/02/15 13:23:03 tun stats: tx=10858 rx=240
+2026/02/15 13:23:08 tun stats: tx=10858 rx=240
+2026/02/15 13:23:13 tun stats: tx=10858 rx=240
+2026/02/15 13:23:18 tun stats: tx=10858 rx=240
+2026/02/15 13:23:23 tun stats: tx=10858 rx=240
+2026/02/15 13:23:28 tun stats: tx=10858 rx=240
+2026/02/15 13:23:33 tun stats: tx=10858 rx=240
+2026/02/15 13:23:38 tun stats: tx=10858 rx=240
+2026/02/15 13:23:43 tun stats: tx=10858 rx=240
+2026/02/15 13:23:48 tun stats: tx=10858 rx=240
+2026/02/15 13:23:53 tun stats: tx=10858 rx=240
+2026/02/15 13:23:58 tun stats: tx=10858 rx=240
+2026/02/15 13:25:05 Failed to create private namespace: Отказано в доступе. (Code 0x00000005)
+2026/02/15 13:25:05 Failed to take device installation mutex: Отказано в доступе. (Code 0x00000005)
+2026/02/15 13:25:05 tun create failed: Error creating interface: Access is denied.
+2026/02/15 13:25:42 Using existing driver 0.14
+2026/02/15 13:25:42 Creating adapter
+2026/02/15 13:25:42 Removed orphaned adapter "astra0 1"
+2026/02/15 13:25:42 TUN address 10.10.0.2/24 on astra0
+2026/02/15 13:25:43 route 0.0.0.0/0 via 10.10.0.1 (full tunnel)
+2026/02/15 13:25:43 TUN up: astra0 (mtu=1400)
+2026/02/15 13:25:43 connected to entry 178.208.76.92:8443
+2026/02/15 13:25:48 tun stats: tx=7069 rx=144
+2026/02/15 13:25:53 tun stats: tx=15306 rx=144
+2026/02/15 13:25:58 tun stats: tx=22673 rx=144
+2026/02/15 13:26:03 tun stats: tx=34096 rx=144
+2026/02/15 13:26:08 tun stats: tx=49853 rx=144
+2026/02/15 13:26:13 tun stats: tx=63074 rx=144
+2026/02/15 13:26:18 tun stats: tx=84125 rx=144
+2026/02/15 13:26:23 tun stats: tx=101371 rx=144
+2026/02/15 13:26:28 tun stats: tx=109017 rx=144
+2026/02/15 13:26:33 tun stats: tx=109918 rx=144
+2026/02/15 13:26:38 tun stats: tx=111162 rx=144
+2026/02/15 13:26:43 tun stats: tx=111327 rx=144
+2026/02/15 13:26:48 tun stats: tx=111327 rx=144
+2026/02/15 13:26:53 tun stats: tx=111794 rx=144
+2026/02/15 13:26:58 tun stats: tx=111794 rx=144
+2026/02/15 13:27:03 tun stats: tx=112448 rx=144
+2026/02/15 13:27:08 tun stats: tx=112448 rx=144
+2026/02/15 13:27:13 tun stats: tx=112448 rx=144
+2026/02/15 13:27:18 tun stats: tx=112448 rx=144
+2026/02/15 13:27:23 tun stats: tx=112448 rx=144
+2026/02/15 13:27:28 tun stats: tx=112448 rx=144
+2026/02/15 13:27:33 tun stats: tx=112448 rx=144
+2026/02/15 13:27:38 tun stats: tx=112448 rx=144
+2026/02/15 13:27:43 tun stats: tx=112448 rx=144
+2026/02/15 13:27:48 tun stats: tx=113102 rx=144
+2026/02/15 13:28:44 Using existing driver 0.14
+2026/02/15 13:28:44 Creating adapter
+2026/02/15 13:28:44 Removed orphaned adapter "astra0 1"
+2026/02/15 13:28:44 TUN address 10.10.0.2/24 on astra0
+2026/02/15 13:28:44 route 0.0.0.0/0 via 10.10.0.1 (full tunnel)
+2026/02/15 13:28:44 TUN up: astra0 (mtu=1400)
+2026/02/15 13:28:44 connected to entry 178.208.76.92:8443
+2026/02/15 13:28:49 tun stats: tx=15553 rx=13957
+2026/02/15 13:28:54 tun stats: tx=48525 rx=334326
+2026/02/15 13:28:59 tun stats: tx=65760 rx=442953
+2026/02/15 13:29:04 tun stats: tx=74545 rx=562698
+2026/02/15 13:29:09 tun stats: tx=133143 rx=742793
+2026/02/15 13:29:14 tun stats: tx=158218 rx=954546
+2026/02/15 13:29:19 tun stats: tx=203412 rx=1135911
+2026/02/15 13:29:24 tun stats: tx=209321 rx=1235512
+2026/02/15 13:29:29 tun stats: tx=223950 rx=1381580
+2026/02/15 13:29:34 tun stats: tx=236312 rx=1547546
+2026/02/15 13:29:39 tun stats: tx=283035 rx=1884357
+2026/02/15 13:29:44 tun stats: tx=687145 rx=3689734
+2026/02/15 13:29:49 tun stats: tx=936071 rx=6171809
+2026/02/15 13:29:54 tun stats: tx=1054519 rx=15849842
+2026/02/15 13:29:59 tun stats: tx=1180439 rx=16858384
+2026/02/15 13:30:04 tun stats: tx=1376880 rx=17098635
+2026/02/15 13:30:09 tun stats: tx=1432874 rx=17113283
+2026/02/15 13:30:14 tun stats: tx=1522647 rx=17134792
+2026/02/15 13:30:19 tun stats: tx=1555544 rx=17138254
+2026/02/15 13:30:24 tun stats: tx=1564662 rx=17139670
+2026/02/15 13:30:29 tun stats: tx=1573934 rx=17141274
+2026/02/15 13:30:34 tun stats: tx=1807050 rx=17231028
+2026/02/15 13:30:39 tun stats: tx=1859491 rx=17250799
+2026/02/15 13:30:44 tun stats: tx=2003879 rx=17298581
+2026/02/15 13:30:49 tun stats: tx=2030708 rx=17302664
+2026/02/15 13:30:54 tun stats: tx=2040179 rx=17303887
+2026/02/15 13:30:59 tun stats: tx=2053494 rx=17310589
+2026/02/15 13:31:04 tun stats: tx=2072780 rx=17312845
+2026/02/15 13:31:09 tun stats: tx=2095502 rx=17325604
+2026/02/15 13:31:14 tun stats: tx=2132448 rx=17344368
+2026/02/15 13:31:19 tun stats: tx=2188729 rx=17362693
+2026/02/15 13:31:24 tun stats: tx=2314682 rx=17439638
+2026/02/15 13:31:29 tun stats: tx=2328539 rx=17527273
+2026/02/15 13:31:34 tun stats: tx=2395096 rx=17540888
+2026/02/15 13:31:39 tun stats: tx=2427234 rx=17551721
+2026/02/15 13:31:44 tun stats: tx=2435452 rx=17563287
+2026/02/15 14:19:10 Failed to create private namespace: Отказано в доступе. (Code 0x00000005)
+2026/02/15 14:19:10 Failed to take device installation mutex: Отказано в доступе. (Code 0x00000005)
+2026/02/15 14:19:10 tun create failed: Error creating interface: Access is denied.
+2026/02/15 14:49:55 Using existing driver 0.14
+2026/02/15 14:49:55 Creating adapter
+2026/02/15 14:49:56 Removed orphaned adapter "astra0 1"
+2026/02/15 14:49:56 TUN address 10.10.0.2/24 on astra0
+2026/02/15 14:49:56 route 0.0.0.0/0 via 10.10.0.1 (full tunnel)
+2026/02/15 14:49:56 TUN up: astra0 (mtu=1400)
+2026/02/15 14:49:56 connected to entry 178.208.76.92:8443
+2026/02/15 14:50:01 tun stats: tx=12633 rx=52108
+2026/02/15 14:50:06 tun stats: tx=21460 rx=52108
+2026/02/15 14:50:11 tun stats: tx=26319 rx=55208
+2026/02/15 14:50:16 tun stats: tx=37674 rx=72925
+2026/02/15 14:50:21 tun stats: tx=38230 rx=72925
+2026/02/15 14:50:26 tun stats: tx=40274 rx=75899
+2026/02/15 14:50:31 tun stats: tx=42150 rx=77905
+2026/02/15 14:50:36 tun stats: tx=42617 rx=77905
+2026/02/15 14:50:41 tun stats: tx=43266 rx=78578
+2026/02/15 14:50:46 tun stats: tx=43506 rx=78578
+2026/02/15 14:50:51 tun stats: tx=44836 rx=85751
+2026/02/15 14:50:56 tun stats: tx=94365 rx=154399
+2026/02/15 14:51:01 tun stats: tx=181297 rx=490828
+2026/02/15 14:51:06 tun stats: tx=601827 rx=15342957
+2026/02/15 14:51:11 tun stats: tx=758240 rx=22919500
+2026/02/15 14:51:16 tun stats: tx=933560 rx=26530508
+2026/02/15 14:51:21 tun stats: tx=1019548 rx=28644652
+2026/02/15 14:51:26 tun stats: tx=1056533 rx=30356848
+2026/02/15 14:51:31 tun stats: tx=1077657 rx=30384291
+2026/02/15 14:51:36 tun stats: tx=1096555 rx=30392892
+2026/02/15 14:51:41 tun stats: tx=1108407 rx=30396616
+2026/02/15 14:51:46 tun stats: tx=1125888 rx=30416566
+2026/02/15 14:51:51 tun stats: tx=1127793 rx=30421526
+2026/02/15 14:51:56 tun stats: tx=1137716 rx=30442743
+2026/02/15 14:52:01 tun stats: tx=1146940 rx=30452712
+2026/02/15 14:52:06 tun stats: tx=1160125 rx=30467246
+2026/02/15 14:52:11 tun stats: tx=1168380 rx=30473071
+2026/02/15 14:52:16 tun stats: tx=1179739 rx=30480809
+2026/02/15 14:52:21 tun stats: tx=1179910 rx=30481050
+2026/02/15 14:52:26 tun stats: tx=1321596 rx=30545368
+2026/02/15 14:52:31 tun stats: tx=1350477 rx=32036989
+2026/02/15 14:52:36 tun stats: tx=1405996 rx=41380423
+2026/02/15 14:52:41 tun stats: tx=1455247 rx=41412763
+2026/02/15 14:52:46 tun stats: tx=1558450 rx=41570293
+2026/02/15 14:52:51 tun stats: tx=2103241 rx=42135435
+2026/02/15 14:52:56 tun stats: tx=2170207 rx=42161293
+2026/02/15 14:53:01 tun stats: tx=2190077 rx=42254979
+2026/02/15 14:53:06 tun stats: tx=2212014 rx=42333707
+2026/02/15 14:53:11 tun stats: tx=2215980 rx=42348502
+2026/02/15 14:53:16 tun stats: tx=2305562 rx=42451736
+2026/02/15 14:53:21 tun stats: tx=2335910 rx=42482067
+2026/02/15 14:53:26 tun stats: tx=2341078 rx=42541698
+2026/02/15 14:53:31 tun stats: tx=2353850 rx=42545304
+2026/02/15 14:53:36 tun stats: tx=2662957 rx=42646895
+2026/02/15 14:53:41 tun stats: tx=2671379 rx=42648668
+2026/02/15 14:53:46 tun stats: tx=2744730 rx=42658356
+2026/02/15 14:53:51 tun stats: tx=2788811 rx=42708242
+2026/02/15 14:53:56 tun stats: tx=3010778 rx=44014846
+2026/02/15 14:54:01 tun stats: tx=3267275 rx=45825418
+2026/02/15 14:54:06 tun stats: tx=3346830 rx=48379446
+2026/02/15 14:54:11 tun stats: tx=3419304 rx=55059621
+2026/02/15 14:54:16 tun stats: tx=3460611 rx=55415984
+2026/02/15 14:54:21 tun stats: tx=3741246 rx=64782266
+2026/02/15 14:54:26 tun stats: tx=3900134 rx=86147154
+2026/02/15 14:54:31 tun stats: tx=4102894 rx=110164787
+2026/02/15 14:54:36 tun stats: tx=4275693 rx=140463136
+2026/02/15 14:54:41 tun stats: tx=4345731 rx=148964445
+2026/02/15 14:54:46 tun stats: tx=4357417 rx=148998035
+2026/02/15 14:54:51 tun stats: tx=4408611 rx=149011107
+2026/02/15 14:54:56 tun stats: tx=4569838 rx=155547404
+2026/02/15 14:55:01 tun stats: tx=4807949 rx=186520057
+2026/02/15 14:55:06 tun stats: tx=5059879 rx=208434904
+2026/02/15 14:55:11 tun stats: tx=5395635 rx=211721799
+2026/02/15 14:55:16 tun stats: tx=5602758 rx=228794133
+2026/02/15 14:55:21 tun stats: tx=5729392 rx=246135605
+2026/02/15 14:55:26 tun stats: tx=5792910 rx=249820849
+2026/02/15 14:55:31 tun stats: tx=5876337 rx=258868759
+2026/02/15 14:55:36 tun stats: tx=5993949 rx=277889546
+2026/02/15 14:55:41 tun stats: tx=6093499 rx=292424855
+2026/02/15 14:55:46 tun stats: tx=6121094 rx=292998860
+2026/02/15 14:55:51 tun stats: tx=6197619 rx=299763385
+2026/02/15 14:55:56 tun stats: tx=6354500 rx=322650056
+2026/02/15 14:56:01 tun stats: tx=6474098 rx=338598616
+2026/02/15 14:56:06 tun stats: tx=6526076 rx=340930823
+2026/02/15 14:56:11 tun stats: tx=6550520 rx=340952016
+2026/02/15 14:56:16 tun stats: tx=6570355 rx=341587145
+2026/02/15 14:56:21 tun stats: tx=6634902 rx=349962233
+2026/02/15 14:56:26 tun stats: tx=6655502 rx=351231086

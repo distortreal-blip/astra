@@ -322,6 +322,16 @@ func (b *bufferedConn) Read(p []byte) (int, error) {
 
 func listenTransport(name, addr string) (net.Listener, error) {
 	switch name {
+	case "quic":
+		alpn := getenv("ENTRY_TLS_ALPN", "h2")
+		alpns := strings.Split(alpn, ",")
+		for i := range alpns {
+			alpns[i] = strings.TrimSpace(alpns[i])
+		}
+		if len(alpns) == 0 || alpns[0] == "" {
+			alpns = []string{"astra"}
+		}
+		return transport.QUICTransport{ALPN: alpns}.Listen(addr)
 	case "rudp":
 		return transport.ReliableUDPTransport{}.Listen(addr)
 	case "udp":
@@ -340,6 +350,8 @@ func listenTransport(name, addr string) (net.Listener, error) {
 
 func dialForwardTransport(name, addr string) (net.Conn, error) {
 	switch name {
+	case "quic":
+		return transport.QUICTransport{ALPN: []string{"astra"}, Timeout: 10 * time.Second}.Dial(context.Background(), addr)
 	case "rudp":
 		return transport.ReliableUDPTransport{}.Dial(context.Background(), addr)
 	case "udp":

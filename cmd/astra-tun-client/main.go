@@ -9,14 +9,18 @@ import (
 	"encoding/hex"
 	"encoding/json"
 	"flag"
-	"fmt"
 	"io"
 	"log"
 	"net"
 	"os"
+	"os/signal"
+	"runtime"
 	"sort"
 	"strconv"
 	"strings"
+	"sync"
+	"sync/atomic"
+	"syscall"
 	"time"
 
 	"astra/internal/client/identity"
@@ -45,14 +49,48 @@ func main() {
 		log.Fatalf("config load failed: %v", err)
 	}
 
-	tunName := getenv("ASTRA_TUN_NAME", "astra0")
+	_, cancel := context.WithCancel(context.Background())
+	defer cancel()
+
+	tunName := getenv("ASTRA_TUN_NAME", "Astra")
 	tunMTU := getenvInt("ASTRA_TUN_MTU", 1400)
+	tunAddr := getenv("ASTRA_TUN_ADDR", "10.10.0.2/24")
+	tunGW := getenv("ASTRA_TUN_GW", "10.10.0.1")
+	fullTunnel := getenv("ASTRA_FULL_TUNNEL", "1") == "1" || getenv("ASTRA_FULL_TUNNEL", "1") == "true"
+
 	dev, err := tun.Create(tunName, tunMTU)
 	if err != nil {
 		log.Fatalf("tun create failed: %v", err)
 	}
-	defer tun.Close(dev)
-	fmt.Printf("TUN up: %s (mtu=%d)\n", dev.Name, dev.MTU)
+
+	shutdownOnce := sync.Once{}
+	shutdown := func() {
+		shutdownOnce.Do(func() {
+			log.Printf("shutdown: removing routes, closing TUN...")
+			RemoveAddedRoutes()
+			_ = tun.Close(dev)
+			log.Printf("shutdown done (routes removed, TUN closed)")
+		})
+	}
+	defer shutdown()
+
+	if runtime.GOOS == "windows" {
+		if err := SetInterfaceAddress(dev.Name, tunAddr); err != nil {
+			log.Fatalf("set TUN address: %v", err)
+		}
+		log.Printf("TUN address %s on %s", tunAddr, dev.Name)
+		if err := RemoveAllRoutesForInterface(dev.Name); err != nil {
+			log.Printf("warning: remove stale routes: %v", err)
+		}
+		if fullTunnel {
+			if err := AddRoute(dev.Name, "0.0.0.0/0", tunGW); err != nil {
+				log.Fatalf("add default route: %v", err)
+			}
+			log.Printf("route 0.0.0.0/0 via %s (full tunnel)", tunGW)
+		}
+	}
+
+	log.Printf("TUN up: %s (mtu=%d)", dev.Name, dev.MTU)
 
 	id, err := loadIdentity(identityFile)
 	if err != nil {
@@ -77,55 +115,155 @@ func main() {
 		MinPad: getenvInt("ASTRA_FRAME_MIN_PAD", 0),
 		MaxPad: getenvInt("ASTRA_FRAME_MAX_PAD", 0),
 	}
-	transports := parseTransports(getenv("ASTRA_TRANSPORTS", "tls,rudp,tcp"))
+	transports := parseTransports(getenv("ASTRA_TRANSPORTS", "quic,tls,rudp,tcp"))
+
+	if frameCfg.MinPad > 0 || frameCfg.MaxPad > 0 {
+		log.Printf("frame_padding: enabled min=%d max=%d", frameCfg.MinPad, frameCfg.MaxPad)
+	} else {
+		log.Printf("frame_padding: disabled")
+	}
 
 	var conn net.Conn
-	for _, transportName := range transports {
-		profileOrder := rankProfilesForTransport(learn, profiles, transportName, networkID)
-		for _, profile := range profileOrder {
-			resp, c, _, err := attemptHandshake(entryAddr, transportName, profile, id, token, obfsCfg, networkID)
-			key := learningKey(profile.ID, transportName, networkID)
-			learn.Update(key, 0, err == nil && resp != nil && resp.Status == protocol.StatusOK)
-			if err != nil {
-				continue
-			}
-			if resp.Token != "" {
-				_ = os.WriteFile(tokenFile, []byte(resp.Token), 0600)
-			}
-			if resp.Status != protocol.StatusOK {
-				c.Close()
-				continue
-			}
-			conn = c
-			break
+	var usedTransport string
+	if c, resp, tr := tryConnectParallel(entryAddr, transports, learn, profiles, networkID, id, token, obfsCfg); c != nil && resp != nil {
+		conn = c
+		usedTransport = tr
+		if resp.Token != "" {
+			_ = os.WriteFile(tokenFile, []byte(resp.Token), 0600)
 		}
-		if conn != nil {
-			break
+	}
+	if conn == nil {
+		for _, transportName := range transports {
+			profileOrder := rankProfilesForTransport(learn, profiles, transportName, networkID)
+			for _, profile := range profileOrder {
+				resp, c, _, err := attemptHandshake(entryAddr, transportName, profile, id, token, obfsCfg, networkID)
+				key := learningKey(profile.ID, transportName, networkID)
+				learn.Update(key, 0, err == nil && resp != nil && resp.Status == protocol.StatusOK)
+				if err != nil {
+					continue
+				}
+				if resp.Token != "" {
+					_ = os.WriteFile(tokenFile, []byte(resp.Token), 0600)
+				}
+				if resp.Status != protocol.StatusOK {
+					log.Printf("handshake denied: status=%s code=%s message=%s", resp.Status, resp.Code, resp.Message)
+					c.Close()
+					continue
+				}
+				conn = c
+				usedTransport = transportName
+				break
+			}
+			if conn != nil {
+				break
+			}
 		}
 	}
 	if conn == nil {
 		log.Fatal("failed to connect to entry")
 	}
+	log.Printf("connected to entry %s transport=%s", entryAddr, usedTransport)
+	defer conn.Close()
 
 	stream := transport.WrapConn(conn, frameCfg)
 	reader := bufio.NewReader(stream)
 	writer := bufio.NewWriter(stream)
+	writerMu := sync.Mutex{}
 
-	go pumpTunToConn(dev, writer)
+	// On signal: close conn so pumps exit, then defer runs (remove routes, close TUN).
+	go func() {
+		sigCh := make(chan os.Signal, 1)
+		signal.Notify(sigCh, os.Interrupt, syscall.SIGTERM)
+		sig := <-sigCh
+		log.Printf("received signal %v, disconnecting...", sig)
+		cancel()
+		conn.Close()
+	}()
+
+	keepAliveSec := getenvInt("ASTRA_KEEPALIVE_SEC", 3)
+	jitterPct := getenvInt("ASTRA_KEEPALIVE_JITTER_PCT", 15)
+	if keepAliveSec > 0 {
+		if jitterPct > 0 {
+			log.Printf("keepalive: interval=%ds jitter=±%d%%", keepAliveSec, jitterPct)
+		}
+		go keepAlive(writer, &writerMu, shutdown, time.Duration(keepAliveSec)*time.Second, jitterPct)
+	} else {
+		log.Printf("keepalive disabled (ASTRA_KEEPALIVE_SEC=0)")
+	}
+	if getenvInt("ASTRA_LOG_TUN_STATS_SEC", 5) > 0 {
+		go logTunStats(time.Duration(getenvInt("ASTRA_LOG_TUN_STATS_SEC", 5)) * time.Second)
+	}
+	go pumpTunToConn(dev, writer, &writerMu, shutdown)
 	pumpConnToTun(dev, reader)
 }
 
-func pumpTunToConn(dev *tun.Device, writer *bufio.Writer) {
+var tunTxBytes uint64
+var tunRxBytes uint64
+
+func logTunStats(interval time.Duration) {
+	ticker := time.NewTicker(interval)
+	defer ticker.Stop()
+	for range ticker.C {
+		tx := atomic.LoadUint64(&tunTxBytes)
+		rx := atomic.LoadUint64(&tunRxBytes)
+		log.Printf("tun stats: tx=%d rx=%d", tx, rx)
+	}
+}
+
+func keepAlive(writer *bufio.Writer, writerMu *sync.Mutex, closeFn func(), interval time.Duration, jitterPct int) {
+	if jitterPct < 0 {
+		jitterPct = 0
+	}
+	if jitterPct > 50 {
+		jitterPct = 50
+	}
+	for {
+		writerMu.Lock()
+		err := writePacket(writer, nil)
+		writerMu.Unlock()
+		if err != nil {
+			log.Printf("keepalive write error: %v", err)
+			closeFn()
+			return
+		}
+		delay := interval
+		if jitterPct > 0 {
+			// ±jitterPct%: delay in [interval*(1-pct/100), interval*(1+pct/100)]
+			delta := int64(interval) * int64(jitterPct) / 100
+			if delta > 0 {
+				b := make([]byte, 8)
+				rand.Read(b)
+				n := binary.BigEndian.Uint64(b)
+				offset := int64(n%(2*uint64(delta)+1)) - int64(delta)
+				delay = interval + time.Duration(offset)
+				if delay < interval/2 {
+					delay = interval / 2
+				}
+			}
+		}
+		time.Sleep(delay)
+	}
+}
+
+func pumpTunToConn(dev *tun.Device, writer *bufio.Writer, writerMu *sync.Mutex, closeFn func()) {
 	buf := make([]byte, 65535)
 	for {
 		n, err := tun.ReadPacket(dev, buf)
 		if err != nil {
+			log.Printf("tun read error (disconnect reason): %v", err)
+			closeFn()
 			return
 		}
 		if n <= 0 || n > 0xffff {
 			continue
 		}
-		if err := writePacket(writer, buf[:n]); err != nil {
+		atomic.AddUint64(&tunTxBytes, uint64(n))
+		writerMu.Lock()
+		err = writePacket(writer, buf[:n])
+		writerMu.Unlock()
+		if err != nil {
+			log.Printf("tun->conn write error: %v", err)
+			closeFn()
 			return
 		}
 	}
@@ -135,12 +273,17 @@ func pumpConnToTun(dev *tun.Device, reader *bufio.Reader) {
 	for {
 		payload, err := readPacket(reader)
 		if err != nil {
+			log.Printf("conn read error (tunnel/entry closed): %v", err)
 			return
 		}
 		if len(payload) == 0 {
 			continue
 		}
-		_, _ = tun.WritePacket(dev, payload)
+		atomic.AddUint64(&tunRxBytes, uint64(len(payload)))
+		if _, err := tun.WritePacket(dev, payload); err != nil {
+			log.Printf("conn->tun write error: %v", err)
+			return
+		}
 	}
 }
 
@@ -153,8 +296,10 @@ func writePacket(writer *bufio.Writer, payload []byte) error {
 	if _, err := writer.Write(header); err != nil {
 		return err
 	}
-	if _, err := writer.Write(payload); err != nil {
-		return err
+	if len(payload) > 0 {
+		if _, err := writer.Write(payload); err != nil {
+			return err
+		}
 	}
 	return writer.Flush()
 }
@@ -227,6 +372,70 @@ func rankProfilesForTransport(store *learning.Store, profiles []sni.Profile, tra
 		return store.Score(learningKey(ordered[i].ID, transportName, networkID)) > store.Score(learningKey(ordered[j].ID, transportName, networkID))
 	})
 	return ordered
+}
+
+// tryConnectParallel tries the best profile of each transport in parallel; first success wins (faster connect).
+func tryConnectParallel(entryAddr string, transports []string, learn *learning.Store, profiles []sni.Profile, networkID string, id *identity.Identity, token string, obfsCfg obfs.Config) (net.Conn, *protocol.HandshakeResponse, string) {
+	type result struct {
+		conn      net.Conn
+		resp      *protocol.HandshakeResponse
+		transport string
+	}
+	var winnerMu sync.Mutex
+	var winner *result
+	done := make(chan result, len(transports))
+	for _, transportName := range transports {
+		transportName := transportName
+		profileOrder := rankProfilesForTransport(learn, profiles, transportName, networkID)
+		if len(profileOrder) == 0 {
+			done <- result{}
+			continue
+		}
+		go func() {
+			defer func() { done <- result{} }()
+			for _, profile := range profileOrder {
+				resp, c, _, err := attemptHandshake(entryAddr, transportName, profile, id, token, obfsCfg, networkID)
+				key := learningKey(profile.ID, transportName, networkID)
+				learn.Update(key, 0, err == nil && resp != nil && resp.Status == protocol.StatusOK)
+				if err != nil || resp == nil || resp.Status != protocol.StatusOK {
+					if c != nil {
+						c.Close()
+					}
+					continue
+				}
+				winnerMu.Lock()
+				if winner == nil {
+					winner = &result{conn: c, resp: resp, transport: transportName}
+					winnerMu.Unlock()
+					return
+				}
+				winnerMu.Unlock()
+				c.Close()
+				return
+			}
+		}()
+	}
+	deadline := time.After(5 * time.Second)
+	for i := 0; i < len(transports); i++ {
+		select {
+		case <-done:
+			winnerMu.Lock()
+			w := winner
+			winnerMu.Unlock()
+			if w != nil {
+				return w.conn, w.resp, w.transport
+			}
+		case <-deadline:
+			return nil, nil, ""
+		}
+	}
+	winnerMu.Lock()
+	w := winner
+	winnerMu.Unlock()
+	if w != nil {
+		return w.conn, w.resp, w.transport
+	}
+	return nil, nil, ""
 }
 
 func attemptHandshake(addr string, transportName string, profile sni.Profile, id *identity.Identity, token string, obfsCfg obfs.Config, networkID string) (*protocol.HandshakeResponse, net.Conn, time.Duration, error) {
@@ -309,6 +518,16 @@ func parseTransports(raw string) []string {
 
 func dialTransport(name, addr string, profile sni.Profile) (net.Conn, error) {
 	switch name {
+	case "quic":
+		alpn := profile.ALPN
+		if alpn == "" {
+			alpn = "h2"
+		}
+		return transport.QUICTransport{
+			ServerName: profile.ServerName,
+			ALPN:       []string{alpn, "http/1.1", "astra"},
+			Timeout:    10 * time.Second,
+		}.Dial(context.Background(), addr)
 	case "rudp":
 		return transport.ReliableUDPTransport{}.Dial(context.Background(), addr)
 	case "udp":
