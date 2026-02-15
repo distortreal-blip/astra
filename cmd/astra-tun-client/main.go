@@ -49,6 +49,17 @@ func main() {
 		log.Fatalf("config load failed: %v", err)
 	}
 
+	if logPath := getenv("ASTRA_LOG_FILE", ""); logPath != "" {
+		f, err := os.OpenFile(logPath, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+		if err != nil {
+			log.Printf("ASTRA_LOG_FILE: cannot open %q: %v", logPath, err)
+		} else {
+			defer f.Close()
+			log.SetOutput(io.MultiWriter(os.Stderr, f))
+			log.SetFlags(log.Ldate | log.Ltime)
+		}
+	}
+
 	_, cancel := context.WithCancel(context.Background())
 	defer cancel()
 
@@ -75,15 +86,20 @@ func main() {
 	defer shutdown()
 
 	if runtime.GOOS == "windows" {
+		// netsh uses the connection name; driver may return "astra0 2" etc., so try requested name if dev.Name fails
+		ifName := dev.Name
 		if err := SetInterfaceAddress(dev.Name, tunAddr); err != nil {
-			log.Fatalf("set TUN address: %v", err)
+			if err2 := SetInterfaceAddress(tunName, tunAddr); err2 != nil {
+				log.Fatalf("set TUN address: %v (tried %q and %q)", err, dev.Name, tunName)
+			}
+			ifName = tunName
 		}
-		log.Printf("TUN address %s on %s", tunAddr, dev.Name)
-		if err := RemoveAllRoutesForInterface(dev.Name); err != nil {
+		log.Printf("TUN address %s on %s", tunAddr, ifName)
+		if err := RemoveAllRoutesForInterface(ifName); err != nil {
 			log.Printf("warning: remove stale routes: %v", err)
 		}
 		if fullTunnel {
-			if err := AddRoute(dev.Name, "0.0.0.0/0", tunGW); err != nil {
+			if err := AddRoute(ifName, "0.0.0.0/0", tunGW); err != nil {
 				log.Fatalf("add default route: %v", err)
 			}
 			log.Printf("route 0.0.0.0/0 via %s (full tunnel)", tunGW)
