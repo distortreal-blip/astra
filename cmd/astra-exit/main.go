@@ -207,8 +207,8 @@ func handleTun(conn net.Conn) {
 		}
 		atomic.AddUint64(&tunRxBytes, uint64(len(payload)))
 		if _, err := tun.WritePacket(dev, payload); err != nil {
-			log.Printf("tun write error: %v", err)
-			return
+			log.Printf("tun write error (skip packet len=%d): %v", len(payload), err)
+			continue
 		}
 	}
 }
