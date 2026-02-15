@@ -151,9 +151,22 @@ func handleTun(conn net.Conn) {
 	tunStatsOnce.Do(func() {
 		go logTunStats()
 	})
+	// Buffered channel so TUN reader never blocks on slow tunnel write;
+	// otherwise reply packets pile up in kernel and client gets rx=0.
+	tunToConn := make(chan []byte, 256)
+	ctx, cancel := context.WithCancel(context.Background())
+	defer func() {
+		cancel()
+		close(tunToConn)
+	}()
 	go func() {
 		buf := make([]byte, 65535)
 		for {
+			select {
+			case <-ctx.Done():
+				return
+			default:
+			}
 			n, err := tun.ReadPacket(dev, buf)
 			if err != nil {
 				log.Printf("tun read error: %v", err)
@@ -163,7 +176,20 @@ func handleTun(conn net.Conn) {
 				continue
 			}
 			atomic.AddUint64(&tunTxBytes, uint64(n))
-			_ = writePacket(writer, buf[:n])
+			packet := make([]byte, n)
+			copy(packet, buf[:n])
+			select {
+			case <-ctx.Done():
+				return
+			case tunToConn <- packet:
+			default:
+				// channel full, drop to avoid blocking TUN read
+			}
+		}
+	}()
+	go func() {
+		for packet := range tunToConn {
+			_ = writePacket(writer, packet)
 		}
 	}()
 
