@@ -169,6 +169,11 @@ func handleTun(conn net.Conn) {
 			}
 			n, err := tun.ReadPacket(dev, buf)
 			if err != nil {
+				// "too many segments" from kernel TUN is recoverable: log and keep reading
+				if strings.Contains(err.Error(), "too many segments") {
+					log.Printf("tun read skip: %v", err)
+					continue
+				}
 				log.Printf("tun read error: %v", err)
 				return
 			}
