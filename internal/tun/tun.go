@@ -11,7 +11,8 @@ import (
 const packetOffset = 16
 
 // numReadBufs is the number of buffers passed to TUN Read on Linux (GSO can return multiple segments).
-const numReadBufs = 64
+// wireguard-go returns ErrTooManySegments when a GRO aggregate has more segments than len(bufs); use plenty.
+const numReadBufs = 512
 const readBufSize = 2048 // each segment typically ≤ MTU
 
 type Device struct {
@@ -76,12 +77,13 @@ func ReadPacket(dev *Device, buf []byte) (int, error) {
 
 		sizes := make([]int, len(dev.readBufs))
 		n, err := dev.Tun.Read(dev.readBufs, sizes, 0)
-		if err != nil {
+		if err != nil && n == 0 {
 			return 0, err
 		}
 		if n == 0 {
 			return 0, nil
 		}
+		// Use the n packets we got even when err is ErrTooManySegments (some segments were dropped by wireguard)
 		copy(buf, dev.readBufs[0][:sizes[0]])
 		dev.mu.Lock()
 		for i := 1; i < n; i++ {
