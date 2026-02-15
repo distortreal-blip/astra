@@ -152,8 +152,8 @@ func handleTun(conn net.Conn) {
 		go logTunStats()
 	})
 	// Buffered channel so TUN reader never blocks on slow tunnel write;
-	// otherwise reply packets pile up in kernel and client gets rx=0.
-	tunToConn := make(chan []byte, 256)
+	// larger buffer reduces drops under burst load (e.g. streaming).
+	tunToConn := make(chan []byte, 1024)
 	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
 	go func() {
