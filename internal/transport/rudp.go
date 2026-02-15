@@ -289,6 +289,13 @@ func (c *rudpConn) Read(p []byte) (int, error) {
 	}
 }
 
+func (c *rudpConn) writePacket(frame []byte) (int, error) {
+	if u, ok := c.pc.(*net.UDPConn); ok && u.RemoteAddr() != nil {
+		return u.Write(frame)
+	}
+	return c.pc.WriteTo(frame, c.raddr)
+}
+
 func (c *rudpConn) Write(p []byte) (int, error) {
 	if !c.writeDeadline.IsZero() && time.Now().After(c.writeDeadline) {
 		return 0, timeoutErr{}
@@ -312,7 +319,7 @@ func (c *rudpConn) Write(p []byte) (int, error) {
 	binary.BigEndian.PutUint32(frame[5:9], 0)
 	binary.BigEndian.PutUint16(frame[9:11], uint16(len(p)))
 	copy(frame[11:], p)
-	if _, err := c.pc.WriteTo(frame, c.raddr); err != nil {
+	if _, err := c.writePacket(frame); err != nil {
 		c.mu.Lock()
 		c.inFlight--
 		c.cond.Broadcast()
@@ -333,14 +340,14 @@ func (c *rudpConn) sendAck(seq uint32) error {
 	binary.BigEndian.PutUint32(frame[1:5], 0)
 	binary.BigEndian.PutUint32(frame[5:9], seq)
 	binary.BigEndian.PutUint16(frame[9:11], 0)
-	_, err := c.pc.WriteTo(frame, c.raddr)
+	_, err := c.writePacket(frame)
 	return err
 }
 
 func (c *rudpConn) sendPong() error {
 	frame := make([]byte, 11)
 	frame[0] = rudpTypePong
-	_, err := c.pc.WriteTo(frame, c.raddr)
+	_, err := c.writePacket(frame)
 	return err
 }
 
@@ -365,7 +372,7 @@ func (c *rudpConn) retransmitLoop() {
 				frame.retries++
 				frame.lastSent = now
 				c.onLoss()
-				_, _ = c.pc.WriteTo(frame.data, c.raddr)
+				_, _ = c.writePacket(frame.data)
 			}
 			c.mu.Unlock()
 		case <-c.closed:
@@ -462,7 +469,7 @@ func (c *rudpConn) keepaliveLoop() {
 func (c *rudpConn) sendPing() error {
 	frame := make([]byte, 11)
 	frame[0] = rudpTypePing
-	_, err := c.pc.WriteTo(frame, c.raddr)
+	_, err := c.writePacket(frame)
 	return err
 }
 

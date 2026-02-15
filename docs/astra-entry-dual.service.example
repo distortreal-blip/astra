@@ -1,0 +1,31 @@
+# Пример systemd-юнита: один сервис — два порта Entry (TCP + QUIC).
+#
+# Установка:
+#   sudo cp docs/astra-entry-dual.service.example /etc/systemd/system/astra-entry-dual.service
+#   sudo nano /etc/systemd/system/astra-entry-dual.service   # поправить пути и переменные
+#   sudo systemctl daemon-reload
+#   sudo systemctl enable astra-entry-dual
+#   sudo systemctl start astra-entry-dual
+#
+# Перезапуск:
+#   sudo systemctl restart astra-entry-dual
+
+[Unit]
+Description=Astra Entry (TCP :8443 + QUIC :8444)
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/root/astra
+ExecStart=/root/astra/scripts/entry-dual-start.sh
+Restart=on-failure
+RestartSec=5
+
+# Общие переменные для обоих процессов (при необходимости раскомментировать и задать).
+# Environment=ENTRY_NEXT_ADDR=127.0.0.1:8445
+# Environment=ENTRY_TLS_CERT=/root/astra/entry_cert.pem
+# Environment=ENTRY_TLS_KEY=/root/astra/entry_key.pem
+# Environment=ENTRY_QUIC_ADDR=:8444
+
+[Install]
+WantedBy=multi-user.target

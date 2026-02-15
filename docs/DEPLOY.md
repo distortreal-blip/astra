@@ -60,6 +60,24 @@ sudo systemctl restart astra@exit
 cd /path/to/Astra && git pull origin main && go build -o astra-entry ./cmd/astra-entry && sudo systemctl restart astra-entry
 ```
 
+### Один юнит на два порта (TCP + QUIC)
+
+Чтобы Entry слушал и TCP (:8443), и QUIC (:8444), используй скрипт и пример юнита из репозитория:
+
+```bash
+cd /root/astra
+chmod +x scripts/entry-dual-start.sh
+sudo cp docs/astra-entry-dual.service.example /etc/systemd/system/astra-entry-dual.service
+sudo nano /etc/systemd/system/astra-entry-dual.service   # поправить WorkingDirectory/ExecStart под свой путь
+sudo systemctl daemon-reload
+sudo systemctl enable astra-entry-dual
+sudo systemctl start astra-entry-dual
+```
+
+Перезапуск: `sudo systemctl restart astra-entry-dual`.
+
+**Клиент:** чтобы QUIC ходил на порт 8444, в конфиге или env задай `ENTRY_QUIC_ADDR=host:8444` (например `178.208.76.92:8444`). Тогда для транспорта quic будет использоваться этот адрес, для остальных — `ENTRY_ADDR` (например `178.208.76.92:8443`). В `configs/astra-tun-client.json` можно добавить `"ENTRY_QUIC_ADDR":"178.208.76.92:8444"`.
+
 ---
 
 ## 3. Локально: билд клиента (Windows)

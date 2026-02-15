@@ -669,3 +669,90 @@
 2026/02/15 17:22:46 tun stats: tx=5157815 rx=145542374
 2026/02/15 17:22:51 tun stats: tx=5173842 rx=145915957
 2026/02/15 17:22:56 tun stats: tx=5196791 rx=146280775
+2026/02/15 17:25:44 Using existing driver 0.14
+2026/02/15 17:25:44 Creating adapter
+2026/02/15 17:25:44 TUN address 10.10.0.2/24 on astra0
+2026/02/15 17:25:44 route 0.0.0.0/0 via 10.10.0.1 (full tunnel)
+2026/02/15 17:25:44 TUN up: astra0 (mtu=1400)
+2026/02/15 17:25:44 frame_padding: disabled
+2026/02/15 17:25:44 trying transport=tcp profile=google-h2
+2026/02/15 17:25:44 connected to entry 178.208.76.92:8443 transport=tcp
+2026/02/15 17:25:44 keepalive: interval=3s jitter=±15%
+2026/02/15 17:25:49 tun stats: tx=16146 rx=25443
+2026/02/15 17:25:54 tun stats: tx=32581 rx=56609
+2026/02/15 17:25:59 tun stats: tx=34152 rx=56976
+2026/02/15 17:26:04 tun stats: tx=35698 rx=61280
+2026/02/15 17:26:09 tun stats: tx=60559 rx=101246
+2026/02/15 17:26:14 tun stats: tx=75217 rx=114587
+2026/02/15 17:26:19 tun stats: tx=118019 rx=132879
+2026/02/15 17:26:24 tun stats: tx=212504 rx=1309900
+2026/02/15 17:26:29 tun stats: tx=242681 rx=4959685
+2026/02/15 17:26:34 tun stats: tx=328849 rx=8925212
+2026/02/15 17:28:14 Using existing driver 0.14
+2026/02/15 17:28:14 Creating adapter
+2026/02/15 17:28:14 Removed orphaned adapter "astra0 1"
+2026/02/15 17:28:15 TUN address 10.10.0.2/24 on astra0
+2026/02/15 17:28:15 route 0.0.0.0/0 via 10.10.0.1 (full tunnel)
+2026/02/15 17:28:15 TUN up: astra0 (mtu=1400)
+2026/02/15 17:28:15 transports: tcp
+2026/02/15 17:28:15 frame_padding: disabled (set ASTRA_FRAME_MIN_PAD/ASTRA_FRAME_MAX_PAD to enable)
+2026/02/15 17:28:15 trying transport=tcp profile=google-h2
+2026/02/15 17:28:15 connected to entry 178.208.76.92:8443 transport=tcp
+2026/02/15 17:28:15 keepalive: interval=3s jitter=±15%
+2026/02/15 17:28:20 tun stats: tx=13636 rx=12595
+2026/02/15 17:28:25 tun stats: tx=24692 rx=13407
+2026/02/15 17:28:30 tun stats: tx=26578 rx=13407
+2026/02/15 17:30:08 Using existing driver 0.14
+2026/02/15 17:30:08 Creating adapter
+2026/02/15 17:30:08 Removed orphaned adapter "astra0 1"
+2026/02/15 17:30:08 TUN address 10.10.0.2/24 on astra0
+2026/02/15 17:30:08 route 0.0.0.0/0 via 10.10.0.1 (full tunnel)
+2026/02/15 17:30:08 TUN up: astra0 (mtu=1400)
+2026/02/15 17:30:08 transports: quic,tcp,tls,rudp
+2026/02/15 17:30:08 frame_padding: enabled min=16 max=64
+2026/02/15 17:30:08 trying transport=rudp profile=google-h2
+2026/02/15 17:30:08 trying transport=tcp profile=google-h2
+2026/02/15 17:30:08 trying transport=quic profile=google-h2
+2026/02/15 17:30:08 trying transport=tls profile=google-h2
+2026/02/15 17:30:09 transport=rudp handshake write failed: write udp 192.168.0.136:52006->178.208.76.92:8443: use of WriteTo with pre-connected connection
+2026/02/15 17:30:09 trying transport=rudp profile=google-h1
+2026/02/15 17:30:09 transport=rudp handshake write failed: write udp 192.168.0.136:52009->178.208.76.92:8443: use of WriteTo with pre-connected connection
+2026/02/15 17:30:09 trying transport=rudp profile=gstatic-h2
+2026/02/15 17:30:09 transport=rudp handshake write failed: write udp 192.168.0.136:52018->178.208.76.92:8443: use of WriteTo with pre-connected connection
+2026/02/15 17:30:09 trying transport=rudp profile=youtube-h2
+2026/02/15 17:30:09 transport=rudp handshake write failed: write udp 192.168.0.136:52020->178.208.76.92:8443: use of WriteTo with pre-connected connection
+2026/02/15 17:30:09 trying transport=rudp profile=android-h2
+2026/02/15 17:30:09 transport=rudp handshake write failed: write udp 192.168.0.136:60506->178.208.76.92:8443: use of WriteTo with pre-connected connection
+2026/02/15 17:30:09 trying transport=rudp profile=play-h2
+2026/02/15 17:30:09 transport=rudp handshake write failed: write udp 192.168.0.136:61281->178.208.76.92:8443: use of WriteTo with pre-connected connection
+2026/02/15 17:30:09 trying transport=rudp profile=google-ff
+2026/02/15 17:30:09 transport=rudp handshake write failed: write udp 192.168.0.136:61282->178.208.76.92:8443: use of WriteTo with pre-connected connection
+2026/02/15 17:30:09 connected to entry 178.208.76.92:8443 transport=tcp
+2026/02/15 17:30:09 keepalive: interval=3s jitter=±15%
+2026/02/15 17:30:09 transport=tls dial failed: tls: first record does not look like a TLS handshake
+2026/02/15 17:30:09 trying transport=tls profile=google-h1
+2026/02/15 17:30:09 conn read error (tunnel/entry closed): read tcp 192.168.0.136:10665->178.208.76.92:8443: wsarecv: An existing connection was forcibly closed by the remote host.
+2026/02/15 17:30:09 shutdown: removing routes, closing TUN...
+2026/02/15 17:30:09 tun->conn write error: write tcp 192.168.0.136:10665->178.208.76.92:8443: use of closed network connection
+2026/02/15 17:30:09 transport=tls dial failed: tls: first record does not look like a TLS handshake
+2026/02/15 17:30:09 trying transport=tls profile=gstatic-h2
+2026/02/15 17:30:09 shutdown done (routes removed, TUN closed)
+2026/02/15 17:36:34 Using existing driver 0.14
+2026/02/15 17:36:34 Creating adapter
+2026/02/15 17:36:35 TUN address 10.10.0.2/24 on astra0
+2026/02/15 17:36:35 route 0.0.0.0/0 via 10.10.0.1 (full tunnel)
+2026/02/15 17:36:35 TUN up: astra0 (mtu=1400)
+2026/02/15 17:36:35 transports: quic,tcp,tls,rudp
+2026/02/15 17:36:35 frame_padding: enabled min=16 max=64
+2026/02/15 17:36:35 trying transport=quic profile=google-h2
+2026/02/15 17:36:35 trying transport=rudp profile=google-h2
+2026/02/15 17:36:35 trying transport=tcp profile=google-h2
+2026/02/15 17:36:35 trying transport=tls profile=google-h2
+2026/02/15 17:36:35 transport=quic dial failed: context canceled
+2026/02/15 17:36:35 connected to entry 178.208.76.92:8443 transport=tcp
+2026/02/15 17:36:35 keepalive: interval=3s jitter=±15%
+2026/02/15 17:36:35 transport=tls dial failed: tls: first record does not look like a TLS handshake
+2026/02/15 17:36:35 conn read error (tunnel/entry closed): EOF
+2026/02/15 17:36:35 shutdown: removing routes, closing TUN...
+2026/02/15 17:36:35 tun read error (disconnect reason): file already closed
+2026/02/15 17:36:35 shutdown done (routes removed, TUN closed)

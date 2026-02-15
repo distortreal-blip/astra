@@ -116,16 +116,17 @@ func main() {
 		MaxPad: getenvInt("ASTRA_FRAME_MAX_PAD", 64),
 	}
 	transports := parseTransports(getenv("ASTRA_TRANSPORTS", "quic,tcp,tls,rudp"))
+	log.Printf("transports: %s", strings.Join(transports, ","))
 
 	if frameCfg.MinPad > 0 || frameCfg.MaxPad > 0 {
 		log.Printf("frame_padding: enabled min=%d max=%d", frameCfg.MinPad, frameCfg.MaxPad)
 	} else {
-		log.Printf("frame_padding: disabled")
+		log.Printf("frame_padding: disabled (set ASTRA_FRAME_MIN_PAD/ASTRA_FRAME_MAX_PAD to enable)")
 	}
 
 	var conn net.Conn
 	var usedTransport string
-	if c, resp, tr := tryConnectParallel(entryAddr, transports, learn, profiles, networkID, id, token, obfsCfg); c != nil && resp != nil {
+	if c, resp, tr := tryConnectParallel(context.Background(), entryAddr, transports, learn, profiles, networkID, id, token, obfsCfg); c != nil && resp != nil {
 		conn = c
 		usedTransport = tr
 		if resp.Token != "" {
@@ -136,7 +137,7 @@ func main() {
 		for _, transportName := range transports {
 			profileOrder := rankProfilesForTransport(learn, profiles, transportName, networkID)
 			for _, profile := range profileOrder {
-				resp, c, _, err := attemptHandshake(entryAddr, transportName, profile, id, token, obfsCfg, networkID)
+				resp, c, _, err := attemptHandshake(context.Background(), entryAddr, transportName, profile, id, token, obfsCfg, networkID)
 				key := learningKey(profile.ID, transportName, networkID)
 				learn.Update(key, 0, err == nil && resp != nil && resp.Status == protocol.StatusOK)
 				if err != nil {
@@ -374,7 +375,11 @@ func rankProfilesForTransport(store *learning.Store, profiles []sni.Profile, tra
 }
 
 // tryConnectParallel tries the best profile of each transport in parallel; first success wins (faster connect).
-func tryConnectParallel(entryAddr string, transports []string, learn *learning.Store, profiles []sni.Profile, networkID string, id *identity.Identity, token string, obfsCfg obfs.Config) (net.Conn, *protocol.HandshakeResponse, string) {
+// When a winner is found, attemptCtx is cancelled so other goroutines stop and don't hold connections to Entry.
+func tryConnectParallel(ctx context.Context, entryAddr string, transports []string, learn *learning.Store, profiles []sni.Profile, networkID string, id *identity.Identity, token string, obfsCfg obfs.Config) (net.Conn, *protocol.HandshakeResponse, string) {
+	attemptCtx, cancelAttempts := context.WithCancel(ctx)
+	defer cancelAttempts()
+
 	type result struct {
 		conn      net.Conn
 		resp      *protocol.HandshakeResponse
@@ -393,7 +398,7 @@ func tryConnectParallel(entryAddr string, transports []string, learn *learning.S
 		go func() {
 			defer func() { done <- result{} }()
 			for _, profile := range profileOrder {
-				resp, c, _, err := attemptHandshake(entryAddr, transportName, profile, id, token, obfsCfg, networkID)
+				resp, c, _, err := attemptHandshake(attemptCtx, entryAddr, transportName, profile, id, token, obfsCfg, networkID)
 				key := learningKey(profile.ID, transportName, networkID)
 				learn.Update(key, 0, err == nil && resp != nil && resp.Status == protocol.StatusOK)
 				if err != nil || resp == nil || resp.Status != protocol.StatusOK {
@@ -406,6 +411,7 @@ func tryConnectParallel(entryAddr string, transports []string, learn *learning.S
 				if winner == nil {
 					winner = &result{conn: c, resp: resp, transport: transportName}
 					winnerMu.Unlock()
+					cancelAttempts()
 					return
 				}
 				winnerMu.Unlock()
@@ -422,6 +428,7 @@ func tryConnectParallel(entryAddr string, transports []string, learn *learning.S
 			w := winner
 			winnerMu.Unlock()
 			if w != nil {
+				cancelAttempts()
 				return w.conn, w.resp, w.transport
 			}
 		case <-deadline:
@@ -429,8 +436,10 @@ func tryConnectParallel(entryAddr string, transports []string, learn *learning.S
 			w := winner
 			winnerMu.Unlock()
 			if w != nil {
+				cancelAttempts()
 				return w.conn, w.resp, w.transport
 			}
+			cancelAttempts()
 			return nil, nil, ""
 		}
 	}
@@ -438,18 +447,32 @@ func tryConnectParallel(entryAddr string, transports []string, learn *learning.S
 	w := winner
 	winnerMu.Unlock()
 	if w != nil {
+		cancelAttempts()
 		return w.conn, w.resp, w.transport
 	}
+	cancelAttempts()
 	return nil, nil, ""
 }
 
-func attemptHandshake(addr string, transportName string, profile sni.Profile, id *identity.Identity, token string, obfsCfg obfs.Config, networkID string) (*protocol.HandshakeResponse, net.Conn, time.Duration, error) {
+func attemptHandshake(ctx context.Context, addr string, transportName string, profile sni.Profile, id *identity.Identity, token string, obfsCfg obfs.Config, networkID string) (*protocol.HandshakeResponse, net.Conn, time.Duration, error) {
+	if ctx.Err() != nil {
+		return nil, nil, 0, ctx.Err()
+	}
+	if transportName == "quic" {
+		if q := getenv("ENTRY_QUIC_ADDR", ""); q != "" {
+			addr = q
+		}
+	}
 	start := time.Now()
-	log.Printf("trying transport=%s profile=%s", transportName, profile.ID)
-	conn, err := dialTransport(transportName, addr, profile)
+	log.Printf("trying transport=%s profile=%s addr=%s", transportName, profile.ID, addr)
+	conn, err := dialTransport(ctx, transportName, addr, profile)
 	if err != nil {
 		log.Printf("transport=%s dial failed: %v", transportName, err)
 		return nil, nil, 0, err
+	}
+	if ctx.Err() != nil {
+		conn.Close()
+		return nil, nil, 0, ctx.Err()
 	}
 	reader := bufio.NewReader(conn)
 	writer := bufio.NewWriter(conn)
@@ -530,7 +553,7 @@ func parseTransports(raw string) []string {
 	return out
 }
 
-func dialTransport(name, addr string, profile sni.Profile) (net.Conn, error) {
+func dialTransport(ctx context.Context, name, addr string, profile sni.Profile) (net.Conn, error) {
 	dialTimeout := 2 * time.Second
 	switch name {
 	case "quic":
@@ -542,11 +565,11 @@ func dialTransport(name, addr string, profile sni.Profile) (net.Conn, error) {
 			ServerName: profile.ServerName,
 			ALPN:       []string{alpn, "http/1.1", "astra"},
 			Timeout:    dialTimeout,
-		}.Dial(context.Background(), addr)
+		}.Dial(ctx, addr)
 	case "rudp":
-		return transport.ReliableUDPTransport{}.Dial(context.Background(), addr)
+		return transport.ReliableUDPTransport{}.Dial(ctx, addr)
 	case "udp":
-		return transport.UDPTransport{}.Dial(context.Background(), addr)
+		return transport.UDPTransport{}.Dial(ctx, addr)
 	case "tls":
 		alpn := profile.ALPN
 		if alpn == "" {
@@ -557,9 +580,9 @@ func dialTransport(name, addr string, profile sni.Profile) (net.Conn, error) {
 			ALPN:       []string{alpn, "http/1.1"},
 			Profile:    profile.FingerprintID,
 			Timeout:    dialTimeout,
-		}.Dial(context.Background(), addr)
+		}.Dial(ctx, addr)
 	default:
-		return transport.TCPTransport{Timeout: dialTimeout}.Dial(context.Background(), addr)
+		return transport.TCPTransport{Timeout: dialTimeout}.Dial(ctx, addr)
 	}
 }
 

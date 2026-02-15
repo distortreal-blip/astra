@@ -1,5 +1,103 @@
 {
   "profiles": {
+    "quic|android-h2|eth:Ethernet": {
+      "success_count": 0,
+      "fail_count": 1,
+      "last_rtt_ms": 0,
+      "score": 0,
+      "updated_at": 1771166195
+    },
+    "quic|google-ff|eth:Ethernet": {
+      "success_count": 0,
+      "fail_count": 1,
+      "last_rtt_ms": 0,
+      "score": 0,
+      "updated_at": 1771166195
+    },
+    "quic|google-h1|eth:Ethernet": {
+      "success_count": 0,
+      "fail_count": 1,
+      "last_rtt_ms": 0,
+      "score": 0,
+      "updated_at": 1771166195
+    },
+    "quic|google-h2|eth:Ethernet": {
+      "success_count": 0,
+      "fail_count": 1,
+      "last_rtt_ms": 0,
+      "score": 0,
+      "updated_at": 1771166195
+    },
+    "quic|gstatic-h2|eth:Ethernet": {
+      "success_count": 0,
+      "fail_count": 1,
+      "last_rtt_ms": 0,
+      "score": 0,
+      "updated_at": 1771166195
+    },
+    "quic|play-h2|eth:Ethernet": {
+      "success_count": 0,
+      "fail_count": 1,
+      "last_rtt_ms": 0,
+      "score": 0,
+      "updated_at": 1771166195
+    },
+    "quic|youtube-h2|eth:Ethernet": {
+      "success_count": 0,
+      "fail_count": 1,
+      "last_rtt_ms": 0,
+      "score": 0,
+      "updated_at": 1771166195
+    },
+    "rudp|android-h2|eth:Ethernet": {
+      "success_count": 0,
+      "fail_count": 1,
+      "last_rtt_ms": 0,
+      "score": 0,
+      "updated_at": 1771165809
+    },
+    "rudp|google-ff|eth:Ethernet": {
+      "success_count": 0,
+      "fail_count": 1,
+      "last_rtt_ms": 0,
+      "score": 0,
+      "updated_at": 1771165809
+    },
+    "rudp|google-h1|eth:Ethernet": {
+      "success_count": 0,
+      "fail_count": 1,
+      "last_rtt_ms": 0,
+      "score": 0,
+      "updated_at": 1771165809
+    },
+    "rudp|google-h2|eth:Ethernet": {
+      "success_count": 0,
+      "fail_count": 1,
+      "last_rtt_ms": 0,
+      "score": 0,
+      "updated_at": 1771165809
+    },
+    "rudp|gstatic-h2|eth:Ethernet": {
+      "success_count": 0,
+      "fail_count": 1,
+      "last_rtt_ms": 0,
+      "score": 0,
+      "updated_at": 1771165809
+    },
+    "rudp|play-h2|eth:Ethernet": {
+      "success_count": 0,
+      "fail_count": 1,
+      "last_rtt_ms": 0,
+      "score": 0,
+      "updated_at": 1771165809
+    },
+    "rudp|youtube-h2|eth:Ethernet": {
+      "success_count": 0,
+      "fail_count": 1,
+      "last_rtt_ms": 0,
+      "score": 0,
+      "updated_at": 1771165809
+    },
     "tcp|android-h2|eth:Ethernet": {
       "success_count": 0,
       "fail_count": 7,
@@ -22,11 +120,11 @@
       "updated_at": 1771164458
     },
     "tcp|google-h2|eth:Ethernet": {
-      "success_count": 47,
+      "success_count": 51,
       "fail_count": 7,
       "last_rtt_ms": 0,
-      "score": 0.8703703703703703,
-      "updated_at": 1771164576
+      "score": 0.8793103448275862,
+      "updated_at": 1771166195
     },
     "tcp|gstatic-h2|eth:Ethernet": {
       "success_count": 0,
@@ -48,6 +146,55 @@
       "last_rtt_ms": 0,
       "score": 0,
       "updated_at": 1771164458
+    },
+    "tls|android-h2|eth:Ethernet": {
+      "success_count": 0,
+      "fail_count": 1,
+      "last_rtt_ms": 0,
+      "score": 0,
+      "updated_at": 1771166195
+    },
+    "tls|google-ff|eth:Ethernet": {
+      "success_count": 0,
+      "fail_count": 1,
+      "last_rtt_ms": 0,
+      "score": 0,
+      "updated_at": 1771166195
+    },
+    "tls|google-h1|eth:Ethernet": {
+      "success_count": 0,
+      "fail_count": 2,
+      "last_rtt_ms": 0,
+      "score": 0,
+      "updated_at": 1771166195
+    },
+    "tls|google-h2|eth:Ethernet": {
+      "success_count": 0,
+      "fail_count": 2,
+      "last_rtt_ms": 0,
+      "score": 0,
+      "updated_at": 1771166195
+    },
+    "tls|gstatic-h2|eth:Ethernet": {
+      "success_count": 0,
+      "fail_count": 1,
+      "last_rtt_ms": 0,
+      "score": 0,
+      "updated_at": 1771166195
+    },
+    "tls|play-h2|eth:Ethernet": {
+      "success_count": 0,
+      "fail_count": 1,
+      "last_rtt_ms": 0,
+      "score": 0,
+      "updated_at": 1771166195
+    },
+    "tls|youtube-h2|eth:Ethernet": {
+      "success_count": 0,
+      "fail_count": 1,
+      "last_rtt_ms": 0,
+      "score": 0,
+      "updated_at": 1771166195
     }
   }
 }
