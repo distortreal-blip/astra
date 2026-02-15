@@ -135,3 +135,16 @@ go build -o astra-exit.exe   ./cmd/astra-exit
 go build -o astra-relay.exe  ./cmd/astra-relay
 go build -o astra-lab.exe    ./cmd/astra-lab
 ```
+
+---
+
+## Exit: «tun read skip: too many segments» и скорость
+
+Ошибка приходит из wireguard-go TUN (GRO: ядро отдаёт агрегат из многих сегментов). В коде уже передаётся 512 буферов в Read; при переполнении обрабатываются все полученные пакеты, лишние сегменты отбрасываются.
+
+Если сообщения «too many segments» всё ещё частые и скорость низкая:
+
+- **Рекомендуемый вариант:** на Exit задать переменную окружения **`ASTRA_TUN_NO_VNET=1`** и перезапустить сервис. Тогда TUN создаётся без IFF_VNET_HDR (без GSO/GRO), ядро отдаёт по одному пакету за раз — ошибка «too many segments» исчезает. Чуть выше нагрузка на CPU, зато стабильная скорость.
+  - В systemd: в unit или в drop-in добавить `Environment=ASTRA_TUN_NO_VNET=1`, затем `sudo systemctl daemon-reload && sudo systemctl restart astra-exit`.
+- Пересобрать и перезапустить **только Exit** (см. раздел 2), чтобы подтянуть последние изменения в `internal/tun`.
+- Альтернатива: на сервере отключить GRO на TUN-интерфейсе (имя из лога, например `astra0`): `sudo ethtool -K astra0 gro off` — не всегда применимо к TUN.

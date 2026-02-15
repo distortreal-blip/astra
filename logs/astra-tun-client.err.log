@@ -73,3 +73,1230 @@
 2026/02/15 18:26:15 tun stats: tx=6652 rx=0
 2026/02/15 18:26:20 tun stats: tx=15110 rx=0
 2026/02/15 18:26:25 tun stats: tx=17255 rx=0
+2026/02/15 18:31:10 Using existing driver 0.14
+2026/02/15 18:31:10 Creating adapter
+2026/02/15 18:31:10 Removed orphaned adapter "astra0 1"
+2026/02/15 18:31:10 TUN address 10.10.0.2/24 on astra0
+2026/02/15 18:31:10 route 0.0.0.0/0 via 10.10.0.1 (full tunnel)
+2026/02/15 18:31:10 TUN up: astra0 (mtu=1400)
+2026/02/15 18:31:10 transports: quic,tcp,tls,rudp
+2026/02/15 18:31:10 frame_padding: enabled min=16 max=64
+2026/02/15 18:31:10 trying transport=quic profile=google-h2 addr=178.208.76.92:8443
+2026/02/15 18:31:10 trying transport=tcp profile=google-h2 addr=178.208.76.92:8443
+2026/02/15 18:31:10 trying transport=tls profile=google-h2 addr=178.208.76.92:8443
+2026/02/15 18:31:10 trying transport=rudp profile=google-h2 addr=178.208.76.92:8443
+2026/02/15 18:31:10 transport=tcp handshake failed: EOF
+2026/02/15 18:31:10 trying transport=tcp profile=google-h1 addr=178.208.76.92:8443
+2026/02/15 18:31:10 transport=quic dial failed: context canceled
+2026/02/15 18:31:10 connected to entry 178.208.76.92:8443 transport=tls
+2026/02/15 18:31:10 keepalive: interval=3s jitter=±15%
+2026/02/15 18:31:10 transport=tcp handshake failed: EOF
+2026/02/15 18:31:15 tun stats: tx=6609 rx=0
+2026/02/15 18:31:35 Using existing driver 0.14
+2026/02/15 18:31:35 Creating adapter
+2026/02/15 18:31:35 Removed orphaned adapter "astra0 1"
+2026/02/15 18:31:35 TUN address 10.10.0.2/24 on astra0
+2026/02/15 18:31:35 route 0.0.0.0/0 via 10.10.0.1 (full tunnel)
+2026/02/15 18:31:35 TUN up: astra0 (mtu=1400)
+2026/02/15 18:31:35 transports: quic,tcp,tls,rudp
+2026/02/15 18:31:35 frame_padding: enabled min=16 max=64
+2026/02/15 18:31:35 trying transport=tcp profile=google-h2 addr=178.208.76.92:8443
+2026/02/15 18:31:35 trying transport=quic profile=google-h2 addr=178.208.76.92:8443
+2026/02/15 18:31:35 trying transport=tls profile=google-h2 addr=178.208.76.92:8443
+2026/02/15 18:31:35 trying transport=rudp profile=google-h2 addr=178.208.76.92:8443
+2026/02/15 18:31:35 transport=tcp handshake failed: EOF
+2026/02/15 18:31:35 trying transport=tcp profile=google-h1 addr=178.208.76.92:8443
+2026/02/15 18:31:35 transport=quic dial failed: context canceled
+2026/02/15 18:31:35 connected to entry 178.208.76.92:8443 transport=tls
+2026/02/15 18:31:35 keepalive: interval=3s jitter=±15%
+2026/02/15 18:31:35 transport=tcp handshake failed: EOF
+2026/02/15 18:31:40 tun stats: tx=6166 rx=0
+2026/02/15 18:31:45 tun stats: tx=13551 rx=0
+2026/02/15 18:31:50 tun stats: tx=15540 rx=0
+2026/02/15 18:31:55 tun stats: tx=16479 rx=0
+2026/02/15 18:32:07 Using existing driver 0.14
+2026/02/15 18:32:07 Creating adapter
+2026/02/15 18:32:07 Removed orphaned adapter "astra0 1"
+2026/02/15 18:32:08 TUN address 10.10.0.2/24 on astra0
+2026/02/15 18:32:08 route 0.0.0.0/0 via 10.10.0.1 (full tunnel)
+2026/02/15 18:32:08 TUN up: astra0 (mtu=1400)
+2026/02/15 18:32:08 transports: quic,tcp,tls,rudp
+2026/02/15 18:32:08 frame_padding: enabled min=16 max=64
+2026/02/15 18:32:08 trying transport=quic profile=google-h2 addr=178.208.76.92:8443
+2026/02/15 18:32:08 trying transport=rudp profile=google-h2 addr=178.208.76.92:8443
+2026/02/15 18:32:08 trying transport=tcp profile=google-h2 addr=178.208.76.92:8443
+2026/02/15 18:32:08 trying transport=tls profile=google-h2 addr=178.208.76.92:8443
+2026/02/15 18:32:08 transport=tcp handshake failed: EOF
+2026/02/15 18:32:08 trying transport=tcp profile=google-h1 addr=178.208.76.92:8443
+2026/02/15 18:32:08 transport=tcp dial failed: dial tcp 178.208.76.92:8443: operation was canceled
+2026/02/15 18:32:08 transport=quic dial failed: context canceled
+2026/02/15 18:32:08 connected to entry 178.208.76.92:8443 transport=tls
+2026/02/15 18:32:08 keepalive: interval=3s jitter=±15%
+2026/02/15 18:32:13 tun stats: tx=4737 rx=0
+2026/02/15 18:35:43 Using existing driver 0.14
+2026/02/15 18:35:43 Creating adapter
+2026/02/15 18:35:43 Removed orphaned adapter "astra0 1"
+2026/02/15 18:35:43 TUN address 10.10.0.2/24 on astra0
+2026/02/15 18:35:44 route 0.0.0.0/0 via 10.10.0.1 (full tunnel)
+2026/02/15 18:35:44 TUN up: astra0 (mtu=1400)
+2026/02/15 18:35:44 transports: quic,tcp,tls,rudp
+2026/02/15 18:35:44 frame_padding: enabled min=16 max=64
+2026/02/15 18:35:44 trying transport=rudp profile=google-h2 addr=178.208.76.92:8443
+2026/02/15 18:35:44 trying transport=tcp profile=google-h2 addr=178.208.76.92:8443
+2026/02/15 18:35:44 trying transport=tls profile=google-h2 addr=178.208.76.92:8443
+2026/02/15 18:35:44 trying transport=quic profile=google-h2 addr=178.208.76.92:8443
+2026/02/15 18:35:44 transport=tcp handshake failed: EOF
+2026/02/15 18:35:44 trying transport=tcp profile=google-h1 addr=178.208.76.92:8443
+2026/02/15 18:35:44 transport=quic dial failed: context canceled
+2026/02/15 18:35:44 connected to entry 178.208.76.92:8443 transport=tls
+2026/02/15 18:35:44 keepalive: interval=3s jitter=±15%
+2026/02/15 18:35:44 transport=tcp handshake failed: EOF
+2026/02/15 18:35:49 tun stats: tx=6537 rx=0
+2026/02/15 18:35:54 tun stats: tx=17140 rx=0
+2026/02/15 18:35:59 tun stats: tx=20698 rx=0
+2026/02/15 18:36:04 tun stats: tx=21212 rx=0
+2026/02/15 18:36:09 tun stats: tx=22028 rx=0
+2026/02/15 18:36:14 tun stats: tx=24041 rx=0
+2026/02/15 18:37:44 Using existing driver 0.14
+2026/02/15 18:37:44 Creating adapter
+2026/02/15 18:37:44 Removed orphaned adapter "astra0 1"
+2026/02/15 18:37:44 TUN address 10.10.0.2/24 on astra0
+2026/02/15 18:37:44 route 0.0.0.0/0 via 10.10.0.1 (full tunnel)
+2026/02/15 18:37:44 TUN up: astra0 (mtu=1400)
+2026/02/15 18:37:44 transports: quic,tcp,tls,rudp
+2026/02/15 18:37:44 frame_padding: enabled min=16 max=64
+2026/02/15 18:37:44 trying transport=rudp profile=google-h2 addr=178.208.76.92:8443
+2026/02/15 18:37:44 trying transport=quic profile=google-h2 addr=178.208.76.92:8443
+2026/02/15 18:37:44 trying transport=tls profile=google-h2 addr=178.208.76.92:8443
+2026/02/15 18:37:44 trying transport=tcp profile=google-h2 addr=178.208.76.92:8443
+2026/02/15 18:37:45 transport=tcp handshake failed: EOF
+2026/02/15 18:37:45 trying transport=tcp profile=google-h1 addr=178.208.76.92:8443
+2026/02/15 18:37:45 transport=tcp dial failed: dial tcp 178.208.76.92:8443: operation was canceled
+2026/02/15 18:37:45 transport=quic dial failed: context canceled
+2026/02/15 18:37:45 connected to entry 178.208.76.92:8443 transport=tls
+2026/02/15 18:37:45 keepalive: interval=3s jitter=±15%
+2026/02/15 18:37:50 tun stats: tx=5750 rx=0
+2026/02/15 18:37:55 tun stats: tx=23240 rx=0
+2026/02/15 18:38:00 tun stats: tx=37146 rx=0
+2026/02/15 18:38:05 tun stats: tx=39651 rx=0
+2026/02/15 18:38:10 tun stats: tx=40690 rx=0
+2026/02/15 18:38:15 tun stats: tx=43223 rx=0
+2026/02/15 18:38:20 tun stats: tx=55823 rx=0
+2026/02/15 18:38:25 tun stats: tx=67403 rx=0
+2026/02/15 18:38:30 tun stats: tx=69758 rx=0
+2026/02/15 18:38:35 tun stats: tx=70226 rx=0
+2026/02/15 18:38:40 tun stats: tx=71422 rx=0
+2026/02/15 18:40:42 Using existing driver 0.14
+2026/02/15 18:40:42 Creating adapter
+2026/02/15 18:40:42 Removed orphaned adapter "astra0 1"
+2026/02/15 18:40:43 TUN address 10.10.0.2/24 on astra0
+2026/02/15 18:40:43 route 0.0.0.0/0 via 10.10.0.1 (full tunnel)
+2026/02/15 18:40:43 TUN up: astra0 (mtu=1400)
+2026/02/15 18:40:43 transports: quic,tcp,tls,rudp
+2026/02/15 18:40:43 frame_padding: enabled min=16 max=64
+2026/02/15 18:40:43 trying transport=rudp profile=google-h2 addr=178.208.76.92:8443
+2026/02/15 18:40:43 trying transport=tcp profile=google-h2 addr=178.208.76.92:8443
+2026/02/15 18:40:43 trying transport=tls profile=google-h2 addr=178.208.76.92:8443
+2026/02/15 18:40:43 trying transport=quic profile=google-h2 addr=178.208.76.92:8443
+2026/02/15 18:40:43 transport=tcp handshake failed: EOF
+2026/02/15 18:40:43 trying transport=tcp profile=google-h1 addr=178.208.76.92:8443
+2026/02/15 18:40:43 transport=quic dial failed: context canceled
+2026/02/15 18:40:43 connected to entry 178.208.76.92:8443 transport=tls
+2026/02/15 18:40:43 keepalive: interval=3s jitter=±15%
+2026/02/15 18:40:43 transport=tcp handshake failed: EOF
+2026/02/15 18:40:48 tun stats: tx=5681 rx=0
+2026/02/15 18:40:53 tun stats: tx=16269 rx=0
+2026/02/15 18:40:58 tun stats: tx=19716 rx=0
+2026/02/15 18:41:03 tun stats: tx=20267 rx=0
+2026/02/15 18:41:08 tun stats: tx=20890 rx=0
+2026/02/15 18:41:13 tun stats: tx=22955 rx=0
+2026/02/15 18:41:18 tun stats: tx=26803 rx=0
+2026/02/15 18:41:23 tun stats: tx=27998 rx=256
+2026/02/15 18:42:39 Using existing driver 0.14
+2026/02/15 18:42:39 Creating adapter
+2026/02/15 18:42:39 Removed orphaned adapter "astra0 1"
+2026/02/15 18:42:39 TUN address 10.10.0.2/24 on astra0
+2026/02/15 18:42:39 route 0.0.0.0/0 via 10.10.0.1 (full tunnel)
+2026/02/15 18:42:39 TUN up: astra0 (mtu=1400)
+2026/02/15 18:42:39 transports: quic,tcp,tls,rudp
+2026/02/15 18:42:39 frame_padding: enabled min=16 max=64
+2026/02/15 18:42:39 trying transport=rudp profile=google-h2 addr=178.208.76.92:8443
+2026/02/15 18:42:39 trying transport=quic profile=google-h2 addr=178.208.76.92:8443
+2026/02/15 18:42:39 trying transport=tcp profile=google-h2 addr=178.208.76.92:8443
+2026/02/15 18:42:39 trying transport=tls profile=google-h2 addr=178.208.76.92:8443
+2026/02/15 18:42:39 transport=tcp handshake failed: EOF
+2026/02/15 18:42:39 trying transport=tcp profile=google-h1 addr=178.208.76.92:8443
+2026/02/15 18:42:39 transport=quic dial failed: context canceled
+2026/02/15 18:42:39 connected to entry 178.208.76.92:8443 transport=tls
+2026/02/15 18:42:39 keepalive: interval=3s jitter=±15%
+2026/02/15 18:42:39 transport=tcp handshake failed: EOF
+2026/02/15 18:42:44 tun stats: tx=6730 rx=0
+2026/02/15 18:42:49 tun stats: tx=17720 rx=0
+2026/02/15 18:42:54 tun stats: tx=19710 rx=0
+2026/02/15 18:42:59 tun stats: tx=20157 rx=0
+2026/02/15 18:43:04 tun stats: tx=20624 rx=0
+2026/02/15 18:43:09 tun stats: tx=20869 rx=0
+2026/02/15 18:43:14 tun stats: tx=22585 rx=0
+2026/02/15 18:43:19 tun stats: tx=23832 rx=0
+2026/02/15 18:43:24 tun stats: tx=24181 rx=0
+2026/02/15 18:43:29 tun stats: tx=24441 rx=0
+2026/02/15 18:46:40 Using existing driver 0.14
+2026/02/15 18:46:40 Creating adapter
+2026/02/15 18:46:40 Removed orphaned adapter "astra0 1"
+2026/02/15 18:46:40 TUN address 10.10.0.2/24 on astra0
+2026/02/15 18:46:40 route 0.0.0.0/0 via 10.10.0.1 (full tunnel)
+2026/02/15 18:46:40 TUN up: astra0 (mtu=1400)
+2026/02/15 18:46:40 transports: quic,tcp,tls,rudp
+2026/02/15 18:46:40 frame_padding: enabled min=16 max=64
+2026/02/15 18:46:40 trying transport=quic profile=google-h2 addr=178.208.76.92:8443
+2026/02/15 18:46:40 trying transport=rudp profile=google-h2 addr=178.208.76.92:8443
+2026/02/15 18:46:40 trying transport=tcp profile=google-h2 addr=178.208.76.92:8443
+2026/02/15 18:46:40 trying transport=tls profile=google-h2 addr=178.208.76.92:8443
+2026/02/15 18:46:40 transport=tcp handshake failed: EOF
+2026/02/15 18:46:40 trying transport=tcp profile=google-h1 addr=178.208.76.92:8443
+2026/02/15 18:46:41 transport=quic dial failed: context canceled
+2026/02/15 18:46:41 connected to entry 178.208.76.92:8443 transport=tls
+2026/02/15 18:46:41 keepalive: interval=3s jitter=±15%
+2026/02/15 18:46:41 transport=tcp handshake failed: EOF
+2026/02/15 18:46:46 tun stats: tx=6076 rx=0
+2026/02/15 18:46:51 tun stats: tx=14729 rx=0
+2026/02/15 18:46:56 tun stats: tx=18287 rx=0
+2026/02/15 18:47:01 tun stats: tx=18801 rx=0
+2026/02/15 18:47:06 tun stats: tx=19565 rx=0
+2026/02/15 18:47:11 tun stats: tx=20278 rx=0
+2026/02/15 18:47:16 tun stats: tx=22462 rx=0
+2026/02/15 18:47:21 tun stats: tx=23605 rx=0
+2026/02/15 18:47:26 tun stats: tx=24214 rx=0
+2026/02/15 18:47:31 tun stats: tx=24838 rx=0
+2026/02/15 18:47:36 tun stats: tx=25254 rx=0
+2026/02/15 18:48:23 Using existing driver 0.14
+2026/02/15 18:48:23 Creating adapter
+2026/02/15 18:48:23 Removed orphaned adapter "astra0 1"
+2026/02/15 18:48:23 TUN address 10.10.0.2/24 on astra0
+2026/02/15 18:48:23 route 0.0.0.0/0 via 10.10.0.1 (full tunnel)
+2026/02/15 18:48:23 TUN up: astra0 (mtu=1400)
+2026/02/15 18:48:23 transports: quic,tcp,tls,rudp
+2026/02/15 18:48:23 frame_padding: enabled min=16 max=64
+2026/02/15 18:48:23 trying transport=quic profile=google-h2 addr=178.208.76.92:8443
+2026/02/15 18:48:23 trying transport=rudp profile=google-h2 addr=178.208.76.92:8443
+2026/02/15 18:48:23 trying transport=tcp profile=google-h2 addr=178.208.76.92:8443
+2026/02/15 18:48:23 trying transport=tls profile=google-h2 addr=178.208.76.92:8443
+2026/02/15 18:48:23 transport=tcp handshake failed: EOF
+2026/02/15 18:48:23 trying transport=tcp profile=google-h1 addr=178.208.76.92:8443
+2026/02/15 18:48:23 transport=quic dial failed: context canceled
+2026/02/15 18:48:23 connected to entry 178.208.76.92:8443 transport=tls
+2026/02/15 18:48:23 keepalive: interval=3s jitter=±15%
+2026/02/15 18:48:23 transport=tcp handshake failed: EOF
+2026/02/15 18:48:28 tun stats: tx=5365 rx=0
+2026/02/15 18:48:33 tun stats: tx=12578 rx=0
+2026/02/15 18:48:38 tun stats: tx=14404 rx=0
+2026/02/15 18:50:50 Using existing driver 0.14
+2026/02/15 18:50:50 Creating adapter
+2026/02/15 18:50:50 Removed orphaned adapter "astra0 1"
+2026/02/15 18:50:50 TUN address 10.10.0.2/24 on astra0
+2026/02/15 18:50:50 route 0.0.0.0/0 via 10.10.0.1 (full tunnel)
+2026/02/15 18:50:50 TUN up: astra0 (mtu=1400)
+2026/02/15 18:50:50 transports: quic,tcp,tls,rudp
+2026/02/15 18:50:50 frame_padding: enabled min=16 max=64
+2026/02/15 18:50:50 trying transport=quic profile=google-h2 addr=178.208.76.92:8444
+2026/02/15 18:50:50 trying transport=rudp profile=google-h2 addr=178.208.76.92:8443
+2026/02/15 18:50:50 trying transport=tls profile=google-h2 addr=178.208.76.92:8443
+2026/02/15 18:50:50 trying transport=tcp profile=google-h2 addr=178.208.76.92:8443
+2026/02/15 18:50:50 transport=tcp handshake failed: EOF
+2026/02/15 18:50:50 trying transport=tcp profile=google-h1 addr=178.208.76.92:8443
+2026/02/15 18:50:50 transport=tcp dial failed: dial tcp 178.208.76.92:8443: operation was canceled
+2026/02/15 18:50:50 connected to entry 178.208.76.92:8443 transport=quic
+2026/02/15 18:50:50 keepalive: interval=3s jitter=±15%
+2026/02/15 18:50:55 tun stats: tx=5302 rx=0
+2026/02/15 18:51:00 tun stats: tx=12743 rx=0
+2026/02/15 18:51:05 tun stats: tx=14793 rx=0
+2026/02/15 18:51:10 tun stats: tx=17023 rx=0
+2026/02/15 18:51:15 tun stats: tx=21167 rx=0
+2026/02/15 18:51:20 tun stats: tx=23076 rx=0
+2026/02/15 18:51:25 tun stats: tx=24272 rx=0
+2026/02/15 18:51:30 tun stats: tx=25779 rx=0
+2026/02/15 18:51:35 tun stats: tx=26804 rx=0
+2026/02/15 18:51:40 tun stats: tx=27948 rx=0
+2026/02/15 19:02:14 Using existing driver 0.14
+2026/02/15 19:02:14 Creating adapter
+2026/02/15 19:02:14 Removed orphaned adapter "astra0 1"
+2026/02/15 19:02:15 TUN address 10.10.0.2/24 on astra0
+2026/02/15 19:02:15 route 0.0.0.0/0 via 10.10.0.1 (full tunnel)
+2026/02/15 19:02:15 TUN up: astra0 (mtu=1400)
+2026/02/15 19:02:15 transports: quic,tcp,tls,rudp
+2026/02/15 19:02:15 frame_padding: enabled min=16 max=64
+2026/02/15 19:02:15 trying transport=quic profile=google-h2 addr=178.208.76.92:8444
+2026/02/15 19:02:15 trying transport=tcp profile=google-h2 addr=178.208.76.92:8443
+2026/02/15 19:02:15 trying transport=rudp profile=google-h2 addr=178.208.76.92:8443
+2026/02/15 19:02:15 trying transport=tls profile=google-h2 addr=178.208.76.92:8443
+2026/02/15 19:02:15 transport=tcp handshake failed: EOF
+2026/02/15 19:02:15 trying transport=tcp profile=google-h1 addr=178.208.76.92:8443
+2026/02/15 19:02:15 transport=tcp dial failed: dial tcp 178.208.76.92:8443: operation was canceled
+2026/02/15 19:02:15 connected to entry 178.208.76.92:8443 transport=quic
+2026/02/15 19:02:15 keepalive: interval=3s jitter=±15%
+2026/02/15 19:02:20 tun stats: tx=5991 rx=0
+2026/02/15 19:02:25 tun stats: tx=12879 rx=0
+2026/02/15 19:02:30 tun stats: tx=14653 rx=0
+2026/02/15 19:02:35 tun stats: tx=27231 rx=0
+2026/02/15 19:03:50 Using existing driver 0.14
+2026/02/15 19:03:50 Creating adapter
+2026/02/15 19:03:50 Removed orphaned adapter "astra0 1"
+2026/02/15 19:03:50 TUN address 10.10.0.2/24 on astra0
+2026/02/15 19:03:50 route 0.0.0.0/0 via 10.10.0.1 (full tunnel)
+2026/02/15 19:03:50 TUN up: astra0 (mtu=1400)
+2026/02/15 19:03:50 transports: quic,tcp,tls,rudp
+2026/02/15 19:03:50 frame_padding: enabled min=16 max=64
+2026/02/15 19:03:50 trying transport=tcp profile=google-h2 addr=178.208.76.92:8443
+2026/02/15 19:03:50 trying transport=tls profile=google-h2 addr=178.208.76.92:8443
+2026/02/15 19:03:50 trying transport=rudp profile=google-h2 addr=178.208.76.92:8443
+2026/02/15 19:03:50 trying transport=quic profile=google-h2 addr=178.208.76.92:8444
+2026/02/15 19:03:50 transport=tcp handshake failed: EOF
+2026/02/15 19:03:50 trying transport=tcp profile=google-h1 addr=178.208.76.92:8443
+2026/02/15 19:03:50 transport=tcp dial failed: dial tcp 178.208.76.92:8443: operation was canceled
+2026/02/15 19:03:50 connected to entry 178.208.76.92:8443 transport=quic
+2026/02/15 19:03:50 keepalive: interval=3s jitter=±15%
+2026/02/15 19:03:55 tun stats: tx=5686 rx=0
+2026/02/15 19:04:00 tun stats: tx=13532 rx=0
+2026/02/15 19:04:05 tun stats: tx=15268 rx=0
+2026/02/15 19:04:10 tun stats: tx=15782 rx=0
+2026/02/15 19:04:15 tun stats: tx=18626 rx=0
+2026/02/15 19:06:05 Using existing driver 0.14
+2026/02/15 19:06:05 Creating adapter
+2026/02/15 19:06:05 Removed orphaned adapter "astra0 1"
+2026/02/15 19:06:05 TUN address 10.10.0.2/24 on astra0
+2026/02/15 19:06:05 route 0.0.0.0/0 via 10.10.0.1 (full tunnel)
+2026/02/15 19:06:05 TUN up: astra0 (mtu=1400)
+2026/02/15 19:06:05 transports: quic,tcp,tls,rudp
+2026/02/15 19:06:05 frame_padding: enabled min=16 max=64
+2026/02/15 19:06:05 trying transport=rudp profile=google-h2 addr=178.208.76.92:8443
+2026/02/15 19:06:05 trying transport=tcp profile=google-h2 addr=178.208.76.92:8443
+2026/02/15 19:06:05 trying transport=quic profile=google-h2 addr=178.208.76.92:8444
+2026/02/15 19:06:05 trying transport=tls profile=google-h2 addr=178.208.76.92:8443
+2026/02/15 19:06:05 transport=tcp handshake failed: EOF
+2026/02/15 19:06:05 trying transport=tcp profile=google-h1 addr=178.208.76.92:8443
+2026/02/15 19:06:05 transport=tcp dial failed: dial tcp 178.208.76.92:8443: operation was canceled
+2026/02/15 19:06:05 connected to entry 178.208.76.92:8443 transport=quic
+2026/02/15 19:06:05 keepalive: interval=3s jitter=±15%
+2026/02/15 19:06:10 tun stats: tx=7088 rx=0
+2026/02/15 19:06:15 tun stats: tx=16659 rx=0
+2026/02/15 19:06:20 tun stats: tx=19837 rx=0
+2026/02/15 19:06:25 tun stats: tx=20960 rx=0
+2026/02/15 19:12:53 Using existing driver 0.14
+2026/02/15 19:12:53 Creating adapter
+2026/02/15 19:12:54 Removed orphaned adapter "astra0 1"
+2026/02/15 19:12:54 TUN address 10.10.0.2/24 on astra0
+2026/02/15 19:12:54 route 0.0.0.0/0 via 10.10.0.1 (full tunnel)
+2026/02/15 19:12:54 TUN up: astra0 (mtu=1400)
+2026/02/15 19:12:54 transports: quic,tcp,tls,rudp
+2026/02/15 19:12:54 frame_padding: enabled min=16 max=64
+2026/02/15 19:12:54 trying transport=rudp profile=google-h2 addr=178.208.76.92:8443
+2026/02/15 19:12:54 trying transport=tcp profile=google-h2 addr=178.208.76.92:8443
+2026/02/15 19:12:54 trying transport=quic profile=google-h2 addr=178.208.76.92:8444
+2026/02/15 19:12:54 trying transport=tls profile=google-h2 addr=178.208.76.92:8443
+2026/02/15 19:12:54 transport=tcp handshake failed: EOF
+2026/02/15 19:12:54 trying transport=tcp profile=google-h1 addr=178.208.76.92:8443
+2026/02/15 19:12:54 connected to entry 178.208.76.92:8443 transport=quic
+2026/02/15 19:12:54 keepalive: interval=3s jitter=±15%
+2026/02/15 19:12:54 transport=tcp handshake failed: EOF
+2026/02/15 19:12:54 conn read error (tunnel/entry closed): Application error 0x0 (remote): done
+2026/02/15 19:12:54 shutdown: removing routes, closing TUN...
+2026/02/15 19:12:54 tun read error (disconnect reason): file already closed
+2026/02/15 19:12:54 shutdown done (routes removed, TUN closed)
+2026/02/15 19:16:31 Using existing driver 0.14
+2026/02/15 19:16:31 Creating adapter
+2026/02/15 19:16:31 TUN address 10.10.0.2/24 on astra0
+2026/02/15 19:16:31 route 0.0.0.0/0 via 10.10.0.1 (full tunnel)
+2026/02/15 19:16:31 TUN up: astra0 (mtu=1400)
+2026/02/15 19:16:31 transports: quic
+2026/02/15 19:16:31 frame_padding: enabled min=16 max=64
+2026/02/15 19:16:31 trying transport=quic profile=google-h2 addr=178.208.76.92:8444
+2026/02/15 19:16:31 connected to entry 178.208.76.92:8443 transport=quic
+2026/02/15 19:16:31 keepalive: interval=3s jitter=±15%
+2026/02/15 19:16:36 tun stats: tx=10404 rx=17944
+2026/02/15 19:16:41 tun stats: tx=45796 rx=52432
+2026/02/15 19:16:46 tun stats: tx=67000 rx=54028
+2026/02/15 19:16:51 tun stats: tx=71337 rx=54445
+2026/02/15 19:16:56 tun stats: tx=100513 rx=87036
+2026/02/15 19:17:01 tun stats: tx=132310 rx=94964
+2026/02/15 19:17:06 tun stats: tx=135620 rx=100532
+2026/02/15 19:17:11 tun stats: tx=142787 rx=109191
+2026/02/15 19:17:16 tun stats: tx=161047 rx=123256
+2026/02/15 19:17:21 tun stats: tx=161047 rx=123256
+2026/02/15 19:17:26 tun stats: tx=161129 rx=123360
+2026/02/15 19:17:31 tun stats: tx=161129 rx=123360
+2026/02/15 19:17:36 tun stats: tx=161211 rx=123464
+2026/02/15 19:17:41 tun stats: tx=200872 rx=189717
+2026/02/15 19:17:46 tun stats: tx=202949 rx=189821
+2026/02/15 19:17:51 tun stats: tx=203279 rx=189821
+2026/02/15 19:17:56 tun stats: tx=203279 rx=189821
+2026/02/15 19:18:01 tun stats: tx=232588 rx=212520
+2026/02/15 19:18:06 tun stats: tx=269212 rx=851537
+2026/02/15 19:18:11 tun stats: tx=290577 rx=1116629
+2026/02/15 19:18:16 tun stats: tx=336542 rx=1912343
+2026/02/15 19:18:21 tun stats: tx=359742 rx=4897201
+2026/02/15 19:18:26 tun stats: tx=372994 rx=6704484
+2026/02/15 19:18:31 tun stats: tx=372994 rx=6704484
+2026/02/15 19:18:36 tun stats: tx=382830 rx=6754603
+2026/02/15 19:18:41 tun stats: tx=435016 rx=12343731
+2026/02/15 19:18:46 tun stats: tx=445131 rx=13297192
+2026/02/15 19:18:51 tun stats: tx=445188 rx=13297249
+2026/02/15 19:18:56 tun stats: tx=449813 rx=13297941
+2026/02/15 19:19:01 tun stats: tx=458382 rx=13304045
+2026/02/15 19:19:06 tun stats: tx=458548 rx=13304045
+2026/02/15 19:19:11 tun stats: tx=557203 rx=13382731
+2026/02/15 19:19:16 tun stats: tx=685806 rx=13460870
+2026/02/15 19:19:21 tun stats: tx=707483 rx=13550877
+2026/02/15 19:19:26 tun stats: tx=709159 rx=13556931
+2026/02/15 19:19:31 tun stats: tx=792240 rx=13569153
+2026/02/15 19:19:36 tun stats: tx=795861 rx=13575593
+2026/02/15 19:19:41 tun stats: tx=843096 rx=13616197
+2026/02/15 19:19:46 tun stats: tx=850905 rx=13617204
+2026/02/15 19:19:51 tun stats: tx=853472 rx=13617603
+2026/02/15 19:19:56 tun stats: tx=854394 rx=13617707
+2026/02/15 19:20:01 tun stats: tx=887014 rx=13620621
+2026/02/15 19:20:06 tun stats: tx=887096 rx=13620725
+2026/02/15 19:20:11 tun stats: tx=949018 rx=13705285
+2026/02/15 19:20:16 tun stats: tx=1004825 rx=13753319
+2026/02/15 19:20:21 tun stats: tx=1012252 rx=13761554
+2026/02/15 19:20:26 tun stats: tx=1021533 rx=13843186
+2026/02/15 19:20:31 tun stats: tx=1028833 rx=13845084
+2026/02/15 19:20:36 tun stats: tx=1042662 rx=15461449
+2026/02/15 19:20:41 tun stats: tx=1065065 rx=16685331
+2026/02/15 19:20:46 tun stats: tx=1086018 rx=19170322
+2026/02/15 19:20:51 tun stats: tx=1102190 rx=20851829
+2026/02/15 19:20:56 tun stats: tx=1135090 rx=22394739
+2026/02/15 19:21:01 tun stats: tx=1153853 rx=22396952
+2026/02/15 19:21:06 tun stats: tx=1191237 rx=27395804
+2026/02/15 19:21:11 tun stats: tx=1206276 rx=27406670
+2026/02/15 19:21:16 tun stats: tx=1236007 rx=27424548
+2026/02/15 19:21:21 tun stats: tx=1259170 rx=27434324
+2026/02/15 19:21:26 tun stats: tx=1265382 rx=27437532
+2026/02/15 19:21:31 tun stats: tx=1265504 rx=27437676
+2026/02/15 19:21:36 tun stats: tx=1289681 rx=27443624
+2026/02/15 19:21:41 tun stats: tx=1299363 rx=27448740
+2026/02/15 19:21:46 tun stats: tx=1302352 rx=27454513
+2026/02/15 19:21:51 tun stats: tx=1304865 rx=27454963
+2026/02/15 19:22:10 Using existing driver 0.14
+2026/02/15 19:22:10 Creating adapter
+2026/02/15 19:22:10 Removed orphaned adapter "astra0 1"
+2026/02/15 19:22:10 TUN address 10.10.0.2/24 on astra0
+2026/02/15 19:22:10 route 0.0.0.0/0 via 10.10.0.1 (full tunnel)
+2026/02/15 19:22:10 TUN up: astra0 (mtu=1400)
+2026/02/15 19:22:10 transports: quic,tcp,tls,rudp
+2026/02/15 19:22:10 frame_padding: enabled min=16 max=64
+2026/02/15 19:22:10 trying transport=quic profile=google-h2 addr=178.208.76.92:8444
+2026/02/15 19:22:11 connected to entry 178.208.76.92:8443 transport=quic
+2026/02/15 19:22:11 keepalive: interval=3s jitter=±15%
+2026/02/15 19:22:16 tun stats: tx=14442 rx=22708
+2026/02/15 19:22:21 tun stats: tx=46071 rx=59309
+2026/02/15 19:22:26 tun stats: tx=57613 rx=72665
+2026/02/15 19:22:31 tun stats: tx=57956 rx=72665
+2026/02/15 19:22:36 tun stats: tx=92777 rx=83248
+2026/02/15 19:22:41 tun stats: tx=110219 rx=94868
+2026/02/15 19:22:46 tun stats: tx=117703 rx=119502
+2026/02/15 19:22:51 tun stats: tx=118170 rx=119502
+2026/02/15 19:22:56 tun stats: tx=121294 rx=120291
+2026/02/15 19:23:01 tun stats: tx=121294 rx=120291
+2026/02/15 19:23:06 tun stats: tx=146136 rx=129815
+2026/02/15 19:23:11 tun stats: tx=149038 rx=135293
+2026/02/15 19:23:16 tun stats: tx=163411 rx=147628
+2026/02/15 19:23:21 tun stats: tx=169090 rx=149864
+2026/02/15 19:23:26 tun stats: tx=241324 rx=194797
+2026/02/15 19:23:31 tun stats: tx=266417 rx=197445
+2026/02/15 19:23:36 tun stats: tx=283244 rx=211247
+2026/02/15 19:23:41 tun stats: tx=306691 rx=230969
+2026/02/15 19:23:46 tun stats: tx=319655 rx=233805
+2026/02/15 19:23:51 tun stats: tx=335898 rx=242044
+2026/02/15 19:23:56 tun stats: tx=410851 rx=297942
+2026/02/15 19:24:01 tun stats: tx=489922 rx=326388
+2026/02/15 19:24:06 tun stats: tx=491532 rx=331967
+2026/02/15 19:24:11 tun stats: tx=498140 rx=344956
+2026/02/15 19:24:16 tun stats: tx=592072 rx=362257
+2026/02/15 19:24:21 tun stats: tx=597194 rx=363758
+2026/02/15 19:24:26 tun stats: tx=620404 rx=435017
+2026/02/15 19:24:31 tun stats: tx=620652 rx=435249
+2026/02/15 19:24:36 tun stats: tx=625069 rx=439338
+2026/02/15 19:24:41 tun stats: tx=630393 rx=440538
+2026/02/15 19:24:46 tun stats: tx=657807 rx=442357
+2026/02/15 19:24:51 tun stats: tx=657926 rx=442476
+2026/02/15 19:24:56 tun stats: tx=658049 rx=442632
+2026/02/15 19:25:01 tun stats: tx=660762 rx=442956
+2026/02/15 19:25:06 tun stats: tx=663803 rx=448488
+2026/02/15 19:25:11 tun stats: tx=683854 rx=476250
+2026/02/15 19:25:16 tun stats: tx=696471 rx=485182
+2026/02/15 19:25:32 Using existing driver 0.14
+2026/02/15 19:25:32 Creating adapter
+2026/02/15 19:25:32 Removed orphaned adapter "astra0 1"
+2026/02/15 19:25:32 TUN address 10.10.0.2/24 on astra0
+2026/02/15 19:25:32 route 0.0.0.0/0 via 10.10.0.1 (full tunnel)
+2026/02/15 19:25:32 TUN up: astra0 (mtu=1400)
+2026/02/15 19:25:32 transports: quic,tcp,tls,rudp
+2026/02/15 19:25:32 frame_padding: enabled min=16 max=64
+2026/02/15 19:25:32 trying transports in order: quic -> tcp -> tls -> rudp
+2026/02/15 19:25:32 trying transport=quic profile=google-h2 addr=178.208.76.92:8444
+2026/02/15 19:25:32 connected to entry 178.208.76.92:8443 transport=quic
+2026/02/15 19:25:32 keepalive: interval=3s jitter=±15%
+2026/02/15 19:25:37 tun stats: tx=13538 rx=20188
+2026/02/15 19:25:42 tun stats: tx=65409 rx=61549
+2026/02/15 19:25:47 tun stats: tx=68651 rx=66536
+2026/02/15 19:25:52 tun stats: tx=84951 rx=92076
+2026/02/15 19:25:57 tun stats: tx=85943 rx=92235
+2026/02/15 19:26:02 tun stats: tx=114791 rx=99177
+2026/02/15 19:26:07 tun stats: tx=121094 rx=102159
+2026/02/15 19:26:12 tun stats: tx=130146 rx=118581
+2026/02/15 19:26:17 tun stats: tx=155399 rx=140524
+2026/02/15 19:26:22 tun stats: tx=155648 rx=140667
+2026/02/15 19:26:27 tun stats: tx=164095 rx=143640
+2026/02/15 19:26:32 tun stats: tx=182308 rx=151687
+2026/02/15 19:26:37 tun stats: tx=186450 rx=152250
+2026/02/15 19:26:42 tun stats: tx=227641 rx=5416254
+2026/02/15 19:26:47 tun stats: tx=244206 rx=7332460
+2026/02/15 19:26:52 tun stats: tx=247221 rx=7333249
+2026/02/15 19:26:57 tun stats: tx=254693 rx=7335002
+2026/02/15 19:27:02 tun stats: tx=254734 rx=7335054
+2026/02/15 19:27:18 Using existing driver 0.14
+2026/02/15 19:27:18 Creating adapter
+2026/02/15 19:27:18 Removed orphaned adapter "astra0 1"
+2026/02/15 19:27:18 TUN address 10.10.0.2/24 on astra0
+2026/02/15 19:27:18 route 0.0.0.0/0 via 10.10.0.1 (full tunnel)
+2026/02/15 19:27:18 TUN up: astra0 (mtu=1400)
+2026/02/15 19:27:18 transports: quic,tcp,tls,rudp
+2026/02/15 19:27:18 frame_padding: enabled min=16 max=64
+2026/02/15 19:27:18 trying transports in order: quic -> tcp -> tls -> rudp
+2026/02/15 19:27:18 trying transport=quic profile=google-h2 addr=178.208.76.92:8444
+2026/02/15 19:27:20 transport=quic dial failed: context deadline exceeded
+2026/02/15 19:27:20 trying transport=quic profile=google-h1 addr=178.208.76.92:8444
+2026/02/15 19:27:22 transport=quic dial failed: context deadline exceeded
+2026/02/15 19:27:22 trying transport=quic profile=gstatic-h2 addr=178.208.76.92:8444
+2026/02/15 19:27:24 transport=quic dial failed: context deadline exceeded
+2026/02/15 19:27:24 trying transport=quic profile=youtube-h2 addr=178.208.76.92:8444
+2026/02/15 19:27:26 transport=quic dial failed: context deadline exceeded
+2026/02/15 19:27:26 trying transport=quic profile=android-h2 addr=178.208.76.92:8444
+2026/02/15 19:27:28 transport=quic dial failed: context deadline exceeded
+2026/02/15 19:27:28 trying transport=quic profile=play-h2 addr=178.208.76.92:8444
+2026/02/15 19:27:30 transport=quic dial failed: context deadline exceeded
+2026/02/15 19:27:30 trying transport=quic profile=google-ff addr=178.208.76.92:8444
+2026/02/15 19:27:32 transport=quic dial failed: context deadline exceeded
+2026/02/15 19:27:32 trying transport=tcp profile=google-h2 addr=178.208.76.92:8443
+2026/02/15 19:27:32 transport=tcp handshake failed: EOF
+2026/02/15 19:27:32 trying transport=tcp profile=google-h1 addr=178.208.76.92:8443
+2026/02/15 19:27:33 transport=tcp handshake failed: EOF
+2026/02/15 19:27:33 trying transport=tcp profile=gstatic-h2 addr=178.208.76.92:8443
+2026/02/15 19:27:33 transport=tcp handshake failed: EOF
+2026/02/15 19:27:33 trying transport=tcp profile=youtube-h2 addr=178.208.76.92:8443
+2026/02/15 19:27:33 transport=tcp handshake failed: EOF
+2026/02/15 19:27:33 trying transport=tcp profile=android-h2 addr=178.208.76.92:8443
+2026/02/15 19:27:33 transport=tcp handshake failed: EOF
+2026/02/15 19:27:33 trying transport=tcp profile=play-h2 addr=178.208.76.92:8443
+2026/02/15 19:27:33 transport=tcp handshake failed: EOF
+2026/02/15 19:27:33 trying transport=tcp profile=google-ff addr=178.208.76.92:8443
+2026/02/15 19:27:33 transport=tcp handshake failed: EOF
+2026/02/15 19:27:33 trying transport=tls profile=google-h2 addr=178.208.76.92:8443
+2026/02/15 19:27:33 connected to entry 178.208.76.92:8443 transport=tls
+2026/02/15 19:27:33 keepalive: interval=3s jitter=±15%
+2026/02/15 19:27:38 tun stats: tx=91661 rx=88078
+2026/02/15 19:27:43 tun stats: tx=145126 rx=137828
+2026/02/15 19:27:48 tun stats: tx=145215 rx=137828
+2026/02/15 19:27:53 tun stats: tx=149313 rx=138364
+2026/02/15 19:27:58 tun stats: tx=156501 rx=138364
+2026/02/15 19:32:25 Using existing driver 0.14
+2026/02/15 19:32:25 Creating adapter
+2026/02/15 19:32:25 Removed orphaned adapter "astra0 1"
+2026/02/15 19:32:25 TUN address 10.10.0.2/24 on astra0
+2026/02/15 19:32:26 route 0.0.0.0/0 via 10.10.0.1 (full tunnel)
+2026/02/15 19:32:26 TUN up: astra0 (mtu=1400)
+2026/02/15 19:32:26 transports: quic,tcp,tls,rudp
+2026/02/15 19:32:26 frame_padding: enabled min=16 max=64
+2026/02/15 19:32:26 trying transports in order: quic -> tcp -> tls -> rudp
+2026/02/15 19:32:26 trying transport=quic profile=google-h2 addr=178.208.76.92:8444
+2026/02/15 19:32:26 connected to entry 178.208.76.92:8443 transport=quic
+2026/02/15 19:32:26 keepalive: interval=3s jitter=±15%
+2026/02/15 19:32:31 tun stats: tx=10505 rx=43305
+2026/02/15 19:32:36 tun stats: tx=56155 rx=82080
+2026/02/15 19:32:41 tun stats: tx=92307 rx=109336
+2026/02/15 19:32:46 tun stats: tx=99339 rx=133843
+2026/02/15 19:32:51 tun stats: tx=217795 rx=9167885
+2026/02/15 19:32:56 tun stats: tx=223195 rx=9168955
+2026/02/15 19:33:01 tun stats: tx=229214 rx=9171455
+2026/02/15 19:33:06 tun stats: tx=238087 rx=9176809
+2026/02/15 19:33:11 tun stats: tx=249019 rx=10434569
+2026/02/15 19:33:16 tun stats: tx=257133 rx=10434986
+2026/02/15 19:33:21 tun stats: tx=277945 rx=10463235
+2026/02/15 19:33:26 tun stats: tx=277986 rx=10463327
+2026/02/15 19:33:31 tun stats: tx=278262 rx=10463431
+2026/02/15 19:33:36 tun stats: tx=290724 rx=10471437
+2026/02/15 19:33:41 tun stats: tx=365661 rx=22861243
+2026/02/15 19:33:46 tun stats: tx=389261 rx=22865374
+2026/02/15 19:33:51 tun stats: tx=393192 rx=22872767
+2026/02/15 19:33:56 tun stats: tx=492192 rx=22944017
+2026/02/15 19:34:01 tun stats: tx=526149 rx=22950110
+2026/02/15 19:34:06 tun stats: tx=640831 rx=23037324
+2026/02/15 19:34:11 tun stats: tx=656796 rx=23049398
+2026/02/15 19:34:16 tun stats: tx=676028 rx=23061810
+2026/02/15 19:34:21 tun stats: tx=738506 rx=23094519
+2026/02/15 19:34:26 tun stats: tx=773829 rx=23204592
+2026/02/15 19:34:31 tun stats: tx=841926 rx=23210818
+2026/02/15 19:34:36 tun stats: tx=850572 rx=23212333
+2026/02/15 19:34:41 tun stats: tx=867464 rx=23214450
+2026/02/15 19:34:46 tun stats: tx=867706 rx=23214890
+2026/02/15 19:34:51 tun stats: tx=885140 rx=23216113
+2026/02/15 19:34:56 tun stats: tx=892937 rx=23216744
+2026/02/15 19:35:01 tun stats: tx=912434 rx=23218647
+2026/02/15 19:35:06 tun stats: tx=921814 rx=23219494
+2026/02/15 19:35:11 tun stats: tx=927314 rx=23235804
+2026/02/15 19:35:16 tun stats: tx=959350 rx=23256170
+2026/02/15 19:35:21 tun stats: tx=960146 rx=23259006
+2026/02/15 19:35:26 tun stats: tx=962583 rx=23262211
+2026/02/15 19:35:31 tun stats: tx=962713 rx=23262263
+2026/02/15 19:35:36 tun stats: tx=962754 rx=23262315
+2026/02/15 19:35:41 tun stats: tx=974456 rx=23274063
+2026/02/15 19:35:46 tun stats: tx=981654 rx=23285859
+2026/02/15 19:35:51 tun stats: tx=1005761 rx=23299023
+2026/02/15 19:35:56 tun stats: tx=1010558 rx=23306163
+2026/02/15 19:36:01 tun stats: tx=1010960 rx=23306683
+2026/02/15 19:36:06 tun stats: tx=1013829 rx=23306839
+2026/02/15 19:36:11 tun stats: tx=1019506 rx=23317927
+2026/02/15 19:36:16 tun stats: tx=1038272 rx=23336730
+2026/02/15 19:36:21 tun stats: tx=1041708 rx=23339613
+2026/02/15 19:36:26 tun stats: tx=1041749 rx=23339745
+2026/02/15 19:36:31 tun stats: tx=1041790 rx=23339797
+2026/02/15 19:36:36 tun stats: tx=1041954 rx=23340099
+2026/02/15 19:36:41 tun stats: tx=1048786 rx=23341493
+2026/02/15 19:36:46 tun stats: tx=1054411 rx=23356564
+2026/02/15 19:36:51 tun stats: tx=1055517 rx=23357043
+2026/02/15 19:36:56 tun stats: tx=1055847 rx=23357043
+2026/02/15 19:37:01 tun stats: tx=1058213 rx=23361283
+2026/02/15 19:37:06 tun stats: tx=1058745 rx=23363929
+2026/02/15 19:37:11 tun stats: tx=1062523 rx=23373168
+2026/02/15 19:37:16 tun stats: tx=1074162 rx=23381274
+2026/02/15 19:37:21 tun stats: tx=1074445 rx=23381430
+2026/02/15 19:37:26 tun stats: tx=1074648 rx=23381586
+2026/02/15 19:37:31 tun stats: tx=1076077 rx=23382241
+2026/02/15 19:37:36 tun stats: tx=1084700 rx=23387347
+2026/02/15 19:37:41 tun stats: tx=1094126 rx=23394832
+2026/02/15 19:37:46 tun stats: tx=1101128 rx=23414677
+2026/02/15 19:37:51 tun stats: tx=1103380 rx=23422022
+2026/02/15 19:37:56 tun stats: tx=1120876 rx=23423288
+2026/02/15 19:38:01 tun stats: tx=1125256 rx=23427347
+2026/02/15 19:38:06 tun stats: tx=1128159 rx=23433243
+2026/02/15 19:38:11 tun stats: tx=1128467 rx=23433295
+2026/02/15 19:38:16 tun stats: tx=1140232 rx=23453838
+2026/02/15 19:38:21 tun stats: tx=1140314 rx=23453942
+2026/02/15 19:38:26 tun stats: tx=1140524 rx=23454147
+2026/02/15 19:38:31 tun stats: tx=1140564 rx=23454258
+2026/02/15 19:38:36 tun stats: tx=1148404 rx=23459279
+2026/02/15 19:38:41 tun stats: tx=1203324 rx=29157133
+2026/02/15 19:38:46 tun stats: tx=1246844 rx=29516434
+2026/02/15 19:38:51 tun stats: tx=1247774 rx=29517312
+2026/02/15 19:38:56 tun stats: tx=1254578 rx=29522324
+2026/02/15 19:39:01 tun stats: tx=1366997 rx=33180893
+2026/02/15 19:39:06 tun stats: tx=1399465 rx=38890402
+2026/02/15 19:39:11 tun stats: tx=1406735 rx=38891709
+2026/02/15 19:39:16 tun stats: tx=1429006 rx=38919041
+2026/02/15 19:39:21 tun stats: tx=1429125 rx=38919418
+2026/02/15 19:39:26 tun stats: tx=1435779 rx=38988687
+2026/02/15 19:39:31 tun stats: tx=1443643 rx=38990096
+2026/02/15 19:39:36 tun stats: tx=1443684 rx=38990096
+2026/02/15 19:39:41 tun stats: tx=1447210 rx=39005139
+2026/02/15 19:39:46 tun stats: tx=1478290 rx=39023481
+2026/02/15 19:39:51 tun stats: tx=1482033 rx=39030283
+2026/02/15 19:39:56 tun stats: tx=1507485 rx=39031749
+2026/02/15 19:40:01 tun stats: tx=1511524 rx=39034783
+2026/02/15 19:40:06 tun stats: tx=1511524 rx=39034783
+2026/02/15 19:40:11 tun stats: tx=1515352 rx=39045621
+2026/02/15 19:40:16 tun stats: tx=1531657 rx=39056284
+2026/02/15 19:40:21 tun stats: tx=1531657 rx=39056284
+2026/02/15 19:40:26 tun stats: tx=1531916 rx=39056376
+2026/02/15 19:40:31 tun stats: tx=1541214 rx=39064982
+2026/02/15 19:40:36 tun stats: tx=1549202 rx=39064982
+2026/02/15 19:40:41 tun stats: tx=1549710 rx=39066203
+2026/02/15 19:40:46 tun stats: tx=1563026 rx=39069859
+2026/02/15 19:40:51 tun stats: tx=1563761 rx=39071385
+2026/02/15 19:40:56 tun stats: tx=1563962 rx=39071700
+2026/02/15 19:41:01 tun stats: tx=1564165 rx=39072064
+2026/02/15 19:41:06 tun stats: tx=1564311 rx=39072253
+2026/02/15 19:41:11 tun stats: tx=1573012 rx=39088475
+2026/02/15 19:41:16 tun stats: tx=1599909 rx=39105468
+2026/02/15 19:41:21 tun stats: tx=1624050 rx=39115891
+2026/02/15 19:41:26 tun stats: tx=1633143 rx=39119616
+2026/02/15 19:41:31 tun stats: tx=1634635 rx=39120118
+2026/02/15 19:41:36 tun stats: tx=1645194 rx=39122896
+2026/02/15 19:41:41 tun stats: tx=1658390 rx=39151523
+2026/02/15 19:41:46 tun stats: tx=1707170 rx=47869509
+2026/02/15 19:41:51 tun stats: tx=1708217 rx=47870028
+2026/02/15 19:41:56 tun stats: tx=1729732 rx=47871461
+2026/02/15 19:42:01 tun stats: tx=1758948 rx=47967679
+2026/02/15 19:42:06 tun stats: tx=1808644 rx=56111106
+2026/02/15 19:42:11 tun stats: tx=1817233 rx=56128044
+2026/02/15 19:42:16 tun stats: tx=1817314 rx=56128136
+2026/02/15 19:42:21 tun stats: tx=1817314 rx=56128136
+2026/02/15 19:42:26 tun stats: tx=1817756 rx=56128188
+2026/02/15 19:42:31 tun stats: tx=1840815 rx=56165630
+2026/02/15 19:42:36 tun stats: tx=1853965 rx=56170920
+2026/02/15 19:42:41 tun stats: tx=1948416 rx=56214230
+2026/02/15 19:42:46 tun stats: tx=1998970 rx=56257699
+2026/02/15 19:42:51 tun stats: tx=2027499 rx=56308430
+2026/02/15 19:42:56 tun stats: tx=2030554 rx=56315013
+2026/02/15 19:43:01 tun stats: tx=2049258 rx=56322217
+2026/02/15 19:43:06 tun stats: tx=2118894 rx=56337649
+2026/02/15 19:43:11 tun stats: tx=2140474 rx=56340483
+2026/02/15 19:43:16 tun stats: tx=2152316 rx=56360946
+2026/02/15 19:43:21 tun stats: tx=2156371 rx=56361349
+2026/02/15 19:43:26 tun stats: tx=2158481 rx=56362037
+2026/02/15 19:43:31 tun stats: tx=2176342 rx=56363555
+2026/02/15 19:43:36 tun stats: tx=2186634 rx=56363979
+2026/02/15 19:43:41 tun stats: tx=2187966 rx=56367006
+2026/02/15 19:43:46 tun stats: tx=2188006 rx=56367046
+2026/02/15 19:43:51 tun stats: tx=2188088 rx=56367150
+2026/02/15 19:43:56 tun stats: tx=2188129 rx=56367202
+2026/02/15 19:44:01 tun stats: tx=2200446 rx=56383940
+2026/02/15 19:44:03 conn read error (tunnel/entry closed): Application error 0x0 (remote): done
+2026/02/15 19:44:03 shutdown: removing routes, closing TUN...
+2026/02/15 19:44:03 tun->conn write error: Application error 0x0 (remote): done
+2026/02/15 19:44:03 shutdown done (routes removed, TUN closed)
+2026/02/15 20:19:57 Using existing driver 0.14
+2026/02/15 20:19:57 Creating adapter
+2026/02/15 20:19:58 TUN address 10.10.0.2/24 on astra0
+2026/02/15 20:19:58 route 0.0.0.0/0 via 10.10.0.1 (full tunnel)
+2026/02/15 20:19:58 TUN up: astra0 (mtu=1400)
+2026/02/15 20:19:58 transports: quic,tcp,tls,rudp
+2026/02/15 20:19:58 frame_padding: enabled min=16 max=64
+2026/02/15 20:19:58 trying transports in order: quic -> tcp -> tls -> rudp
+2026/02/15 20:19:58 auto-reconnect: enabled (delay=5s, set ASTRA_RECONNECT_ENABLED=false to exit on disconnect)
+2026/02/15 20:19:58 trying transport=quic profile=google-h2 addr=178.208.76.92:8444
+2026/02/15 20:19:58 connected to entry 178.208.76.92:8443 transport=quic
+2026/02/15 20:20:03 tun stats: tx=9155 rx=30110
+2026/02/15 20:20:08 tun stats: tx=16290 rx=30110
+2026/02/15 20:20:13 tun stats: tx=34956 rx=42643
+2026/02/15 20:20:18 tun stats: tx=38900 rx=45530
+2026/02/15 20:20:23 tun stats: tx=49891 rx=74256
+2026/02/15 20:20:28 tun stats: tx=110924 rx=151505
+2026/02/15 20:20:33 tun stats: tx=111591 rx=151672
+2026/02/15 20:20:38 tun stats: tx=127926 rx=168311
+2026/02/15 20:20:43 tun stats: tx=172416 rx=855892
+2026/02/15 21:51:42 Using existing driver 0.14
+2026/02/15 21:51:42 Creating adapter
+2026/02/15 21:51:43 Removed orphaned adapter "astra0 1"
+2026/02/15 21:51:43 TUN address 10.10.0.2/24 on astra0
+2026/02/15 21:51:43 route 0.0.0.0/0 via 10.10.0.1 (full tunnel)
+2026/02/15 21:51:43 TUN up: astra0 (mtu=1400)
+2026/02/15 21:51:43 transports: quic,tcp,tls,rudp
+2026/02/15 21:51:43 frame_padding: enabled min=16 max=64
+2026/02/15 21:51:43 trying transports in order: quic -> tcp -> tls -> rudp
+2026/02/15 21:51:43 auto-reconnect: enabled (delay=5s, set ASTRA_RECONNECT_ENABLED=false to exit on disconnect)
+2026/02/15 21:51:43 trying transport=quic profile=google-h2 addr=178.208.76.92:8444
+2026/02/15 21:51:43 connected to entry 178.208.76.92:8443 transport=quic
+2026/02/15 21:51:48 tun stats: tx=13269 rx=25844
+2026/02/15 21:51:53 tun stats: tx=53416 rx=95237
+2026/02/15 21:51:58 tun stats: tx=62759 rx=113026
+2026/02/15 21:52:03 tun stats: tx=78782 rx=127470
+2026/02/15 21:52:08 tun stats: tx=119344 rx=152312
+2026/02/15 21:52:13 tun stats: tx=209377 rx=412801
+2026/02/15 21:52:18 tun stats: tx=564567 rx=2595590
+2026/02/15 21:52:23 tun stats: tx=701575 rx=5960025
+2026/02/15 21:52:28 tun stats: tx=846148 rx=12819940
+2026/02/15 21:52:33 tun stats: tx=926088 rx=21409168
+2026/02/15 21:52:38 tun stats: tx=983171 rx=29154419
+2026/02/15 21:52:43 tun stats: tx=1078499 rx=38648068
+2026/02/15 21:52:48 tun stats: tx=1219651 rx=43228079
+2026/02/15 21:52:53 tun stats: tx=1276923 rx=50273929
+2026/02/15 21:52:58 tun stats: tx=1321729 rx=57092160
+2026/02/15 21:53:03 tun stats: tx=1327783 rx=57098787
+2026/02/15 21:53:08 tun stats: tx=1331716 rx=57104090
+2026/02/15 21:53:13 tun stats: tx=1356166 rx=61212796
+2026/02/15 21:53:18 tun stats: tx=1443589 rx=75710513
+2026/02/15 21:53:23 tun stats: tx=1443840 rx=75710873
+2026/02/15 21:53:28 tun stats: tx=1456588 rx=75712441
+2026/02/15 21:53:33 tun stats: tx=1459755 rx=75712704
+2026/02/15 21:53:38 tun stats: tx=1534104 rx=88967148
+2026/02/15 21:53:43 tun stats: tx=1596355 rx=99056314
+2026/02/15 21:53:48 tun stats: tx=1597184 rx=99057574
+2026/02/15 21:53:53 tun stats: tx=1597428 rx=99057862
+2026/02/15 21:53:58 tun stats: tx=1659569 rx=109981182
+2026/02/15 21:54:03 tun stats: tx=1693178 rx=114847133
+2026/02/15 21:54:08 tun stats: tx=1693276 rx=114847244
+2026/02/15 21:54:13 tun stats: tx=1697572 rx=114847388
+2026/02/15 21:54:18 tun stats: tx=1739033 rx=121189705
+2026/02/15 21:54:23 tun stats: tx=1740047 rx=121338926
+2026/02/15 21:54:28 tun stats: tx=1740047 rx=121338926
+2026/02/15 21:54:33 tun stats: tx=1749462 rx=121349042
+2026/02/15 21:54:38 tun stats: tx=1760816 rx=122427600
+2026/02/15 21:54:43 tun stats: tx=1819941 rx=133156086
+2026/02/15 21:54:48 tun stats: tx=1828401 rx=133158802
+2026/02/15 21:54:53 tun stats: tx=1837094 rx=133172675
+2026/02/15 21:54:58 tun stats: tx=1844772 rx=133245292
+2026/02/15 21:55:03 tun stats: tx=1927637 rx=148338824
+2026/02/15 21:55:08 tun stats: tx=1927760 rx=148339020
+2026/02/15 21:55:13 tun stats: tx=1927760 rx=148339020
+2026/02/15 21:55:18 tun stats: tx=1928170 rx=148339540
+2026/02/15 21:55:23 tun stats: tx=1970935 rx=154878092
+2026/02/15 21:55:28 tun stats: tx=1981017 rx=156317782
+2026/02/15 21:55:33 tun stats: tx=1988786 rx=156325208
+2026/02/15 21:55:38 tun stats: tx=1997931 rx=156331063
+2026/02/15 21:55:43 tun stats: tx=2018165 rx=159217814
+2026/02/15 21:55:48 tun stats: tx=2065249 rx=166877750
+2026/02/15 21:55:53 tun stats: tx=2142540 rx=167032454
+2026/02/15 21:55:58 tun stats: tx=2157106 rx=167374433
+2026/02/15 21:56:03 tun stats: tx=2170126 rx=167699626
+2026/02/15 21:56:08 tun stats: tx=2255066 rx=183339532
+2026/02/15 21:56:13 tun stats: tx=2261574 rx=183651641
+2026/02/15 21:56:18 tun stats: tx=2272051 rx=183867984
+2026/02/15 21:56:23 tun stats: tx=2277518 rx=184071236
+2026/02/15 21:56:28 tun stats: tx=2341900 rx=194578269
+2026/02/15 21:56:33 tun stats: tx=2418612 rx=207280052
+2026/02/15 21:56:38 tun stats: tx=2458471 rx=213170119
+2026/02/15 21:56:43 tun stats: tx=2517103 rx=222396831
+2026/02/15 21:56:48 tun stats: tx=2519879 rx=222487061
+2026/02/15 21:56:53 tun stats: tx=2560814 rx=229315533
+2026/02/15 21:56:58 tun stats: tx=2582396 rx=232313228
+2026/02/15 21:57:03 tun stats: tx=2586438 rx=232313384
+2026/02/15 21:57:08 tun stats: tx=2587913 rx=232320199
+2026/02/15 21:57:13 tun stats: tx=2618931 rx=237633193
+2026/02/15 21:57:18 tun stats: tx=2657438 rx=242973909
+2026/02/15 21:57:23 tun stats: tx=2665067 rx=242978492
+2026/02/15 21:57:28 tun stats: tx=2665149 rx=242978544
+2026/02/15 21:57:33 tun stats: tx=2681973 rx=244777701
+2026/02/15 21:57:38 tun stats: tx=2754987 rx=255737991
+2026/02/15 21:57:43 tun stats: tx=2796520 rx=260562040
+2026/02/15 21:57:48 tun stats: tx=2796650 rx=260562229
+2026/02/15 21:57:53 tun stats: tx=2802755 rx=260563040
+2026/02/15 21:57:58 tun stats: tx=2866385 rx=271779619
+2026/02/15 21:58:03 tun stats: tx=2890549 rx=274181714
+2026/02/15 21:58:08 tun stats: tx=2890766 rx=274182308
+2026/02/15 21:58:13 tun stats: tx=2890985 rx=274182497
+2026/02/15 21:58:18 tun stats: tx=2934242 rx=278208455
+2026/02/15 21:58:23 tun stats: tx=2968682 rx=284129537
+2026/02/15 21:58:28 tun stats: tx=2997224 rx=289152831
+2026/02/15 21:58:33 tun stats: tx=3002327 rx=289159102
+2026/02/15 21:58:38 tun stats: tx=3029162 rx=293582474
+2026/02/15 21:58:43 tun stats: tx=3099964 rx=305385911
+2026/02/15 21:58:48 tun stats: tx=3100203 rx=305386642
+2026/02/15 21:58:53 tun stats: tx=3100244 rx=305386694
+2026/02/15 21:58:58 tun stats: tx=3161298 rx=306043047
+2026/02/15 21:59:03 tun stats: tx=3245213 rx=319620730
+2026/02/15 21:59:08 tun stats: tx=3265225 rx=322581088
+2026/02/15 21:59:13 tun stats: tx=3295585 rx=322604433
+2026/02/15 21:59:18 tun stats: tx=3302953 rx=322619688
+2026/02/15 21:59:23 tun stats: tx=3346810 rx=330509069
+2026/02/15 21:59:28 tun stats: tx=3346810 rx=330509069
+2026/02/15 21:59:33 tun stats: tx=3346970 rx=330509372
+2026/02/15 21:59:38 tun stats: tx=3351384 rx=330510104
+2026/02/15 21:59:43 tun stats: tx=3400769 rx=338147582
+2026/02/15 21:59:48 tun stats: tx=3490947 rx=347546671
+2026/02/15 21:59:53 tun stats: tx=3591077 rx=347610856
+2026/02/15 21:59:58 tun stats: tx=4117318 rx=348216553
+2026/02/15 22:00:03 tun stats: tx=4429595 rx=350438694
+2026/02/15 22:00:08 tun stats: tx=4655836 rx=359746667
+2026/02/15 22:00:13 tun stats: tx=4827760 rx=371788844
+2026/02/15 22:00:18 tun stats: tx=5062909 rx=371839775
+2026/02/15 22:00:23 tun stats: tx=5062909 rx=371839775
+2026/02/15 22:00:28 tun stats: tx=5154375 rx=383315094
+2026/02/15 22:00:33 tun stats: tx=5236449 rx=393770757
+2026/02/15 22:00:38 tun stats: tx=5236835 rx=393771603
+2026/02/15 22:00:43 tun stats: tx=5237118 rx=393771903
+2026/02/15 22:00:48 tun stats: tx=5298362 rx=404067705
+2026/02/15 22:00:53 tun stats: tx=5371034 rx=417612672
+2026/02/15 22:00:58 tun stats: tx=5380057 rx=418500667
+2026/02/15 22:01:03 tun stats: tx=5384099 rx=418500875
+2026/02/15 22:01:08 tun stats: tx=5437236 rx=428233620
+2026/02/15 22:01:13 tun stats: tx=5461060 rx=432934214
+2026/02/15 22:01:18 tun stats: tx=5465153 rx=432938244
+2026/02/15 22:01:23 tun stats: tx=5467848 rx=432944095
+2026/02/15 22:01:28 tun stats: tx=5490299 rx=436625962
+2026/02/15 22:01:33 tun stats: tx=5521202 rx=441983386
+2026/02/15 22:01:38 tun stats: tx=5526260 rx=441985033
+2026/02/15 22:01:43 tun stats: tx=5531052 rx=442005711
+2026/02/15 22:01:48 tun stats: tx=5531352 rx=442005992
+2026/02/15 22:01:53 tun stats: tx=5548457 rx=444670291
+2026/02/15 22:01:58 tun stats: tx=5550752 rx=444674636
+2026/02/15 22:02:03 tun stats: tx=5554913 rx=444674844
+2026/02/15 22:02:08 tun stats: tx=5560970 rx=444688728
+2026/02/15 22:02:13 tun stats: tx=5605993 rx=452047336
+2026/02/15 22:02:18 tun stats: tx=5619831 rx=452054943
+2026/02/15 22:02:23 tun stats: tx=5633299 rx=452064739
+2026/02/15 22:02:28 tun stats: tx=5633582 rx=452065170
+2026/02/15 22:02:33 tun stats: tx=5670665 rx=458617868
+2026/02/15 22:02:38 tun stats: tx=5707669 rx=463319237
+2026/02/15 22:02:43 tun stats: tx=5711864 rx=463319433
+2026/02/15 22:02:48 tun stats: tx=5712081 rx=463319982
+2026/02/15 22:02:53 tun stats: tx=5719229 rx=463329108
+2026/02/15 22:02:58 tun stats: tx=5728596 rx=463743981
+2026/02/15 22:03:03 tun stats: tx=5772284 rx=470694131
+2026/02/15 22:03:08 tun stats: tx=5776237 rx=470703264
+2026/02/15 22:03:13 tun stats: tx=5776376 rx=470703420
+2026/02/15 22:03:18 tun stats: tx=5834257 rx=479418085
+2026/02/15 22:03:23 tun stats: tx=5838292 rx=479418137
+2026/02/15 22:03:28 tun stats: tx=5838711 rx=479418819
+2026/02/15 22:03:33 tun stats: tx=5838841 rx=479419008
+2026/02/15 22:03:38 tun stats: tx=5897606 rx=489167611
+2026/02/15 22:03:43 tun stats: tx=5905745 rx=489969971
+2026/02/15 22:03:48 tun stats: tx=5905745 rx=489969971
+2026/02/15 22:03:53 tun stats: tx=5912304 rx=489975078
+2026/02/15 22:03:58 tun stats: tx=5947035 rx=496127363
+2026/02/15 22:04:03 tun stats: tx=5975961 rx=501769871
+2026/02/15 22:04:08 tun stats: tx=5976001 rx=501769911
+2026/02/15 22:04:13 tun stats: tx=5976122 rx=501770116
+2026/02/15 22:04:18 tun stats: tx=5995052 rx=504055764
+2026/02/15 22:04:23 tun stats: tx=6039052 rx=512618102
+2026/02/15 22:04:28 tun stats: tx=6039271 rx=512618154
+2026/02/15 22:04:33 tun stats: tx=6043354 rx=512618291
+2026/02/15 22:04:38 tun stats: tx=6043662 rx=512619065
+2026/02/15 22:04:43 tun stats: tx=6118486 rx=526225505
+2026/02/15 22:04:48 tun stats: tx=6118803 rx=526228949
+2026/02/15 22:04:53 tun stats: tx=6118932 rx=526229126
+2026/02/15 22:04:58 tun stats: tx=6128729 rx=526298983
+2026/02/15 22:05:03 tun stats: tx=6170619 rx=533986115
+2026/02/15 22:05:08 tun stats: tx=6183177 rx=536457625
+2026/02/15 22:05:13 tun stats: tx=6187171 rx=536457625
+2026/02/15 22:05:18 tun stats: tx=6289414 rx=536743080
+2026/02/15 22:05:23 tun stats: tx=6334691 rx=537076029
+2026/02/15 22:05:28 tun stats: tx=6467182 rx=541343158
+2026/02/15 22:05:33 tun stats: tx=6598454 rx=542706644
+2026/02/15 22:05:38 tun stats: tx=6800632 rx=565008076
+2026/02/15 22:05:43 tun stats: tx=6856370 rx=571512970
+2026/02/15 22:05:48 tun stats: tx=6931828 rx=574244684
+2026/02/15 22:05:53 tun stats: tx=7061826 rx=585956472
+2026/02/15 22:05:58 tun stats: tx=7112533 rx=589206183
+2026/02/15 22:06:03 tun stats: tx=7188864 rx=590035076
+2026/02/15 22:06:08 tun stats: tx=7325808 rx=600129032
+2026/02/15 22:06:13 tun stats: tx=7361715 rx=603407061
+2026/02/15 22:06:18 tun stats: tx=7399578 rx=604946926
+2026/02/15 22:06:23 tun stats: tx=7483370 rx=616399029
+2026/02/15 22:06:28 tun stats: tx=7491422 rx=616536962
+2026/02/15 22:06:33 tun stats: tx=7501749 rx=616718582
+2026/02/15 22:06:38 tun stats: tx=7511540 rx=616933480
+2026/02/15 22:06:43 tun stats: tx=7588136 rx=629590011
+2026/02/15 22:06:48 tun stats: tx=7593778 rx=629727052
+2026/02/15 22:06:53 tun stats: tx=7594391 rx=629734001
+2026/02/15 22:06:58 tun stats: tx=7594541 rx=629734209
+2026/02/15 22:07:03 tun stats: tx=7637760 rx=636847032
+2026/02/15 22:07:08 tun stats: tx=7712589 rx=650149438
+2026/02/15 22:07:13 tun stats: tx=7753470 rx=650172274
+2026/02/15 22:07:18 tun stats: tx=7826203 rx=650365077
+2026/02/15 22:07:23 tun stats: tx=8020292 rx=651769467
+2026/02/15 22:07:28 tun stats: tx=8148223 rx=661887325
+2026/02/15 22:07:33 tun stats: tx=8243800 rx=673498627
+2026/02/15 22:07:38 tun stats: tx=8291543 rx=673557558
+2026/02/15 22:07:43 tun stats: tx=8315614 rx=673594061
+2026/02/15 22:07:48 tun stats: tx=8358195 rx=680214261
+2026/02/15 22:07:53 tun stats: tx=8427171 rx=691595952
+2026/02/15 22:07:58 tun stats: tx=8444413 rx=691642623
+2026/02/15 22:08:03 tun stats: tx=8458356 rx=691688248
+2026/02/15 22:08:08 tun stats: tx=8468288 rx=691703679
+2026/02/15 22:08:13 tun stats: tx=8538619 rx=704060206
+2026/02/15 22:08:18 tun stats: tx=8587779 rx=710212297
+2026/02/15 22:08:23 tun stats: tx=8599503 rx=710232651
+2026/02/15 22:08:28 tun stats: tx=8602563 rx=710238820
+2026/02/15 22:08:33 tun stats: tx=8646018 rx=715757380
+2026/02/15 22:08:38 tun stats: tx=8716293 rx=726821906
+2026/02/15 22:08:43 tun stats: tx=8731605 rx=726864035
+2026/02/15 22:08:48 tun stats: tx=8735592 rx=726871396
+2026/02/15 22:08:53 tun stats: tx=8739867 rx=726872016
+2026/02/15 22:08:58 tun stats: tx=8838221 rx=742950443
+2026/02/15 22:09:03 tun stats: tx=8843764 rx=742952092
+2026/02/15 22:09:08 tun stats: tx=8844064 rx=742952196
+2026/02/15 22:09:13 tun stats: tx=8848792 rx=742963644
+2026/02/15 22:09:18 tun stats: tx=8939407 rx=756536891
+2026/02/15 22:09:23 tun stats: tx=8939612 rx=756537151
+2026/02/15 22:09:28 tun stats: tx=8944197 rx=756546049
+2026/02/15 22:09:33 tun stats: tx=8944709 rx=756546511
+2026/02/15 22:09:38 tun stats: tx=8945320 rx=756547318
+2026/02/15 22:09:43 tun stats: tx=9025119 rx=769968486
+2026/02/15 22:09:48 tun stats: tx=9025363 rx=769968847
+2026/02/15 22:09:53 tun stats: tx=9025404 rx=769968899
+2026/02/15 22:09:58 tun stats: tx=9037905 rx=770050565
+2026/02/15 22:10:03 tun stats: tx=9078329 rx=777398957
+2026/02/15 22:10:08 tun stats: tx=9113223 rx=783684336
+2026/02/15 22:10:13 tun stats: tx=9113361 rx=783684480
+2026/02/15 22:10:18 tun stats: tx=9113511 rx=783684688
+2026/02/15 22:10:23 tun stats: tx=9132820 rx=785991512
+2026/02/15 22:10:28 tun stats: tx=9214770 rx=801311254
+2026/02/15 22:10:33 tun stats: tx=9214986 rx=801311514
+2026/02/15 22:10:38 tun stats: tx=9217188 rx=801312410
+2026/02/15 22:10:43 tun stats: tx=9225659 rx=801317741
+2026/02/15 22:10:48 tun stats: tx=9237957 rx=803080849
+2026/02/15 22:10:53 tun stats: tx=9319147 rx=818784566
+2026/02/15 22:10:58 tun stats: tx=9349189 rx=823662399
+2026/02/15 22:11:03 tun stats: tx=9353484 rx=823663016
+2026/02/15 22:11:08 tun stats: tx=9353835 rx=823663328
+2026/02/15 22:11:13 tun stats: tx=9365352 rx=825327977
+2026/02/15 22:11:18 tun stats: tx=9447294 rx=840008140
+2026/02/15 22:11:23 tun stats: tx=9468507 rx=840051817
+2026/02/15 22:11:28 tun stats: tx=9628990 rx=840750455
+2026/02/15 22:11:33 tun stats: tx=9635841 rx=840758694
+2026/02/15 22:11:38 tun stats: tx=9720076 rx=841729760
+2026/02/15 22:11:43 tun stats: tx=9885615 rx=845387000
+2026/02/15 22:11:48 tun stats: tx=9914088 rx=846027402
+2026/02/15 22:11:53 tun stats: tx=10065490 rx=849054929
+2026/02/15 22:11:58 tun stats: tx=10183057 rx=854139807
+2026/02/15 22:12:03 tun stats: tx=10326194 rx=854902788
+2026/02/15 22:12:08 tun stats: tx=10340604 rx=854923259
+2026/02/15 22:12:13 tun stats: tx=10348498 rx=854933518
+2026/02/15 22:12:18 tun stats: tx=10428762 rx=858961707
+2026/02/15 22:12:23 tun stats: tx=10748441 rx=861714346
+2026/02/15 22:12:28 tun stats: tx=10915499 rx=871567584
+2026/02/15 22:12:33 tun stats: tx=10968832 rx=875402198
+2026/02/15 22:12:38 tun stats: tx=11107918 rx=878174401
+2026/02/15 22:12:43 tun stats: tx=11170812 rx=879952846
+2026/02/15 22:12:48 tun stats: tx=11221426 rx=883307694
+2026/02/15 22:12:53 tun stats: tx=11382237 rx=887469571
+2026/02/15 22:12:58 tun stats: tx=11532470 rx=892628940
+2026/02/15 22:13:03 tun stats: tx=11706298 rx=896853092
+2026/02/15 22:13:08 tun stats: tx=11875370 rx=902046225
+2026/02/15 22:13:13 tun stats: tx=11919474 rx=906580060
+2026/02/15 22:13:18 tun stats: tx=11953794 rx=906780354
+2026/02/15 22:13:23 tun stats: tx=11997344 rx=912529615
+2026/02/15 22:13:28 tun stats: tx=12022187 rx=912838884
+2026/02/15 22:13:33 tun stats: tx=12025284 rx=912879855
+2026/02/15 22:13:38 tun stats: tx=12025471 rx=912880051
+2026/02/15 22:13:43 tun stats: tx=12065125 rx=918616103
+2026/02/15 22:13:48 tun stats: tx=12065452 rx=918616507
+2026/02/15 22:13:53 tun stats: tx=12065858 rx=918616963
+2026/02/15 22:13:58 tun stats: tx=12068893 rx=918617263
+2026/02/15 22:14:03 tun stats: tx=12114004 rx=924761602
+2026/02/15 22:14:08 tun stats: tx=12118331 rx=924762217
+2026/02/15 22:14:13 tun stats: tx=12118882 rx=924762479
+2026/02/15 22:14:18 tun stats: tx=12130847 rx=924770373
+2026/02/15 22:14:23 tun stats: tx=12173632 rx=931659706
+2026/02/15 22:14:28 tun stats: tx=12174554 rx=931659810
+2026/02/15 22:14:33 tun stats: tx=12175054 rx=931660122
+2026/02/15 22:14:38 tun stats: tx=12180155 rx=931661408
+2026/02/15 22:14:43 tun stats: tx=12217222 rx=937418793
+2026/02/15 22:14:48 tun stats: tx=12217345 rx=937418949
+2026/02/15 22:14:53 tun stats: tx=12217467 rx=937419093
+2026/02/15 22:14:58 tun stats: tx=12224020 rx=937488631
+2026/02/15 22:15:03 tun stats: tx=12266842 rx=945346916
+2026/02/15 22:15:08 tun stats: tx=12271180 rx=945347692
+2026/02/15 22:15:13 tun stats: tx=12271628 rx=945348195
+2026/02/15 22:15:18 tun stats: tx=12271942 rx=945348611
+2026/02/15 22:15:23 tun stats: tx=12329572 rx=953319087
+2026/02/15 22:15:28 tun stats: tx=12332272 rx=953319399
+2026/02/15 22:15:33 tun stats: tx=12332705 rx=953319557
+2026/02/15 22:15:38 tun stats: tx=12343212 rx=953326255
+2026/02/15 22:15:43 tun stats: tx=12392665 rx=961533535
+2026/02/15 22:15:48 tun stats: tx=12393725 rx=961534697
+2026/02/15 22:15:53 tun stats: tx=12393806 rx=961534841
+2026/02/15 22:15:58 tun stats: tx=12396885 rx=961540795
+2026/02/15 22:16:03 tun stats: tx=12440279 rx=968688616
+2026/02/15 22:16:08 tun stats: tx=12452895 rx=968724181
+2026/02/15 22:16:13 tun stats: tx=12455260 rx=968724389
+2026/02/15 22:16:18 tun stats: tx=12459837 rx=968730873
+2026/02/15 22:16:23 tun stats: tx=12496323 rx=974218953
+2026/02/15 22:16:28 tun stats: tx=12497077 rx=974219698
+2026/02/15 22:16:33 tun stats: tx=12497410 rx=974219802
+2026/02/15 22:16:38 tun stats: tx=12502281 rx=974221270
+2026/02/15 22:16:43 tun stats: tx=12542600 rx=980282663
+2026/02/15 22:16:48 tun stats: tx=12542894 rx=980282923
+2026/02/15 22:16:53 tun stats: tx=12543319 rx=980283433
+2026/02/15 22:16:58 tun stats: tx=12543469 rx=980283641
+2026/02/15 22:17:03 tun stats: tx=12578967 rx=986563515
+2026/02/15 22:17:08 tun stats: tx=12581128 rx=986570873
+2026/02/15 22:17:13 tun stats: tx=12581210 rx=986570977
+2026/02/15 22:17:18 tun stats: tx=12595084 rx=986580846
+2026/02/15 22:17:23 tun stats: tx=12639065 rx=992895717
+2026/02/15 22:17:28 tun stats: tx=12639392 rx=992895974
+2026/02/15 22:17:33 tun stats: tx=12647387 rx=992900445
+2026/02/15 22:17:38 tun stats: tx=12660211 rx=992909608
+2026/02/15 22:17:43 tun stats: tx=12737744 rx=997925816
+2026/02/15 22:17:48 tun stats: tx=12871446 rx=1000580002
+2026/02/15 22:17:53 tun stats: tx=13257942 rx=1001478251
+2026/02/15 22:17:58 tun stats: tx=13379314 rx=1002304527
+2026/02/15 22:18:03 tun stats: tx=13519028 rx=1006383735
+2026/02/15 22:18:08 tun stats: tx=13651107 rx=1010576170
+2026/02/15 22:18:13 tun stats: tx=13652421 rx=1010577171
+2026/02/15 22:18:18 tun stats: tx=13671683 rx=1010585897
+2026/02/15 22:18:23 tun stats: tx=13781776 rx=1010819934
+2026/02/15 22:18:28 tun stats: tx=13951736 rx=1011361456
+2026/02/15 22:18:33 tun stats: tx=14136864 rx=1011814784
+2026/02/15 22:18:38 tun stats: tx=14268093 rx=1013555563
+2026/02/15 22:18:43 tun stats: tx=14345361 rx=1014446255
+2026/02/15 22:18:48 tun stats: tx=14464604 rx=1016199748
+2026/02/15 22:18:53 tun stats: tx=14661313 rx=1018013710
+2026/02/15 22:18:58 tun stats: tx=14745826 rx=1026324581
+2026/02/15 22:19:03 tun stats: tx=14890146 rx=1031170047
+2026/02/15 22:19:08 tun stats: tx=15032239 rx=1042887990
+2026/02/15 22:19:13 tun stats: tx=15160316 rx=1047021683
+2026/02/15 22:19:18 tun stats: tx=15191571 rx=1047563315
+2026/02/15 22:19:23 tun stats: tx=15277959 rx=1052595266
+2026/02/15 22:19:28 tun stats: tx=15309410 rx=1055590094
+2026/02/15 22:19:33 tun stats: tx=15330283 rx=1055953178
+2026/02/15 22:19:38 tun stats: tx=15424002 rx=1064273995
+2026/02/15 22:19:43 tun stats: tx=15526575 rx=1066445876
+2026/02/15 22:19:48 tun stats: tx=15546347 rx=1066525906
+2026/02/15 22:19:53 tun stats: tx=15554688 rx=1066527308
+2026/02/15 23:15:23 Using existing driver 0.14
+2026/02/15 23:15:23 Creating adapter
+2026/02/15 23:15:23 Removed orphaned adapter "astra0 1"
+2026/02/15 23:15:23 TUN address 10.10.0.2/24 on astra0
+2026/02/15 23:15:23 route 0.0.0.0/0 via 10.10.0.1 (full tunnel)
+2026/02/15 23:15:23 TUN up: astra0 (mtu=1400)
+2026/02/15 23:15:23 transports: quic,tcp,tls,rudp
+2026/02/15 23:15:23 frame_padding: enabled min=16 max=64
+2026/02/15 23:15:23 trying transports in order: quic -> tcp -> tls -> rudp
+2026/02/15 23:15:23 auto-reconnect: enabled (delay=5s, set ASTRA_RECONNECT_ENABLED=false to exit on disconnect)
+2026/02/15 23:15:23 trying transport=quic profile=google-h2 addr=178.208.76.92:8444
+2026/02/15 23:15:23 connected to entry 178.208.76.92:8443 transport=quic
+2026/02/15 23:15:28 tun stats: tx=9180 rx=42349
+2026/02/15 23:15:33 tun stats: tx=55610 rx=91692
+2026/02/15 23:15:38 tun stats: tx=159418 rx=204760
+2026/02/15 23:15:43 tun stats: tx=247434 rx=251483
+2026/02/15 23:15:48 tun stats: tx=310417 rx=265278
+2026/02/15 23:15:53 tun stats: tx=414039 rx=284841
+2026/02/15 23:15:58 tun stats: tx=486610 rx=292193
+2026/02/15 23:16:03 tun stats: tx=504134 rx=294230
+2026/02/15 23:16:08 tun stats: tx=763950 rx=399051
+2026/02/15 23:16:13 tun stats: tx=804367 rx=414989
+2026/02/15 23:16:18 tun stats: tx=833699 rx=421981
+2026/02/15 23:16:23 tun stats: tx=884435 rx=432090
+2026/02/15 23:16:28 tun stats: tx=990504 rx=454585
+2026/02/15 23:16:33 tun stats: tx=1013888 rx=458107
+2026/02/15 23:16:38 tun stats: tx=1128064 rx=532920
+2026/02/15 23:16:43 tun stats: tx=1217399 rx=715383
+2026/02/15 23:16:48 tun stats: tx=1297238 rx=897692
+2026/02/15 23:16:53 tun stats: tx=1481706 rx=1656151
+2026/02/15 23:16:58 tun stats: tx=1633632 rx=3122258
+2026/02/15 23:17:03 tun stats: tx=1655478 rx=3446064
+2026/02/15 23:17:08 tun stats: tx=1676456 rx=3460938
+2026/02/15 23:17:13 tun stats: tx=1686777 rx=3462560
+2026/02/15 23:17:18 tun stats: tx=1705871 rx=3465461
+2026/02/15 23:17:23 tun stats: tx=1831211 rx=3536445
+2026/02/15 23:17:28 tun stats: tx=1909843 rx=3667667
+2026/02/15 23:17:33 tun stats: tx=1972520 rx=3828514
+2026/02/15 23:17:38 tun stats: tx=2014647 rx=4026511
+2026/02/15 23:17:43 tun stats: tx=2085919 rx=4053929
+2026/02/15 23:17:48 tun stats: tx=2086081 rx=4054216
+2026/02/15 23:17:53 tun stats: tx=2100728 rx=4056869
+2026/02/15 23:17:58 tun stats: tx=2100858 rx=4056921
+2026/02/15 23:18:03 tun stats: tx=2101409 rx=4057572
+2026/02/15 23:18:08 tun stats: tx=2126256 rx=4059604
+2026/02/15 23:18:13 tun stats: tx=2143103 rx=4085320
+2026/02/15 23:18:18 tun stats: tx=2146215 rx=4091407
+2026/02/15 23:18:23 tun stats: tx=2146668 rx=4091981
+2026/02/15 23:18:28 tun stats: tx=2146709 rx=4092033
+2026/02/15 23:18:33 tun stats: tx=2149898 rx=4092416
+2026/02/15 23:18:38 tun stats: tx=2158714 rx=4103697
+2026/02/15 23:18:43 tun stats: tx=2158905 rx=4103957
+2026/02/15 23:18:48 tun stats: tx=2159003 rx=4104063
+2026/02/15 23:18:53 tun stats: tx=2159991 rx=4105292
+2026/02/15 23:18:58 tun stats: tx=2160073 rx=4105396
+2026/02/15 23:19:03 tun stats: tx=2162707 rx=4105656
+2026/02/15 23:19:08 tun stats: tx=2181619 rx=4107831
+2026/02/15 23:19:13 tun stats: tx=2182707 rx=4108469
+2026/02/15 23:19:18 tun stats: tx=2183176 rx=4108627
+2026/02/15 23:19:23 tun stats: tx=2183490 rx=4109031
+2026/02/15 23:19:28 tun stats: tx=2183531 rx=4109083
+2026/02/15 23:19:33 tun stats: tx=2183708 rx=4109343
+2026/02/15 23:19:38 tun stats: tx=2183788 rx=4109439
+2026/02/15 23:19:43 tun stats: tx=2187706 rx=4125148
+2026/02/15 23:19:48 tun stats: tx=2212239 rx=4135896
+2026/02/15 23:19:53 tun stats: tx=2679757 rx=5884946
+2026/02/15 23:19:58 tun stats: tx=3250204 rx=9094840
+2026/02/15 23:20:03 tun stats: tx=3366838 rx=9937036
+2026/02/15 23:20:08 tun stats: tx=3448401 rx=10610032
+2026/02/15 23:20:13 tun stats: tx=3495517 rx=11288647
+2026/02/15 23:20:18 tun stats: tx=3524464 rx=11809724
+2026/02/15 23:20:23 tun stats: tx=3562722 rx=12465236
+2026/02/15 23:20:28 tun stats: tx=3592007 rx=13107180
+2026/02/15 23:20:33 tun stats: tx=3616920 rx=13678481
+2026/02/15 23:20:38 tun stats: tx=3634519 rx=14327220
+2026/02/15 23:20:43 tun stats: tx=3652980 rx=14946921
+2026/02/15 23:20:48 tun stats: tx=3671371 rx=15532604
+2026/02/15 23:20:53 tun stats: tx=3687943 rx=16140407
+2026/02/15 23:20:58 tun stats: tx=3720881 rx=16811477
+2026/02/15 23:21:03 tun stats: tx=3771022 rx=17469054
+2026/02/15 23:21:08 tun stats: tx=3821033 rx=18188218
+2026/02/15 23:21:13 tun stats: tx=3856569 rx=18896552
+2026/02/15 23:21:18 tun stats: tx=3885821 rx=19581660
+2026/02/15 23:21:23 tun stats: tx=3910121 rx=20155323
+2026/02/15 23:21:28 tun stats: tx=4038534 rx=20852853
+2026/02/15 23:21:33 tun stats: tx=4062798 rx=21479370
+2026/02/15 23:21:38 tun stats: tx=4090949 rx=22081112
+2026/02/15 23:21:43 tun stats: tx=4138138 rx=22735412
+2026/02/15 23:21:48 tun stats: tx=4174054 rx=23266762
+2026/02/15 23:21:53 tun stats: tx=4271298 rx=23930003
+2026/02/15 23:21:58 tun stats: tx=4338778 rx=24628522
+2026/02/15 23:22:03 tun stats: tx=4428999 rx=25559117
+2026/02/15 23:22:08 tun stats: tx=4476889 rx=26289821
+2026/02/15 23:22:13 tun stats: tx=4558229 rx=27034547
+2026/02/15 23:22:18 tun stats: tx=4608106 rx=27662136
+2026/02/15 23:22:23 tun stats: tx=4667998 rx=28395944
+2026/02/15 23:22:28 tun stats: tx=4733517 rx=29369995
+2026/02/15 23:22:33 tun stats: tx=4797549 rx=30297209
+2026/02/15 23:22:38 tun stats: tx=4845436 rx=31123265
+2026/02/15 23:22:43 tun stats: tx=4889820 rx=31864361
+2026/02/15 23:22:48 tun stats: tx=4922212 rx=32348904
+2026/02/15 23:22:53 tun stats: tx=4957150 rx=32958747
+2026/02/15 23:22:58 tun stats: tx=5002180 rx=33509999
+2026/02/15 23:23:03 tun stats: tx=5057249 rx=34626169
+2026/02/15 23:23:08 tun stats: tx=5098347 rx=35257761
+2026/02/15 23:23:13 tun stats: tx=5280221 rx=37416426
+2026/02/15 23:23:18 tun stats: tx=5373892 rx=38569755
+2026/02/15 23:23:23 tun stats: tx=5407349 rx=39111611
+2026/02/15 23:52:17 Using existing driver 0.14
+2026/02/15 23:52:17 Creating adapter
+2026/02/15 23:52:18 Removed orphaned adapter "astra0 1"
+2026/02/15 23:52:18 TUN address 10.10.0.2/24 on astra0
+2026/02/15 23:52:18 route 0.0.0.0/0 via 10.10.0.1 (full tunnel)
+2026/02/15 23:52:18 TUN up: astra0 (mtu=1400)
+2026/02/15 23:52:18 transports: quic,tcp,tls,rudp
+2026/02/15 23:52:18 frame_padding: enabled min=16 max=64
+2026/02/15 23:52:18 trying transports in order: quic -> tcp -> tls -> rudp
+2026/02/15 23:52:18 auto-reconnect: enabled (delay=5s, set ASTRA_RECONNECT_ENABLED=false to exit on disconnect)
+2026/02/15 23:52:18 trying transport=quic profile=google-h2 addr=178.208.76.92:8444
+2026/02/15 23:52:18 connected to entry 178.208.76.92:8443 transport=quic
+2026/02/15 23:52:23 tun stats: tx=15847 rx=10388
+2026/02/15 23:52:28 tun stats: tx=53335 rx=153787
+2026/02/15 23:52:33 tun stats: tx=55278 rx=154109
+2026/02/15 23:52:38 tun stats: tx=105104 rx=194588
+2026/02/15 23:52:43 tun stats: tx=112535 rx=196333
+2026/02/15 23:52:48 tun stats: tx=130152 rx=209787
+2026/02/15 23:52:53 tun stats: tx=137052 rx=212398
+2026/02/15 23:52:58 tun stats: tx=204834 rx=453835
+2026/02/15 23:53:03 tun stats: tx=315936 rx=1942285
+2026/02/15 23:53:08 tun stats: tx=419532 rx=3425377
+2026/02/15 23:53:13 tun stats: tx=492780 rx=4543124
+2026/02/15 23:53:18 tun stats: tx=549569 rx=5392498
+2026/02/15 23:53:23 tun stats: tx=699401 rx=6168828
+2026/02/15 23:56:45 Using existing driver 0.14
+2026/02/15 23:56:45 Creating adapter
+2026/02/15 23:56:45 Removed orphaned adapter "astra0 1"
+2026/02/15 23:56:45 TUN address 10.10.0.2/24 on astra0
+2026/02/15 23:56:45 route 0.0.0.0/0 via 10.10.0.1 (full tunnel)
+2026/02/15 23:56:45 TUN up: astra0 (mtu=1400)
+2026/02/15 23:56:45 transports: quic,tcp,tls,rudp
+2026/02/15 23:56:45 frame_padding: enabled min=16 max=64
+2026/02/15 23:56:45 trying transports in order: quic -> tcp -> tls -> rudp
+2026/02/15 23:56:45 auto-reconnect: enabled (delay=5s, set ASTRA_RECONNECT_ENABLED=false to exit on disconnect)
+2026/02/15 23:56:45 trying transport=quic profile=google-h2 addr=178.208.76.92:8444
+2026/02/15 23:56:45 connected to entry 178.208.76.92:8443 transport=quic
+2026/02/15 23:56:50 tun stats: tx=16901 rx=20815
+2026/02/15 23:56:55 tun stats: tx=46179 rx=102888
+2026/02/15 23:57:00 tun stats: tx=62458 rx=111021
+2026/02/15 23:57:04 conn read error (tunnel/entry closed): Application error 0x0 (remote): done
+2026/02/15 23:57:04 tun->conn write error: Application error 0x0 (remote): done
+2026/02/15 23:57:05 tun stats: tx=62748 rx=111021
+2026/02/15 23:57:06 keepalive write error: Application error 0x0 (remote): done
+2026/02/15 23:57:06 disconnected, reconnecting in 5s...
+2026/02/15 23:57:10 tun stats: tx=62748 rx=111021
+2026/02/15 23:57:11 trying transport=quic profile=google-h2 addr=178.208.76.92:8444
+2026/02/15 23:57:11 connected to entry 178.208.76.92:8443 transport=quic
+2026/02/15 23:57:15 tun stats: tx=87147 rx=143324
+2026/02/15 23:57:20 tun stats: tx=123252 rx=153412
+2026/02/15 23:57:25 tun stats: tx=127645 rx=162691
+2026/02/15 23:57:30 tun stats: tx=137333 rx=165847
+2026/02/15 23:57:35 tun stats: tx=139961 rx=166440
+2026/02/15 23:57:40 tun stats: tx=173421 rx=211710
+2026/02/15 23:57:45 tun stats: tx=202919 rx=231378
+2026/02/15 23:57:50 tun stats: tx=219704 rx=245181
+2026/02/15 23:57:55 tun stats: tx=231840 rx=257679
+2026/02/15 23:58:00 tun stats: tx=250081 rx=271768
+2026/02/15 23:58:05 tun stats: tx=254830 rx=276276
+2026/02/15 23:58:10 tun stats: tx=258435 rx=277227
+2026/02/15 23:58:15 tun stats: tx=268418 rx=302693
+2026/02/15 23:58:20 tun stats: tx=272512 rx=303743
+2026/02/15 23:58:25 tun stats: tx=361131 rx=1089554
+2026/02/15 23:58:30 tun stats: tx=477513 rx=2724181
+2026/02/15 23:58:35 tun stats: tx=506436 rx=2956921
+2026/02/15 23:58:40 tun stats: tx=523751 rx=2966395
+2026/02/15 23:58:45 tun stats: tx=536856 rx=2980571
+2026/02/15 23:58:50 tun stats: tx=576409 rx=3063582

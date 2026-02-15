@@ -60,9 +60,6 @@ func main() {
 		}
 	}
 
-	_, cancel := context.WithCancel(context.Background())
-	defer cancel()
-
 	tunName := getenv("ASTRA_TUN_NAME", "Astra")
 	tunMTU := getenvInt("ASTRA_TUN_MTU", 1400)
 	tunAddr := getenv("ASTRA_TUN_ADDR", "10.10.0.2/24")
@@ -140,77 +137,86 @@ func main() {
 		log.Printf("frame_padding: disabled (set ASTRA_FRAME_MIN_PAD/ASTRA_FRAME_MAX_PAD to enable)")
 	}
 
-	var conn net.Conn
-	var usedTransport string
-	if c, resp, tr := tryConnectParallel(context.Background(), entryAddr, transports, learn, profiles, networkID, id, token, obfsCfg); c != nil && resp != nil {
-		conn = c
-		usedTransport = tr
-		if resp.Token != "" {
-			_ = os.WriteFile(tokenFile, []byte(resp.Token), 0600)
-		}
-	}
-	if conn == nil {
-		for _, transportName := range transports {
-			profileOrder := rankProfilesForTransport(learn, profiles, transportName, networkID)
-			for _, profile := range profileOrder {
-				resp, c, _, err := attemptHandshake(context.Background(), entryAddr, transportName, profile, id, token, obfsCfg, networkID)
-				key := learningKey(profile.ID, transportName, networkID)
-				learn.Update(key, 0, err == nil && resp != nil && resp.Status == protocol.StatusOK)
-				if err != nil {
-					continue
-				}
-				if resp.Token != "" {
-					_ = os.WriteFile(tokenFile, []byte(resp.Token), 0600)
-				}
-				if resp.Status != protocol.StatusOK {
-					c.Close()
-					continue
-				}
-				conn = c
-				usedTransport = transportName
-				break
-			}
-			if conn != nil {
-				break
-			}
-		}
-	}
-	if conn == nil {
-		log.Fatal("failed to connect to entry")
-	}
-	log.Printf("connected to entry %s transport=%s", entryAddr, usedTransport)
-	defer conn.Close()
-
-	stream := transport.WrapConn(conn, frameCfg)
-	reader := bufio.NewReader(stream)
-	writer := bufio.NewWriter(stream)
-	writerMu := sync.Mutex{}
-
-	// On signal: close conn so pumps exit, then defer runs (remove routes, close TUN).
-	go func() {
-		sigCh := make(chan os.Signal, 1)
-		signal.Notify(sigCh, os.Interrupt, syscall.SIGTERM)
-		sig := <-sigCh
-		log.Printf("received signal %v, disconnecting...", sig)
-		cancel()
-		conn.Close()
-	}()
-
-	keepAliveSec := getenvInt("ASTRA_KEEPALIVE_SEC", 3)
-	jitterPct := getenvInt("ASTRA_KEEPALIVE_JITTER_PCT", 15)
-	if keepAliveSec > 0 {
-		if jitterPct > 0 {
-			log.Printf("keepalive: interval=%ds jitter=±%d%%", keepAliveSec, jitterPct)
-		}
-		go keepAlive(writer, &writerMu, shutdown, time.Duration(keepAliveSec)*time.Second, jitterPct)
+	// By default try transports in order (QUIC first if in list): only one connection to Entry, no Exit session replace.
+	// Set ASTRA_TRANSPORT_ORDER=parallel to try all transports in parallel (faster but can cause two connections with dual Entry).
+	connectOrder := getenv("ASTRA_TRANSPORT_ORDER", "sequential")
+	if connectOrder == "sequential" {
+		log.Printf("trying transports in order: %s", strings.Join(transports, " -> "))
 	} else {
-		log.Printf("keepalive disabled (ASTRA_KEEPALIVE_SEC=0)")
+		log.Printf("trying transports in parallel: %s", strings.Join(transports, ","))
+	}
+
+	reconnectEnabled := getenvBool("ASTRA_RECONNECT_ENABLED", true)
+	reconnectDelaySec := getenvInt("ASTRA_RECONNECT_DELAY_SEC", 5)
+	if reconnectEnabled {
+		log.Printf("auto-reconnect: enabled (delay=%ds, set ASTRA_RECONNECT_ENABLED=false to exit on disconnect)", reconnectDelaySec)
 	}
 	if getenvInt("ASTRA_LOG_TUN_STATS_SEC", 5) > 0 {
 		go logTunStats(time.Duration(getenvInt("ASTRA_LOG_TUN_STATS_SEC", 5)) * time.Second)
 	}
-	go pumpTunToConn(dev, writer, &writerMu, shutdown)
-	pumpConnToTun(dev, reader)
+
+	var currentConnMu sync.Mutex
+	var currentConn net.Conn
+	wantExit := int32(0)
+	go func() {
+		sigCh := make(chan os.Signal, 1)
+		signal.Notify(sigCh, os.Interrupt, syscall.SIGTERM)
+		<-sigCh
+		atomic.StoreInt32(&wantExit, 1)
+		currentConnMu.Lock()
+		c := currentConn
+		currentConn = nil
+		currentConnMu.Unlock()
+		if c != nil {
+			c.Close()
+		}
+		log.Printf("received signal, disconnecting...")
+	}()
+
+	ctxConnect := context.Background()
+	for atomic.LoadInt32(&wantExit) == 0 {
+		var conn net.Conn
+		var usedTransport string
+		var resp *protocol.HandshakeResponse
+		if connectOrder == "parallel" {
+			var c net.Conn
+			c, resp, usedTransport = tryConnectParallel(ctxConnect, entryAddr, transports, learn, profiles, networkID, id, token, obfsCfg)
+			conn = c
+		} else {
+			conn, resp, usedTransport = tryConnectSequential(ctxConnect, entryAddr, transports, learn, profiles, networkID, id, token, obfsCfg)
+		}
+		if conn != nil && resp != nil && resp.Token != "" {
+			_ = os.WriteFile(tokenFile, []byte(resp.Token), 0600)
+		}
+		if conn == nil {
+			if atomic.LoadInt32(&wantExit) != 0 {
+				break
+			}
+			log.Printf("connect failed, retry in %ds...", reconnectDelaySec)
+			time.Sleep(time.Duration(reconnectDelaySec) * time.Second)
+			continue
+		}
+		log.Printf("connected to entry %s transport=%s", entryAddr, usedTransport)
+		currentConnMu.Lock()
+		currentConn = conn
+		currentConnMu.Unlock()
+
+		runTunnel(dev, conn, frameCfg)
+		currentConnMu.Lock()
+		currentConn = nil
+		currentConnMu.Unlock()
+		conn.Close()
+
+		if atomic.LoadInt32(&wantExit) != 0 {
+			break
+		}
+		if !reconnectEnabled {
+			log.Printf("disconnected (reconnect disabled)")
+			break
+		}
+		log.Printf("disconnected, reconnecting in %ds...", reconnectDelaySec)
+		time.Sleep(time.Duration(reconnectDelaySec) * time.Second)
+	}
 }
 
 var tunTxBytes uint64
@@ -261,6 +267,38 @@ func keepAlive(writer *bufio.Writer, writerMu *sync.Mutex, closeFn func(), inter
 	}
 }
 
+// runTunnel runs keepalive and TUN⇄conn pumps until the connection closes (disconnect = close conn only; caller handles reconnect or shutdown).
+func runTunnel(dev *tun.Device, conn net.Conn, frameCfg transport.FrameConfig) {
+	stream := transport.WrapConn(conn, frameCfg)
+	reader := bufio.NewReader(stream)
+	writer := bufio.NewWriter(stream)
+	writerMu := sync.Mutex{}
+	disconnectOnce := sync.Once{}
+	onDisconnect := func() { disconnectOnce.Do(func() { conn.Close() }) }
+	var wg sync.WaitGroup
+	wg.Add(3)
+
+	keepAliveSec := getenvInt("ASTRA_KEEPALIVE_SEC", 3)
+	jitterPct := getenvInt("ASTRA_KEEPALIVE_JITTER_PCT", 15)
+	if keepAliveSec > 0 {
+		go func() {
+			defer wg.Done()
+			keepAlive(writer, &writerMu, onDisconnect, time.Duration(keepAliveSec)*time.Second, jitterPct)
+		}()
+	} else {
+		wg.Done()
+	}
+	go func() {
+		defer wg.Done()
+		pumpTunToConn(dev, writer, &writerMu, onDisconnect)
+	}()
+	go func() {
+		defer wg.Done()
+		pumpConnToTun(dev, reader, onDisconnect)
+	}()
+	wg.Wait()
+}
+
 func pumpTunToConn(dev *tun.Device, writer *bufio.Writer, writerMu *sync.Mutex, closeFn func()) {
 	buf := make([]byte, 65535)
 	for {
@@ -285,11 +323,12 @@ func pumpTunToConn(dev *tun.Device, writer *bufio.Writer, writerMu *sync.Mutex, 
 	}
 }
 
-func pumpConnToTun(dev *tun.Device, reader *bufio.Reader) {
+func pumpConnToTun(dev *tun.Device, reader *bufio.Reader, onDisconnect func()) {
 	for {
 		payload, err := readPacket(reader)
 		if err != nil {
 			log.Printf("conn read error (tunnel/entry closed): %v", err)
+			onDisconnect()
 			return
 		}
 		if len(payload) == 0 {
@@ -298,6 +337,7 @@ func pumpConnToTun(dev *tun.Device, reader *bufio.Reader) {
 		atomic.AddUint64(&tunRxBytes, uint64(len(payload)))
 		if _, err := tun.WritePacket(dev, payload); err != nil {
 			log.Printf("conn->tun write error: %v", err)
+			onDisconnect()
 			return
 		}
 	}
@@ -388,6 +428,32 @@ func rankProfilesForTransport(store *learning.Store, profiles []sni.Profile, tra
 		return store.Score(learningKey(ordered[i].ID, transportName, networkID)) > store.Score(learningKey(ordered[j].ID, transportName, networkID))
 	})
 	return ordered
+}
+
+// tryConnectSequential tries transports in list order (priority). First transport is tried fully; only if it fails do we try the next. Ensures at most one connection to Entry (avoids Exit "replacing active tun session" when dual Entry TCP+QUIC both connect).
+func tryConnectSequential(ctx context.Context, entryAddr string, transports []string, learn *learning.Store, profiles []sni.Profile, networkID string, id *identity.Identity, token string, obfsCfg obfs.Config) (net.Conn, *protocol.HandshakeResponse, string) {
+	for _, transportName := range transports {
+		if ctx.Err() != nil {
+			return nil, nil, ""
+		}
+		profileOrder := rankProfilesForTransport(learn, profiles, transportName, networkID)
+		for _, profile := range profileOrder {
+			if ctx.Err() != nil {
+				return nil, nil, ""
+			}
+			resp, c, _, err := attemptHandshake(ctx, entryAddr, transportName, profile, id, token, obfsCfg, networkID)
+			key := learningKey(profile.ID, transportName, networkID)
+			learn.Update(key, 0, err == nil && resp != nil && resp.Status == protocol.StatusOK)
+			if err != nil || resp == nil || resp.Status != protocol.StatusOK {
+				if c != nil {
+					c.Close()
+				}
+				continue
+			}
+			return c, resp, transportName
+		}
+	}
+	return nil, nil, ""
 }
 
 // tryConnectParallel tries the best profile of each transport in parallel; first success wins (faster connect).
@@ -713,6 +779,14 @@ func getenvInt(key string, def int) int {
 		}
 	}
 	return def
+}
+
+func getenvBool(key string, def bool) bool {
+	v := strings.TrimSpace(strings.ToLower(os.Getenv(key)))
+	if v == "" {
+		return def
+	}
+	return v == "1" || v == "true" || v == "yes"
 }
 
 func detectNetworkID() string {

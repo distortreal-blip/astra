@@ -2,11 +2,15 @@ package tun
 
 import (
 	"fmt"
+	"os"
 	"runtime"
 	"sync"
 
 	"golang.zx2c4.com/wireguard/tun"
 )
+
+// createTUNNoVNetFn is set on Linux to create a TUN without IFF_VNET_HDR when ASTRA_TUN_NO_VNET=1.
+var createTUNNoVNetFn func(name string, mtu int) (tun.Device, error)
 
 const packetOffset = 16
 
@@ -29,6 +33,22 @@ type Device struct {
 func Create(name string, mtu int) (*Device, error) {
 	if mtu <= 0 {
 		mtu = 1400
+	}
+	// Linux: ASTRA_TUN_NO_VNET=1 creates TUN without GSO/GRO — one packet per read, no "too many segments"
+	if createTUNNoVNetFn != nil && os.Getenv("ASTRA_TUN_NO_VNET") == "1" {
+		dev, err := createTUNNoVNetFn(name, mtu)
+		if err != nil {
+			return nil, err
+		}
+		actualMTU, _ := dev.MTU()
+		if actualMTU > 0 {
+			mtu = actualMTU
+		}
+		actualName, _ := dev.Name()
+		if actualName != "" {
+			name = actualName
+		}
+		return &Device{Tun: dev, Name: name, MTU: mtu}, nil
 	}
 	dev, err := tun.CreateTUN(name, mtu)
 	if err != nil {
